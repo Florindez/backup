@@ -121,7 +121,7 @@ Begin VB.Form frmCancelacionAcreencias
       _ExtentY        =   14631
       _Version        =   393216
       Style           =   1
-      Tab             =   2
+      Tab             =   1
       TabHeight       =   520
       ForeColor       =   8388608
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -136,30 +136,29 @@ Begin VB.Form frmCancelacionAcreencias
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmCancelacionAcreencias.frx":0D6F
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "tdgConsulta"
-      Tab(0).Control(1)=   "fraCriterio"
+      Tab(0).Control(0)=   "fraCriterio"
+      Tab(0).Control(1)=   "tdgConsulta"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Operación / Anexo"
       TabPicture(1)   =   "frmCancelacionAcreencias.frx":0D8B
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "fraDatosBasicos"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "fraDatosAnexo"
+      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "fraDetalle"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "cmdSiguiente"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Detalle de Pago"
       TabPicture(2)   =   "frmCancelacionAcreencias.frx":0DA7
-      Tab(2).ControlEnabled=   -1  'True
-      Tab(2).Control(0)=   "fraDetallePago"
-      Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "cmdAnterior"
-      Tab(2).Control(1).Enabled=   0   'False
+      Tab(2).ControlEnabled=   0   'False
+      Tab(2).Control(0)=   "cmdGuardar"
+      Tab(2).Control(1)=   "fraDetalleTotalPago"
       Tab(2).Control(2)=   "fraDetallePagoParcial"
-      Tab(2).Control(2).Enabled=   0   'False
-      Tab(2).Control(3)=   "fraDetalleTotalPago"
-      Tab(2).Control(3).Enabled=   0   'False
-      Tab(2).Control(4)=   "cmdGuardar"
-      Tab(2).Control(4).Enabled=   0   'False
+      Tab(2).Control(3)=   "cmdAnterior"
+      Tab(2).Control(4)=   "fraDetallePago"
       Tab(2).ControlCount=   5
       Begin VB.CommandButton cmdGuardar 
          Caption         =   "Guardar"
@@ -173,7 +172,7 @@ Begin VB.Form frmCancelacionAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   735
-         Left            =   13920
+         Left            =   -61080
          Picture         =   "frmCancelacionAcreencias.frx":0DC3
          Style           =   1  'Graphical
          TabIndex        =   94
@@ -192,7 +191,7 @@ Begin VB.Form frmCancelacionAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   4305
-         Left            =   10380
+         Left            =   -64620
          TabIndex        =   93
          Top             =   2910
          Width           =   4755
@@ -946,7 +945,7 @@ Begin VB.Form frmCancelacionAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   4305
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   68
          Top             =   2910
          Width           =   10155
@@ -2037,7 +2036,7 @@ Begin VB.Form frmCancelacionAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   735
-         Left            =   150
+         Left            =   -74850
          Picture         =   "frmCancelacionAcreencias.frx":1753
          Style           =   1  'Graphical
          TabIndex        =   66
@@ -2056,7 +2055,7 @@ Begin VB.Form frmCancelacionAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   2415
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   65
          Top             =   480
          Width           =   14985
@@ -2082,8 +2081,8 @@ Begin VB.Form frmCancelacionAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   735
-         Left            =   -61080
-         Picture         =   "frmCancelacionAcreencias.frx":7760
+         Left            =   13920
+         Picture         =   "frmCancelacionAcreencias.frx":8370
          Style           =   1  'Graphical
          TabIndex        =   61
          Top             =   7320
@@ -2101,7 +2100,7 @@ Begin VB.Form frmCancelacionAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   3015
-         Left            =   -74850
+         Left            =   150
          TabIndex        =   54
          Top             =   4230
          Width           =   14985
@@ -2117,17 +2116,17 @@ Begin VB.Form frmCancelacionAcreencias
             EndProperty
             Height          =   285
             Left            =   14610
-            Picture         =   "frmCancelacionAcreencias.frx":7BE6
+            Picture         =   "frmCancelacionAcreencias.frx":87F6
             Style           =   1  'Graphical
             TabIndex        =   150
             Top             =   2280
             Width           =   270
          End
          Begin TrueOleDBGrid60.TDBGrid tdgAnexo 
-            Bindings        =   "frmCancelacionAcreencias.frx":7F89
+            Bindings        =   "frmCancelacionAcreencias.frx":8B99
             Height          =   1995
             Left            =   120
-            OleObjectBlob   =   "frmCancelacionAcreencias.frx":7FA7
+            OleObjectBlob   =   "frmCancelacionAcreencias.frx":8BB7
             TabIndex        =   59
             Top             =   270
             Width           =   14745
@@ -2161,7 +2160,7 @@ Begin VB.Form frmCancelacionAcreencias
             FontName        =   "MS Sans Serif"
             FontSize        =   8.25
             ForeColor       =   -2147483640
-            Container       =   "frmCancelacionAcreencias.frx":D810
+            Container       =   "frmCancelacionAcreencias.frx":E420
             Text            =   "0.00"
             Decimales       =   2
             Estilo          =   4
@@ -2194,7 +2193,7 @@ Begin VB.Form frmCancelacionAcreencias
             FontSize        =   8.25
             ForeColor       =   -2147483640
             Locked          =   -1  'True
-            Container       =   "frmCancelacionAcreencias.frx":D82C
+            Container       =   "frmCancelacionAcreencias.frx":E43C
             Text            =   "0.00"
             Decimales       =   2
             Estilo          =   4
@@ -2204,10 +2203,10 @@ Begin VB.Form frmCancelacionAcreencias
             MaximoValor     =   1E+18
          End
          Begin TrueOleDBGrid60.TDBGrid tdgCuotas 
-            Bindings        =   "frmCancelacionAcreencias.frx":D848
+            Bindings        =   "frmCancelacionAcreencias.frx":E458
             Height          =   1995
             Left            =   120
-            OleObjectBlob   =   "frmCancelacionAcreencias.frx":D866
+            OleObjectBlob   =   "frmCancelacionAcreencias.frx":E476
             TabIndex        =   144
             Top             =   270
             Width           =   14745
@@ -2286,7 +2285,7 @@ Begin VB.Form frmCancelacionAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1815
-         Left            =   -74850
+         Left            =   150
          TabIndex        =   36
          Top             =   2400
          Width           =   14985
@@ -2580,7 +2579,7 @@ Begin VB.Form frmCancelacionAcreencias
             EndProperty
             Height          =   735
             Left            =   13170
-            Picture         =   "frmCancelacionAcreencias.frx":12AC8
+            Picture         =   "frmCancelacionAcreencias.frx":136D8
             Style           =   1  'Graphical
             TabIndex        =   16
             ToolTipText     =   "Enviar a BackOffice"
@@ -2630,7 +2629,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   175505409
+            Format          =   179503105
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -2652,7 +2651,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   175505409
+            Format          =   179503105
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -2674,7 +2673,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   175505409
+            Format          =   179503105
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -2696,7 +2695,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   175505409
+            Format          =   179503105
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -2892,7 +2891,7 @@ Begin VB.Form frmCancelacionAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1905
-         Left            =   -74850
+         Left            =   150
          TabIndex        =   1
          Top             =   480
          Width           =   14985
@@ -3130,10 +3129,10 @@ Begin VB.Form frmCancelacionAcreencias
          End
       End
       Begin TrueOleDBGrid60.TDBGrid tdgConsulta 
-         Bindings        =   "frmCancelacionAcreencias.frx":13023
+         Bindings        =   "frmCancelacionAcreencias.frx":13C33
          Height          =   5445
          Left            =   -74850
-         OleObjectBlob   =   "frmCancelacionAcreencias.frx":13041
+         OleObjectBlob   =   "frmCancelacionAcreencias.frx":13C51
          TabIndex        =   148
          Top             =   2700
          Width           =   14985
@@ -3212,6 +3211,9 @@ Dim dblMontoInteresAFavor               As Double
 Dim dblMontoInteresReconocido           As Double
 Dim dblMontoInteresAjusteCobroMinimo    As Double
 
+Dim dblMontoInteresMoratorio     As Double
+Dim dblMontoImptoInteresMoratorio As Double
+
 Dim dblInteresAjuste             As Double
 Dim dblImptoInteresAjuste        As Double
 Dim dblInteresAdicional          As Double
@@ -3224,6 +3226,8 @@ Dim dblTotalInteresAFavor        As Double
 Dim dblTotalIGVInteresAFavor     As Double
 Dim dblTotalInteresAdic          As Double
 Dim dblTotalImptoInteresAdic     As Double
+Dim dblTotalInteresMor           As Double
+Dim dblTotalImptoInteresMor      As Double
 Dim dblTotalDeuda                As Double
 Dim dblMargenDevolucion          As Double
 Dim dblTotalInteresAjuste        As Double
@@ -3528,13 +3532,13 @@ Private Sub CargarDesdeCarteraFacturas()
        " dbo.uf_ACCalcularDeudaTotal('" & strCodFondo & "','" & gstrCodAdministradora & "',IO.NumOperacion,'" & gstrFechaActual & "') as Deuda, " & _
        " MontoPrincipalAdeudado, (case when IO.FechaVencimiento < '" & gstrFechaActual & "'" & _
        " then case when IOCC.FechaVencimientoCuota < '29990101' then " & _
-       " dbo.uf_ACCalcularInteres(IO.TasaInteres,IO.TipoTasa,IO.PeriodoTasa,IO.BaseAnual,MontoPrincipalAdeudado,IO.FechaVencimiento,'" & gstrFechaActual & "') Else " & _
-       " dbo.uf_ACCalcularInteres(IO.TasaInteres,IO.TipoTasa,IO.PeriodoTasa,IO.BaseAnual,MontoPrincipalAdeudado,IOCC.FechaInicioCuota,'" & gstrFechaActual & "') end" & _
+       " dbo.uf_ACCalcularInteres(IO.TasaInteres,IO.TipoTasa,IO.PeriodoTasa,IO.PeriodoCapitalizacion,IO.BaseAnual,MontoPrincipalAdeudado,IO.FechaVencimiento,'" & gstrFechaActual & "') Else " & _
+       " dbo.uf_ACCalcularInteres(IO.TasaInteres,IO.TipoTasa,IO.PeriodoTasa,IO.PeriodoCapitalizacion,IO.BaseAnual,MontoPrincipalAdeudado,IOCC.FechaInicioCuota,'" & gstrFechaActual & "') end" & _
        " else 0 end) as InteresAdicional," & _
        " (case when IO.FechaVencimiento < '" & gstrFechaActual & "'" & _
        " then cast(round(case when IOCC.FechaVencimientoCuota < '29990101' then " & _
-       " dbo.uf_ACCalcularInteres(IO.TasaInteres,IO.TipoTasa,IO.PeriodoTasa,IO.BaseAnual,MontoPrincipalAdeudado,IO.FechaVencimiento,'" & gstrFechaActual & "') Else " & _
-       " dbo.uf_ACCalcularInteres(IO.TasaInteres,IO.TipoTasa,IO.PeriodoTasa,IO.BaseAnual,MontoPrincipalAdeudado,IOCC.FechaInicioCuota,'" & gstrFechaActual & "') " & _
+       " dbo.uf_ACCalcularInteres(IO.TasaInteres,IO.TipoTasa,IO.PeriodoTasa,IO.PeriodoCapitalizacion,IO.BaseAnual,MontoPrincipalAdeudado,IO.FechaVencimiento,'" & gstrFechaActual & "') Else " & _
+       " dbo.uf_ACCalcularInteres(IO.TasaInteres,IO.TipoTasa,IO.PeriodoTasa,IO.PeriodoCapitalizacion,IO.BaseAnual,MontoPrincipalAdeudado,IOCC.FechaInicioCuota,'" & gstrFechaActual & "') " & _
        " end *(IO.PorcenImptoInteres/100),2)as Decimal(19,2))" & _
        " else 0 end) as IGVInteresAdicional, " & _
        " IO.CodMonedaDocumento, IO.ValorNominalDocumento, IO.IndTipoCambio,IO.TipoTasa,IO.BaseAnual,IO.PeriodoTasa,IO.IndCapitalizable,IO.PeriodoCapitalizacion,IO.IndGeneraLetra, IO.ModoCobroInteres" & _
@@ -3646,8 +3650,10 @@ Private Sub CalcularTotalesDetallePago()
     tdgDetallePago.Columns(4).FooterText = dblTotalAjusteCobroMin
     tdgDetallePago.Columns(5).FooterText = dblTotalInteresAdic
     tdgDetallePago.Columns(6).FooterText = dblTotalIGVInteresAdic
-    tdgDetallePago.Columns(7).FooterText = dblTotalDeuda
-    tdgDetallePago.Columns(8).FooterText = dblTotalMontoPagado
+    tdgDetallePago.Columns(7).FooterText = dblTotalInteresMor
+    tdgDetallePago.Columns(8).FooterText = dblTotalImptoInteresMor
+    tdgDetallePago.Columns(9).FooterText = dblTotalDeuda
+    tdgDetallePago.Columns(10).FooterText = dblTotalMontoPagado
     
     adoDetallePago.MoveFirst
     
@@ -4027,9 +4033,9 @@ Private Sub Grabar()
                "','" & adoDetalleAnexo("IndGeneraLetra") & "'," & CDec(dblTasaInteres) & "," & CDec(dblTasaInteres) & "," & CDec(dblTasaInteres) & _
                ",'','','" & Trim$(txtObservacion.Text) & "','" & gstrLogin & "','" & gstrFechaActual & _
                "','" & gstrLogin & "','" & gstrFechaActual & "','" & adoDetalleAnexo("CodTitulo") & "','" & adoDetalleAnexo("ModoCobroInteres") & _
-               "'," & adoDetalleAnexo("MontoInteres") & "," & adoDetalleAnexo("MontoInteresCobroMinimo") & "," & adoDetallePago("InteresAdicional") & _
+               "'," & adoDetalleAnexo("MontoInteres") & "," & adoDetalleAnexo("MontoInteresCobroMinimo") & "," & adoDetallePago("InteresAdicional") & "," & dblMontoInteresMoratorio & _
                "," & adoDetalleAnexo("DiasCobroMinimo") & "," & adoDetallePago("CantDiasMora") & ",'01'," & adoDetallePago("PorcenIGV") & "," & adoDetalleAnexo("MontoImptoInteres") & "," & _
-               adoDetallePago("IGVInteresAdicional") & "," & adoDetallePago("PorcenIGV") & _
+               adoDetallePago("IGVInteresAdicional") & "," & dblMontoImptoInteresMoratorio & "," & adoDetallePago("PorcenIGV") & _
                ",0," & dblInteresAjusteGrabado & "," & dblImptoInteresAjusteGrabado & "," & dblAjusteInteresPagoAdelantado & "," & _
                dblImptoAjusteInteresPagoAdelantado & "," & dblAjusteCobroMinimo & "," & dblImptoAjusteCobroMinimo & ",'" & strNumAnexo & "','" & Trim$(strNumContrato) & "','" & Trim$(adoDetalleAnexo("NumDocumentoFisico")) & "','','42','09','" & strCodEmisor & "','" & Codigo_Tipo_Persona_Emisor & "','" & adoDetalleAnexo("ResponsablePago") & _
                "',''," & dblMontoTotalAnexo & "," & intCantDocAnexo & "," & adoDetalleAnexo("PorcenComision") & "," & adoDetallePago("Deuda") & ")}"
@@ -4115,6 +4121,8 @@ Private Sub GenerarDetallePagoFactura()
         .Append "AjusteCobroMinimo", adDecimal, 19  'ajuste por cobro de intereses minimos
         .Append "InteresAdicional", adDecimal, 19
         .Append "IGVInteresAdicional", adDecimal, 19
+        .Append "InteresMoratorio", adDecimal, 19
+        .Append "IGVInteresMoratorio", adDecimal, 19
         .Append "Deuda", adDecimal, 19
         .Append "MontoPago", adDecimal, 19
         .Append "TipoPago", adVarChar, 30
@@ -4135,6 +4143,10 @@ Private Sub GenerarDetallePagoFactura()
         .Item("InteresAdicional").NumericScale = 2
         .Item("IGVInteresAdicional").Precision = 19
         .Item("IGVInteresAdicional").NumericScale = 2
+        .Item("InteresMoratorio").Precision = 19
+        .Item("InteresMoratorio").NumericScale = 2
+        .Item("IGVInteresMoratorio").Precision = 19
+        .Item("IGVInteresMoratorio").NumericScale = 2
         .Item("Deuda").Precision = 19
         .Item("Deuda").NumericScale = 2
         .Item("MontoPago").Precision = 19
@@ -4167,7 +4179,7 @@ Private Sub GenerarDetallePagoFactura()
             CantDiasMora = 0
         End If
                 
-        adoDetallePago.AddNew Array("NumOperacion", "DescripPersona", "PorcenIGV", "PrincipalAdeudado", "MontoInteresCobroMinimo", "AjusteCobroMinimo", "InteresAdicional", "IGVInteresAdicional", "Deuda", "MontoPago", "TipoPago", "TipoOperacion", "FechaVencimiento", "AjusteInteres", "CantDiasMora"), Array(adoDetalleAnexo("NumOperacion"), adoDetalleAnexo("DescripPersona"), adoDetalleAnexo("PorcenImptoInteres"), adoDetalleAnexo("MontoPrincipalAdeudado"), adoDetalleAnexo("MontoInteresCobroMinimo"), 0, adoDetalleAnexo("InteresAdicional"), adoDetalleAnexo("IGVInteresAdicional"), adoDetalleAnexo("Deuda"), dblMontoPagado, strNaturalezaPago, strTipoOperacion, adoDetalleAnexo("FechaVencimiento"), 0, CantDiasMora)
+        adoDetallePago.AddNew Array("NumOperacion", "DescripPersona", "PorcenIGV", "PrincipalAdeudado", "MontoInteresCobroMinimo", "AjusteCobroMinimo", "InteresAdicional", "IGVInteresAdicional", "InteresMoratorio", "IGVInteresMoratorio", "Deuda", "MontoPago", "TipoPago", "TipoOperacion", "FechaVencimiento", "AjusteInteres", "CantDiasMora"), Array(adoDetalleAnexo("NumOperacion"), adoDetalleAnexo("DescripPersona"), adoDetalleAnexo("PorcenImptoInteres"), adoDetalleAnexo("MontoPrincipalAdeudado"), adoDetalleAnexo("MontoInteresCobroMinimo"), 0, adoDetalleAnexo("InteresAdicional"), adoDetalleAnexo("IGVInteresAdicional"), 0, 0, adoDetalleAnexo("Deuda"), dblMontoPagado, strNaturalezaPago, strTipoOperacion, adoDetalleAnexo("FechaVencimiento"), 0, CantDiasMora)
         
         adoDetalleAnexo.MoveNext
     Wend
@@ -4176,7 +4188,25 @@ Private Sub GenerarDetallePagoFactura()
     adoDetallePago.MoveLast
     
     If Not adoDetallePago.EOF Then
-            
+        'Consultar el Interes Moratorio provisionado
+         With adoComm
+            .CommandText = "select SaldoInteresMoratorioInicial as InteresMoratorio from InversionValorizacionDiaria IVD join InversionOperacion IO on " & _
+                            "(IVD.CodFondo = IO.CodFondo and IVD.CodAdministradora = IO.CodAdministradora and IO.CodFile = IVD.CodFile " & _
+                            "and IO.CodAnalitica = IVD.CodAnalitica and IO.CodTitulo = IVD.CodTitulo) where IO.NumOperacion = '" & adoDetallePago("NumOperacion") & "' " & _
+                            "and IO.CodFondo = '" & gstrCodFondoContable & "' and FechaValorizacion = '" & gstrFechaActual & "'"
+            Set adoConsulta = .Execute
+        End With
+    
+        If adoConsulta.EOF Then
+            MsgBox ("Data de Valorizacion diaria Inconsistente!")
+            Exit Sub
+        End If
+        
+        dblMontoInteresMoratorio = adoConsulta("InteresMoratorio")
+        dblMontoImptoInteresMoratorio = Round(dblMontoInteresMoratorio * gdblTasaIgv, 2)
+        adoDetallePago("InteresMoratorio") = dblMontoInteresMoratorio
+        adoDetallePago("IGVInteresMoratorio") = dblMontoImptoInteresMoratorio
+        
         ' Seleccionar modalidad de calculo de interes
          With adoComm
             .CommandText = "select dbo.uf_IVObtenerModalidadCalculoInteres('" & gstrCodFondoContable & "','" & gstrCodAdministradora & "') as ValorParametro"
@@ -4303,6 +4333,8 @@ Private Sub GenerarDetallePagoFactura()
     dblTotalIGVInteresAFavor = 0
     dblTotalInteresAdic = 0
     dblTotalImptoInteresAdic = 0
+    dblTotalInteresMor = 0
+    dblTotalImptoInteresMor = 0
     dblTotalDeuda = 0
     dblTotalInteresAjuste = 0
     dblImptoTotalInteresAjuste = 0
@@ -4313,6 +4345,8 @@ Private Sub GenerarDetallePagoFactura()
         dblTotalPrincipalAdeudado = dblTotalPrincipalAdeudado + adoDetallePago("PrincipalAdeudado")
         dblTotalInteresAdic = dblTotalInteresAdic + adoDetallePago("InteresAdicional")
         dblTotalImptoInteresAdic = dblTotalImptoInteresAdic + adoDetallePago("IGVInteresAdicional")
+        dblTotalInteresMor = dblTotalInteresMor + adoDetallePago("InteresMoratorio")
+        dblTotalImptoInteresMor = dblTotalImptoInteresMor + adoDetallePago("IGVInteresMoratorio")
         dblTotalDeuda = dblTotalDeuda + adoDetallePago("Deuda")
         
         With adoComm

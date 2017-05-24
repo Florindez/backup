@@ -1,0 +1,4 @@
+[History]
+1=#P0#=mb	#P1#=CalcularTotalesDetallePago	#P2#=Inversion/frmCancelacionAcreencias/CalcularTotalesDetallePago	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170524115336	#P7#=0	#P8#=29	.
+2=#P0#=mb	#P1#=CargarDesdeCarteraFacturas	#P2#=Inversion/frmCancelacionAcreencias/CargarDesdeCarteraFacturas	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170524114039	#P7#=0	#P8#=130	.
+3=#P0#=mb	#P1#=GenerarDetallePagoFactura	#P2#=Inversion/frmCancelacionAcreencias/GenerarDetallePagoFactura	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170524115229	#P7#=0	#P8#=343	.

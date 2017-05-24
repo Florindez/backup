@@ -1,0 +1,5 @@
+[History]
+1=#P0#=mb	#P1#=mnuEmergente_Click	#P2#=Contabilidad/frmMainMdi/mnuEmergente_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20170524102549	#P7#=0	#P8#=3	.
+2=#P0#=mb	#P1#=MDIForm_MouseDown	#P2#=Contabilidad/frmMainMdi/MDIForm_MouseDown	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20170524102526	#P7#=0	#P8#=6	.
+3=#P0#=mb	#P1#=MDIForm_Load	#P2#=Contabilidad/frmMainMdi/MDIForm_Load	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20170524102451	#P7#=0	#P8#=25	.
+4=#P0#=mb	#P1#=mnuMantenimiento_Click	#P2#=Contabilidad/frmMainMdi/mnuMantenimiento_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20170520152244	#P7#=0	#P8#=4	.

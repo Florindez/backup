@@ -345,12 +345,14 @@ Private Sub cmdRestore_Click()
     With adoConn
         .Provider = "SQLOLEDB"
         .ConnectionString = gstrConnect
+        .CommandTimeout = 0
         .ConnectionTimeout = 0
         .Open
     End With
     
     With adoComm
         .CommandTimeout = 0
+
         .CommandText = "Use master exec KillConexiones " & gstrDataBase
         .Execute
     End With

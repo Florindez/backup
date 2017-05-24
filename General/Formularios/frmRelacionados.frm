@@ -1,9 +1,9 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{0D6234D1-DBA2-11D1-B5DF-0060976089D0}#6.0#0"; "todg6.ocx"
-Object = "{442CAE95-1D41-47B1-BE83-6995DA3CE254}#1.0#0"; "TAMControls2.ocx"
+Object = "{5D1B2F4C-4B16-4B89-95C7-87E9AF4DB6BC}#1.0#0"; "TAMControls2.ocx"
 Begin VB.Form frmRelacionados 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Personas Relacionadas a la Administradora"
@@ -37,6 +37,7 @@ Begin VB.Form frmRelacionados
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
+      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -51,12 +52,15 @@ Begin VB.Form frmRelacionados
       Buttons         =   3
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
+      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "3"
+      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Eliminar"
       Tag2            =   "4"
+      Visible2        =   0   'False
       ToolTipText2    =   "Eliminar"
       UserControlWidth=   4200
    End
@@ -107,9 +111,11 @@ Begin VB.Form frmRelacionados
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlWidth=   2700
       End
@@ -323,7 +329,7 @@ Begin VB.Form frmRelacionados
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   146669569
+            Format          =   178323457
             CurrentDate     =   38068
          End
          Begin MSComCtl2.DTPicker dtpFechaInicio 
@@ -344,7 +350,7 @@ Begin VB.Form frmRelacionados
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   146669569
+            Format          =   178323457
             CurrentDate     =   38068
          End
          Begin VB.Label lblDescrip 
@@ -529,6 +535,8 @@ Private Sub BuscarRelacion()
         
     With adoRelacion
         .ConnectionString = gstrConnectConsulta
+        .CommandTimeout = 0
+        .ConnectionTimeout = 0
         .RecordSource = strSQL
         .Refresh
     End With

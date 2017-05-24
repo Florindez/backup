@@ -696,7 +696,8 @@ Public Const Codigo_Caja_Liq_Quiebre_Inversion = "33"
 Public Const Codigo_Caja_Liq_Cancelacion_Inversion = "34"
 Public Const Codigo_Caja_Provision_Gasto = "35"
 Public Const Codigo_Caja_Provision_ComisionP = "36"
-Public Const Codigo_Caja_Provision_Intereses_Moratorios = "37"
+Public Const Codigo_Caja_Provision_Intereses_Adicionales = "37"
+Public Const Codigo_Caja_Provision_Intereses_Moratorios = "39"
 Public Const Codigo_Caja_Operacion_Cambio = "49"
 
 '*** Código Tipo Forma de Pago *** MEDPAG

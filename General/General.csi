@@ -1,0 +1,21 @@
+[History]
+1=#P0#=mb	#P1#=ValorizacionPrestamos	#P2#=General/frmCierreDiario/ValorizacionPrestamos	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170524103732	#P7#=0	#P8#=52	.
+2=#P0#=mb	#P1#=ValorizacionAcreencias	#P2#=General/frmCierreDiario/ValorizacionAcreencias	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170524104028	#P7#=0	#P8#=85	.
+3=#P0#=mb	#P1#=Buscar	#P2#=General/frmFeriados/Buscar	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522125805	#P7#=0	#P8#=35	.
+4=#P0#=mb	#P1#=cmdRestore_Click	#P2#=General/frmBackupRestore/cmdRestore_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20170522125759	#P7#=0	#P8#=42	.
+5=#P0#=mb	#P1#=CargarTitulosEmitidos	#P2#=General/frmInstitucion/CargarTitulosEmitidos	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522125741	#P7#=0	#P8#=0	.
+6=#P0#=mb	#P1#=CambiarClave	#P2#=General/frmCambioClave/CambiarClave	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522125705	#P7#=0	#P8#=27	.
+7=#P0#=mb	#P1#=obtenerDatosSistema	#P2#=General/clsParser/obtenerDatosSistema	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522125654	#P7#=0	#P8#=14	.
+8=#P0#=mb	#P1#=EjecutaProcedimientoReturn	#P2#=General/FuncionesXML/EjecutaProcedimientoReturn	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522125600	#P7#=0	#P8#=15	.
+9=#P0#=mb	#P1#=CargarGastos	#P2#=General/frmFondoConceptoIngreso/CargarGastos	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522125506	#P7#=0	#P8#=19	.
+10=#P0#=mb	#P1#=Buscar	#P2#=General/frmPerfil/Buscar	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522125422	#P7#=0	#P8#=16	.
+11=#P0#=mb	#P1#=BuscarModulos	#P2#=General/frmPerfil/BuscarModulos	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522125414	#P7#=0	#P8#=10	.
+12=#P0#=mb	#P1#=BuscarRelacion	#P2#=General/frmRelacionados/BuscarRelacion	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522125359	#P7#=0	#P8#=9	.
+13=#P0#=mb	#P1#=Buscar	#P2#=General/frmUsuarios/Buscar	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522125347	#P7#=0	#P8#=12	.
+14=#P0#=mb	#P1#=cmdAccion_Click	#P2#=General/frmAcceso/cmdAccion_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20170522125334	#P7#=0	#P8#=110	.
+15=#P0#=mb	#P1#=GenerarLibroMayor	#P2#=General/Comun/GenerarLibroMayor	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522124909	#P7#=0	#P8#=16	.
+16=#P0#=mb	#P1#=GenFondoGastoAdmin	#P2#=General/frmCierreDiario/GenFondoGastoAdmin	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522124632	#P7#=0	#P8#=15	.
+17=#P0#=mb	#P1#=GenOrdenPagoAdministradora	#P2#=General/frmCierreDiario/GenOrdenPagoAdministradora	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20170522124539	#P7#=0	#P8#=2	.
+18=#P0#=mb	#P1#=ValorizacionFlujos	#P2#=General/frmCierreDiario/ValorizacionFlujos	#P3#=	#P4#=	#P5#=MembMethodPrivate	#P6#=20170524103740	#P7#=0	#P8#=30	.
+19=#P0#=mb	#P1#=MDIForm_Load	#P2#=General/frmMainMdi/MDIForm_Load	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20170521224338	#P7#=0	#P8#=8	.
+20=#P0#=mb	#P1#=MDIForm_MouseDown	#P2#=General/frmMainMdi/MDIForm_MouseDown	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20170521215603	#P7#=0	#P8#=7	.

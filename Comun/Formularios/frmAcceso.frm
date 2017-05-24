@@ -476,7 +476,7 @@ End Sub
 
 
 
-Private Sub cmdAccion_Click(index As Integer)
+Private Sub cmdAccion_Click(Index As Integer)
             
     Dim adoAdministradora As ADODB.Recordset '*** NUEVO AFP INTEGRA
     Dim adoCantidadFondo As ADODB.Recordset '*** NUEVO AFP INTEGRA
@@ -491,7 +491,7 @@ Private Sub cmdAccion_Click(index As Integer)
         
     On Error GoTo cmdConectar_Error
 
-    Select Case index
+    Select Case Index
     
         Case 0: '*** Aceptar ***
         
@@ -531,6 +531,8 @@ Private Sub cmdAccion_Click(index As Integer)
             With adoConnSeguridad
                 .Provider = "SQLOLEDB"
                 .ConnectionString = gstrConnectSeguridad
+                .CommandTimeout = 0
+                .ConnectionTimeout = 0
                 .Open
             End With
             
@@ -587,6 +589,8 @@ Private Sub cmdAccion_Click(index As Integer)
             With adoConn
                 .Provider = "SQLOLEDB"
                 .ConnectionString = gstrConnect
+                .CommandTimeout = 0
+                .ConnectionTimeout = 0
                 .Open
             End With
 

@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{0D6234D1-DBA2-11D1-B5DF-0060976089D0}#6.0#0"; "todg6.ocx"
-Object = "{442CAE95-1D41-47B1-BE83-6995DA3CE254}#1.0#0"; "TAMControls2.ocx"
+Object = "{5D1B2F4C-4B16-4B89-95C7-87E9AF4DB6BC}#1.0#0"; "TAMControls2.ocx"
 Begin VB.Form frmTablas 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Tablas Generales"
@@ -24,6 +24,7 @@ Begin VB.Form frmTablas
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
+      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -38,12 +39,15 @@ Begin VB.Form frmTablas
       Buttons         =   3
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
+      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "3"
+      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Buscar"
       Tag2            =   "5"
+      Visible2        =   0   'False
       ToolTipText2    =   "Buscar"
       UserControlWidth=   4200
    End
@@ -73,9 +77,9 @@ Begin VB.Form frmTablas
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmTablas.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "tdgConsulta"
+      Tab(0).Control(0)=   "fraTipoCambio"
       Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "fraTipoCambio"
+      Tab(0).Control(1)=   "tdgConsulta"
       Tab(0).Control(1).Enabled=   0   'False
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Detalle"
@@ -97,9 +101,11 @@ Begin VB.Form frmTablas
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlWidth=   2700
       End
@@ -661,10 +667,6 @@ Private Sub Form_Unload(Cancel As Integer)
     Call OcultarReportes
     Set frmCatalogo = Nothing
     
-End Sub
-
-Private Sub fraDetalle_DragDrop(Source As Control, X As Single, Y As Single)
-
 End Sub
 
 Private Sub tabCatalogo_Click(PreviousTab As Integer)

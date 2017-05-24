@@ -6805,6 +6805,8 @@ Public Function ValidarPermisoAccesoObjeto(ByVal strIdUsuario As String, ByVal s
     With adoConnSeguridad
         .Provider = "SQLOLEDB"
         .ConnectionString = gstrConnect
+        .CommandTimeout = 0
+        .ConnectionTimeout = 0
         .Open
     End With
     
@@ -6999,6 +7001,8 @@ Public Sub ValidarPermisoUsoMenu(ByVal strIdUsuario As String, ByVal frmPadre As
     With adoConnSeguridad
         .Provider = "SQLOLEDB"
         .ConnectionString = gstrConnect
+        .CommandTimeout = 0
+        .ConnectionTimeout = 0
         .Open
     End With
     
@@ -7115,6 +7119,8 @@ Public Sub ValidarPermisoUsoControl(ByVal strIdUsuario As String, ByVal frmPadre
     With adoConnSeguridad
         .Provider = "SQLOLEDB"
         .ConnectionString = gstrConnect
+        .CommandTimeout = 0
+        .ConnectionTimeout = 0
         .Open
     End With
     

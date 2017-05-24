@@ -82,7 +82,7 @@ strResult = strResult & "<ROOT><PARAMETERS "
 '--------------------------
 
 If intInicioValores = False Then
-    For i = 3 To xmlDoc.documentElement.childNodes.length - 1
+    For i = 3 To xmlDoc.documentElement.childNodes.Length - 1
     
         
     
@@ -90,7 +90,7 @@ If intInicioValores = False Then
             "=""" & reemplazarConstantesXML(xmlDoc.documentElement.childNodes(i).Text) & """ "
     Next
 Else
-    For i = 0 To xmlDoc.documentElement.childNodes.length - 1
+    For i = 0 To xmlDoc.documentElement.childNodes.Length - 1
         strResult = strResult & xmlDoc.documentElement.childNodes(i).nodeName & _
             "=""" & reemplazarConstantesXML(xmlDoc.documentElement.childNodes(i).Text) & """ "
     Next
@@ -189,6 +189,8 @@ CanIntentos = 3
 Set cn = New Connection
 Set cm = New ADODB.Command
 cn.ConnectionString = gstrConnectConsulta
+cn.CommandTimeout = 0
+cn.ConnectionTimeout = 0
 cn.CursorLocation = adUseClient
 cn.Open
 cm.CommandTimeout = 0
@@ -824,9 +826,9 @@ Public Sub XMLADORecordsetD(ByVal strXMLDoc As String, ByVal strNomDocumento As 
     For Each objSub In objElem.childNodes
         Debug.Print objSub.nodeName
         
-        If objSub.Attributes.length > 0 Then
+        If objSub.Attributes.Length > 0 Then
             adoRecordset.AddNew
-            For i = 0 To objSub.Attributes.length - 1
+            For i = 0 To objSub.Attributes.Length - 1
                 adoRecordset.Fields(objSub.Attributes(i).nodeName) = objSub.Attributes(i).nodeValue
                 Debug.Print objSub.Attributes(i).nodeName & " - " & objSub.Attributes(i).nodeValue
             Next i
@@ -855,7 +857,7 @@ lblnSuccess = True
 If xmlDoc Is Nothing Then
     Set xmlDoc = New DOMDocument60
 End If
-If xmlDoc.childNodes.length <= 0 Then
+If xmlDoc.childNodes.Length <= 0 Then
     lblnSuccess = xmlDoc.loadXML("<parameters/>")
 End If
 If lblnSuccess = True Then

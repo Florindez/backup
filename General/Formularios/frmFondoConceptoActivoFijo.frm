@@ -3,7 +3,7 @@ Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{0D6234D1-DBA2-11D1-B5DF-0060976089D0}#6.0#0"; "todg6.ocx"
 Object = "{830D5A06-9B70-4F8C-98B6-7A19C4E7760B}#1.0#0"; "TAMControls.ocx"
-Object = "{442CAE95-1D41-47B1-BE83-6995DA3CE254}#1.0#0"; "TAMControls2.ocx"
+Object = "{5D1B2F4C-4B16-4B89-95C7-87E9AF4DB6BC}#1.0#0"; "TAMControls2.ocx"
 Begin VB.Form frmFondoConceptoActivoFijo 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Autorización de Activos Fijos"
@@ -47,9 +47,11 @@ Begin VB.Form frmFondoConceptoActivoFijo
       Buttons         =   2
       Caption0        =   "&Imprimir"
       Tag0            =   "6"
+      Visible0        =   0   'False
       ToolTipText0    =   "Imprimir"
       Caption1        =   "&Salir"
       Tag1            =   "9"
+      Visible1        =   0   'False
       ToolTipText1    =   "Salir"
       UserControlWidth=   2700
    End
@@ -63,6 +65,7 @@ Begin VB.Form frmFondoConceptoActivoFijo
       _ExtentY        =   1296
       Caption0        =   "&Buscar"
       Tag0            =   "5"
+      Visible0        =   0   'False
       ToolTipText0    =   "Buscar"
       UserControlWidth=   1200
    End
@@ -93,9 +96,9 @@ Begin VB.Form frmFondoConceptoActivoFijo
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmFondoConceptoActivoFijo.frx":05AB
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "tdgConsulta"
+      Tab(0).Control(0)=   "fraGasto(0)"
       Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "fraGasto(0)"
+      Tab(0).Control(1)=   "tdgConsulta"
       Tab(0).Control(1).Enabled=   0   'False
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Detalle"
@@ -219,9 +222,11 @@ Begin VB.Form frmFondoConceptoActivoFijo
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlWidth=   2700
       End
@@ -237,9 +242,11 @@ Begin VB.Form frmFondoConceptoActivoFijo
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlHeight=   390
          UserControlWidth=   2700
@@ -312,9 +319,11 @@ Begin VB.Form frmFondoConceptoActivoFijo
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlWidth=   2700
       End
@@ -723,6 +732,3 @@ Private Sub tdgConsulta_HeadClick(ByVal ColIndex As Integer)
 End Sub
 
 
-Private Sub tdgGasto_Click()
-
-End Sub

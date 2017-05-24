@@ -201,6 +201,9 @@ Private Sub CambiarClave()
     With adoConnCambioClave
         .Provider = "SQLOLEDB"
         .ConnectionString = gstrConnectCambioClave
+        .CommandTimeout = 0
+        .ConnectionTimeout = 0
+
         .Open
     End With
         

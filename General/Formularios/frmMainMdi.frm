@@ -1,12 +1,12 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.MDIForm frmMainMdi 
    BackColor       =   &H8000000C&
    Caption         =   "Módulo General"
    ClientHeight    =   9810
    ClientLeft      =   225
    ClientTop       =   855
-   ClientWidth     =   16050
+   ClientWidth     =   15960
    Icon            =   "frmMainMdi.frx":0000
    LinkTopic       =   "MDIForm1"
    StartUpPosition =   3  'Windows Default
@@ -18,8 +18,8 @@ Begin VB.MDIForm frmMainMdi
       Left            =   0
       TabIndex        =   1
       Top             =   9435
-      Width           =   16050
-      _ExtentX        =   28310
+      Width           =   15960
+      _ExtentX        =   28152
       _ExtentY        =   661
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -37,7 +37,7 @@ Begin VB.MDIForm frmMainMdi
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
             AutoSize        =   1
-            Object.Width           =   22648
+            Object.Width           =   22490
             Text            =   "Acción"
             TextSave        =   "Acción"
             Object.ToolTipText     =   "Mensajes"
@@ -51,8 +51,8 @@ Begin VB.MDIForm frmMainMdi
       Negotiate       =   -1  'True
       TabIndex        =   0
       Top             =   0
-      Width           =   16050
-      _ExtentX        =   28310
+      Width           =   15960
+      _ExtentX        =   28152
       _ExtentY        =   635
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -677,8 +677,6 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
-
 Private Sub MDIForm_Load()
 
     App.Title = "General"
@@ -692,7 +690,7 @@ Private Sub MDIForm_Load()
         End
     End If
     
-    frmMainMdi.BackColor = RGB(234, 214, 141)
+    frmMainMdi.BackColor = RGB(102, 180, 255)
     
     frmAcceso.Show vbModal
     Sleep 0&

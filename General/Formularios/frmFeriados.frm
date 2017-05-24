@@ -1,10 +1,10 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{0D6234D1-DBA2-11D1-B5DF-0060976089D0}#6.0#0"; "todg6.ocx"
 Object = "{830D5A06-9B70-4F8C-98B6-7A19C4E7760B}#1.0#0"; "TAMControls.ocx"
-Object = "{442CAE95-1D41-47B1-BE83-6995DA3CE254}#1.0#0"; "TAMControls2.ocx"
+Object = "{5D1B2F4C-4B16-4B89-95C7-87E9AF4DB6BC}#1.0#0"; "TAMControls2.ocx"
 Begin VB.Form frmFeriados 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Feriados"
@@ -49,6 +49,7 @@ Begin VB.Form frmFeriados
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
+      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -63,15 +64,19 @@ Begin VB.Form frmFeriados
       Buttons         =   4
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
+      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "3"
+      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Buscar"
       Tag2            =   "5"
+      Visible2        =   0   'False
       ToolTipText2    =   "Buscar"
       Caption3        =   "&Eliminar"
       Tag3            =   "4"
+      Visible3        =   0   'False
       ToolTipText3    =   "Eliminar"
       UserControlWidth=   5700
    End
@@ -147,13 +152,9 @@ Begin VB.Form frmFeriados
       TabPicture(1)   =   "frmFeriados.frx":068D
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "cmdOperacion"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "fraDetalle"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "ucBotonEdicion1"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "cmdOperacion2"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).ControlCount=   4
       Begin TAMControls2.ucBotonEdicion2 cmdOperacion 
          Height          =   735
@@ -166,9 +167,11 @@ Begin VB.Form frmFeriados
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlWidth=   2700
       End
@@ -314,7 +317,7 @@ Begin VB.Form frmFeriados
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   146669569
+            Format          =   178323457
             CurrentDate     =   38806
          End
          Begin VB.Label lblDescrip 
@@ -425,9 +428,11 @@ Begin VB.Form frmFeriados
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlHeight=   390
          UserControlWidth=   2700
@@ -452,9 +457,11 @@ Begin VB.Form frmFeriados
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlHeight=   390
          UserControlWidth=   2700
@@ -471,9 +478,11 @@ Begin VB.Form frmFeriados
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlHeight=   390
          UserControlWidth=   2700
@@ -491,15 +500,19 @@ Begin VB.Form frmFeriados
       Buttons         =   4
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
+      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "3"
+      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Buscar"
       Tag2            =   "5"
+      Visible2        =   0   'False
       ToolTipText2    =   "Buscar"
       Caption3        =   "&Eliminar"
       Tag3            =   "4"
+      Visible3        =   0   'False
       ToolTipText3    =   "Eliminar"
       UserControlHeight=   390
       UserControlWidth=   5700
@@ -515,6 +528,7 @@ Begin VB.Form frmFeriados
       _ExtentY        =   688
       Caption0        =   "&Salir"
       Tag0            =   "9"
+      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlHeight=   390
       UserControlWidth=   1200
@@ -591,6 +605,8 @@ Public Sub Buscar()
 '        .ConnectionString = gstrConnectConsulta
 '        .RecordSource = strSQL
 '        .Refresh
+
+
         .ActiveConnection = gstrConnectConsulta
         .CursorLocation = adUseClient
         .CursorType = adOpenStatic

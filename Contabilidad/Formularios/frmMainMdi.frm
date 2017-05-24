@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.MDIForm frmMainMdi 
    BackColor       =   &H00C0C0C0&
    Caption         =   "Módulo Contabilidad"
@@ -599,7 +599,7 @@ Private Sub MDIForm_Load()
         End
     End If
     
-     frmMainMdi.BackColor = RGB(234, 214, 141)
+     frmMainMdi.BackColor = RGB(102, 180, 255)
     
     
     frmAcceso.Show vbModal

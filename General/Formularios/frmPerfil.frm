@@ -25,6 +25,7 @@ Begin VB.Form frmPerfil
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
+      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -39,12 +40,15 @@ Begin VB.Form frmPerfil
       Buttons         =   3
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
+      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "3"
+      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Eliminar"
       Tag2            =   "4"
+      Visible2        =   0   'False
       ToolTipText2    =   "Eliminar"
       UserControlWidth=   4200
    End
@@ -127,11 +131,8 @@ Begin VB.Form frmPerfil
       TabPicture(1)   =   "frmPerfil.frx":001C
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "fraDatos"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "adoModulo"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "cmdAccion"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).ControlCount=   3
       Begin TAMControls2.ucBotonEdicion2 cmdAccion 
          Height          =   735
@@ -144,9 +145,11 @@ Begin VB.Form frmPerfil
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlWidth=   2700
       End
@@ -292,6 +295,8 @@ Private Sub BuscarModulos()
                             
     With adoModulo
         .ConnectionString = gstrConnectConsulta
+        .CommandTimeout = 0
+        .ConnectionTimeout = 0
         .RecordSource = strSQL
         .Refresh
     End With
@@ -529,6 +534,8 @@ Public Sub Buscar()
     strEstado = Reg_Defecto
     With adoConsulta
         .ConnectionString = gstrConnectConsulta
+        .CommandTimeout = 0
+        .ConnectionTimeout = 0
         .RecordSource = strSQL
         .Refresh
     End With

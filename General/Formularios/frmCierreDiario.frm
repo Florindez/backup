@@ -78,7 +78,7 @@ Begin VB.Form frmCierreDiario
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   175636481
+            Format          =   179109889
             CurrentDate     =   38068
          End
          Begin MSComCtl2.DTPicker dtpFechaCierreHasta 
@@ -100,7 +100,7 @@ Begin VB.Form frmCierreDiario
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   175636481
+            Format          =   179109889
             CurrentDate     =   38068
          End
          Begin VB.Label lblDescrip 
@@ -199,7 +199,7 @@ Begin VB.Form frmCierreDiario
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   175636481
+         Format          =   179109889
          CurrentDate     =   38068
       End
       Begin TrueOleDBGrid60.TDBGrid tdgTipoCambioCierre 
@@ -6952,6 +6952,11 @@ Private Sub ValorizacionAcreencias(strTipoCierre As String)
             Else
                 '*** Contabilizamos Devengado Adicional ***
                 .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
+                                "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Adicionales & "') }"
+                .Execute
+                
+                '*** Contabilizamos Devengado Moratorio ***
+                .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
                                 "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Moratorios & "') }"
                 .Execute
             End If
@@ -7026,7 +7031,7 @@ Private Sub ValorizacionPrestamos(strTipoCierre As String)
             Else
                 '*** Contabilizamos Devengado Adicional ***
                 .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
-                                "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Moratorios & "', 2) }"
+                                "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Adicionales & "', 2) }"
                 .Execute
             End If
             
@@ -7103,7 +7108,7 @@ Private Sub ValorizacionFlujos(strTipoCierre As String)
             Else
                 '*** Contabilizamos Devengado Adicional ***
                 .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
-                                "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Moratorios & "') }"
+                                "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Adicionales & "') }"
                 .Execute
             End If
             

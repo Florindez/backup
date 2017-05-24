@@ -498,6 +498,8 @@ Private Sub obtenerDatosSistema(ByVal strSpDatosFormula As String, ByVal strPara
     Set adoFormula = New ADODB.Command
     
     cn.ConnectionString = gstrConnectConsulta
+    cn.CommandTimeout = 0
+    cn.ConnectionTimeout = 0
     cn.CursorLocation = adUseClient
     cn.Open
     adoFormula.CommandTimeout = 0
