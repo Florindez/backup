@@ -12,13 +12,13 @@ Begin VB.Form frmCancelacionDescuentoContratos
    ClientHeight    =   8865
    ClientLeft      =   7080
    ClientTop       =   3615
-   ClientWidth     =   14415
+   ClientWidth     =   17430
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
    ScaleHeight     =   8865
-   ScaleWidth      =   14415
+   ScaleWidth      =   17430
    ShowInTaskbar   =   0   'False
    Begin VB.ComboBox cboTipoOrden 
       Height          =   315
@@ -61,9 +61,9 @@ Begin VB.Form frmCancelacionDescuentoContratos
    End
    Begin TAMControls2.ucBotonEdicion2 cmdAccion 
       Height          =   735
-      Left            =   5160
+      Left            =   6780
       TabIndex        =   73
-      Top             =   8040
+      Top             =   8010
       Width           =   2700
       _ExtentX        =   4763
       _ExtentY        =   1296
@@ -147,8 +147,8 @@ Begin VB.Form frmCancelacionDescuentoContratos
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   14355
-      _ExtentX        =   25321
+      Width           =   17385
+      _ExtentX        =   30665
       _ExtentY        =   13838
       _Version        =   393216
       Style           =   1
@@ -168,8 +168,8 @@ Begin VB.Form frmCancelacionDescuentoContratos
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmCancelacionDescuentoContratos.frx":0582
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "fraCriterio"
-      Tab(0).Control(1)=   "tdgConsulta"
+      Tab(0).Control(0)=   "tdgConsulta"
+      Tab(0).Control(1)=   "fraCriterio"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Datos Orden Inversión"
       TabPicture(1)   =   "frmCancelacionDescuentoContratos.frx":059E
@@ -196,7 +196,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
          Left            =   120
          TabIndex        =   56
          Top             =   4080
-         Width           =   14085
+         Width           =   17205
          Begin DXDBGRIDLibCtl.dxDBGrid gDetalle 
             Height          =   2535
             Left            =   120
@@ -204,11 +204,11 @@ Begin VB.Form frmCancelacionDescuentoContratos
             TabIndex        =   59
             TabStop         =   0   'False
             Top             =   270
-            Width           =   13815
+            Width           =   16995
          End
          Begin TAMControls.TAMTextBox txtDeudaFecha 
             Height          =   315
-            Left            =   11910
+            Left            =   14910
             TabIndex        =   60
             Top             =   2880
             Width           =   2025
@@ -229,7 +229,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
             FontName        =   "MS Sans Serif"
             FontSize        =   8.25
             Locked          =   -1  'True
-            Container       =   "frmCancelacionDescuentoContratos.frx":5EA1
+            Container       =   "frmCancelacionDescuentoContratos.frx":723D
             Text            =   "0.00"
             Decimales       =   2
             Estilo          =   4
@@ -239,7 +239,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
          End
          Begin TAMControls.TAMTextBox txtMontoRecibido 
             Height          =   315
-            Left            =   11910
+            Left            =   14910
             TabIndex        =   62
             Top             =   3210
             Width           =   2025
@@ -259,7 +259,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
             Alignment       =   1
             FontName        =   "MS Sans Serif"
             FontSize        =   8.25
-            Container       =   "frmCancelacionDescuentoContratos.frx":5EBD
+            Container       =   "frmCancelacionDescuentoContratos.frx":7259
             Text            =   "0.00"
             Decimales       =   2
             Estilo          =   4
@@ -291,7 +291,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
             FontName        =   "MS Sans Serif"
             FontSize        =   8.25
             Locked          =   -1  'True
-            Container       =   "frmCancelacionDescuentoContratos.frx":5ED9
+            Container       =   "frmCancelacionDescuentoContratos.frx":7275
             Text            =   "0.00"
             Decimales       =   2
             Estilo          =   4
@@ -335,7 +335,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
             ForeColor       =   &H00800000&
             Height          =   195
             Index           =   10
-            Left            =   10260
+            Left            =   13260
             TabIndex        =   63
             Top             =   3270
             Width           =   1275
@@ -355,7 +355,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
             ForeColor       =   &H00800000&
             Height          =   195
             Index           =   9
-            Left            =   10260
+            Left            =   13260
             TabIndex        =   61
             Top             =   2940
             Width           =   1485
@@ -709,7 +709,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
          Left            =   -74880
          TabIndex        =   14
          Top             =   420
-         Width           =   14085
+         Width           =   17115
          Begin VB.CommandButton cmdEnviar 
             Caption         =   "En&viar"
             BeginProperty Font 
@@ -723,7 +723,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
             EndProperty
             Height          =   735
             Left            =   12180
-            Picture         =   "frmCancelacionDescuentoContratos.frx":5EF5
+            Picture         =   "frmCancelacionDescuentoContratos.frx":7291
             Style           =   1  'Graphical
             TabIndex        =   71
             ToolTipText     =   "Enviar a BackOffice"
@@ -781,7 +781,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   175702017
+            Format          =   180551681
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -803,7 +803,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   175702017
+            Format          =   180551681
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -825,7 +825,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   175702017
+            Format          =   180551681
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -847,7 +847,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   175702017
+            Format          =   180551681
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -1163,7 +1163,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   175702017
+            Format          =   180551681
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacion 
@@ -1185,7 +1185,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   175702017
+            Format          =   180551681
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaPago 
@@ -1207,7 +1207,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   175702017
+            Format          =   180551681
             CurrentDate     =   38776
          End
          Begin VB.Label lblDescrip 
@@ -1373,13 +1373,13 @@ Begin VB.Form frmCancelacionDescuentoContratos
          End
       End
       Begin TrueOleDBGrid60.TDBGrid tdgConsulta 
-         Bindings        =   "frmCancelacionDescuentoContratos.frx":6450
+         Bindings        =   "frmCancelacionDescuentoContratos.frx":77EC
          Height          =   5265
          Left            =   -74880
-         OleObjectBlob   =   "frmCancelacionDescuentoContratos.frx":646A
+         OleObjectBlob   =   "frmCancelacionDescuentoContratos.frx":7806
          TabIndex        =   57
          Top             =   2430
-         Width           =   14100
+         Width           =   17130
       End
       Begin VB.Label lblDescrip 
          AutoSize        =   -1  'True
@@ -1711,8 +1711,10 @@ Public Sub GrabarNew()
     Dim dblSumaPrincipalCuota           As Double
     Dim dblSumaInteresCuota             As Double
     Dim dblSumaInteresAdicionalCuota    As Double
+    Dim dblSumaInteresMoratorioCuota    As Double
     Dim dblSumaIGVInteresCuota          As Double
     Dim dblSumaIGVInteresAdicionalCuota As Double
+    Dim dblSumaIGVInteresMoratorioCuota As Double
     Dim dblSumaTotalCuota               As Double
     
     On Error GoTo CtrlError
@@ -1727,10 +1729,12 @@ Public Sub GrabarNew()
             dblSumaPrincipalCuota = CDec(gDetalle.Columns.ColumnByFieldName("PagoPrincipal").SummaryFooterValue)
             dblSumaInteresCuota = CDec(gDetalle.Columns.ColumnByFieldName("PagoIntereses").SummaryFooterValue)
             dblSumaInteresAdicionalCuota = CDec(gDetalle.Columns.ColumnByFieldName("PagoInteresAdicional").SummaryFooterValue)
+            dblSumaInteresMoratorioCuota = CDec(gDetalle.Columns.ColumnByFieldName("PagoInteresMoratorio").SummaryFooterValue)
             dblSumaIGVInteresCuota = CDec(gDetalle.Columns.ColumnByFieldName("PagoIGVIntereses").SummaryFooterValue)
             dblSumaIGVInteresAdicionalCuota = CDec(gDetalle.Columns.ColumnByFieldName("PagoIGVInteresAdicional").SummaryFooterValue)
+            dblSumaIGVInteresMoratorioCuota = CDec(gDetalle.Columns.ColumnByFieldName("PagoIGVInteresMoratorio").SummaryFooterValue)
             
-            dblSumaTotalCuota = dblSumaPrincipalCuota + dblSumaInteresCuota + dblSumaInteresAdicionalCuota + dblSumaIGVInteresCuota + dblSumaIGVInteresAdicionalCuota
+            dblSumaTotalCuota = dblSumaPrincipalCuota + dblSumaInteresCuota + dblSumaInteresAdicionalCuota + dblSumaInteresMoratorioCuota + dblSumaIGVInteresCuota + dblSumaIGVInteresAdicionalCuota + dblSumaIGVInteresMoratorioCuota
             
             If strMsgError <> "" Then GoTo CtrlError
         
@@ -1811,8 +1815,8 @@ Public Sub GrabarNew()
                                 "','" & strCodBaseAnual & "'," & CDec(dblTasaInteres) & ",'05','X','07',''," & CDec(dblTasaInteres) & "," & CDec(dblTasaInteres) & _
                                 "," & CDec(dblTasaInteres) & ",'" & strCodRiesgo & "','" & strCodSubRiesgo & "','" & Trim(txtObservacion.Text) & "','" & _
                                 gstrLogin & "','" & gstrFechaActual & "','" & gstrLogin & "','" & gstrFechaActual & "','" & strCodTituloOrigen & "','" & _
-                                strCodCobroInteres & "'," & dblSumaInteresCuota & ",0," & dblSumaInteresAdicionalCuota & ",0,0,'01'," & gdblTasaIgv * 100 & "," & _
-                                dblSumaIGVInteresCuota & "," & dblSumaIGVInteresAdicionalCuota & "," & gdblTasaIgv * 100 & ",0,0,0,0,0,0,0,'','','','','" & strLineaCliente & _
+                                strCodCobroInteres & "'," & dblSumaInteresCuota & ",0," & dblSumaInteresAdicionalCuota & "," & dblSumaInteresMoratorioCuota & ",0,0,'01'," & gdblTasaIgv * 100 & "," & _
+                                dblSumaIGVInteresCuota & "," & dblSumaIGVInteresAdicionalCuota & "," & dblSumaIGVInteresMoratorioCuota & "," & gdblTasaIgv * 100 & ",0,0,0,0,0,0,0,'','','','','" & strLineaCliente & _
                                 "','" & Codigo_LimiteRE_Cliente & "','" & strCodPersonaLim & "','" & strTipoPersonaLim & "','" & strResponsablePagoCancel & _
                                 "','" & strViaCobranza & "',0,0,0," & CDec(txtMontoRecibido.Value) & ") }"
                 
@@ -3407,6 +3411,8 @@ Private Sub FormatoGrillaCancelacion(ByRef strMsgError As String, _
     
     rsgrilla.Fields.Append "InteresAdicional", adDouble, , adFldIsNullable
     rsgrilla.Fields.Append "IGVInteresAdicional", adDouble, , adFldIsNullable
+    rsgrilla.Fields.Append "InteresMoratorio", adDouble, , adFldIsNullable
+    rsgrilla.Fields.Append "IGVInteresMoratorio", adDouble, , adFldIsNullable
     
     rsgrilla.Fields.Append "PagoPrincipal", adDouble, , adFldIsNullable
     rsgrilla.Fields.Append "PagoIntereses", adDouble, , adFldIsNullable
@@ -3414,6 +3420,8 @@ Private Sub FormatoGrillaCancelacion(ByRef strMsgError As String, _
     
     rsgrilla.Fields.Append "PagoInteresAdicional", adDouble, , adFldIsNullable
     rsgrilla.Fields.Append "PagoIGVInteresAdicional", adDouble, , adFldIsNullable
+    rsgrilla.Fields.Append "PagoInteresMoratorio", adDouble, , adFldIsNullable
+    rsgrilla.Fields.Append "PagoIGVInteresMoratorio", adDouble, , adFldIsNullable
     
     rsgrilla.Open
     
@@ -3450,6 +3458,8 @@ Private Sub FormatoGrillaCancelacion(ByRef strMsgError As String, _
         rsgrilla.Fields("IGVIntereses") = Round(CDbl("" & rst.Fields("SaldoIntereses") * gdblTasaIgv), 2)
         rsgrilla.Fields("InteresAdicional") = Round(CDbl("" & rst.Fields("InteresAdicional")), 2)
         rsgrilla.Fields("IGVInteresAdicional") = Round(CDbl("" & rst.Fields("InteresAdicional") * gdblTasaIgv), 2)
+        rsgrilla.Fields("InteresMoratorio") = Round(CDbl("" & rst.Fields("InteresMoratorio")), 2)
+        rsgrilla.Fields("IGVInteresMoratorio") = Round(CDbl("" & rst.Fields("InteresMoratorio") * gdblTasaIgv), 2)
 
         rsgrilla.Fields("TotalCupon") = Round(CDbl("" & rst.Fields("TotalCupon")), 2)
 
@@ -3459,6 +3469,8 @@ Private Sub FormatoGrillaCancelacion(ByRef strMsgError As String, _
 
         rsgrilla.Fields("PagoInteresAdicional") = 0
         rsgrilla.Fields("PagoIGVInteresAdicional") = 0
+        rsgrilla.Fields("PagoInteresMoratorio") = 0
+        rsgrilla.Fields("PagoIGVInteresMoratorio") = 0
 
         rst.MoveNext
 
@@ -3469,7 +3481,7 @@ Private Sub FormatoGrillaCancelacion(ByRef strMsgError As String, _
 
     If strMsgError <> "" Then GoTo err
     
-    txtDeudaFecha.Text = gDetalle.Columns.ColumnByFieldName("Principal").SummaryFooterValue + gDetalle.Columns.ColumnByFieldName("Intereses").SummaryFooterValue + gDetalle.Columns.ColumnByFieldName("IGVIntereses").SummaryFooterValue + gDetalle.Columns.ColumnByFieldName("InteresAdicional").SummaryFooterValue + gDetalle.Columns.ColumnByFieldName("IGVInteresAdicional").SummaryFooterValue
+    txtDeudaFecha.Text = gDetalle.Columns.ColumnByFieldName("Principal").SummaryFooterValue + gDetalle.Columns.ColumnByFieldName("Intereses").SummaryFooterValue + gDetalle.Columns.ColumnByFieldName("IGVIntereses").SummaryFooterValue + gDetalle.Columns.ColumnByFieldName("InteresAdicional").SummaryFooterValue + gDetalle.Columns.ColumnByFieldName("IGVInteresAdicional").SummaryFooterValue + gDetalle.Columns.ColumnByFieldName("InteresMoratorio").SummaryFooterValue + gDetalle.Columns.ColumnByFieldName("IGVInteresMoratorio").SummaryFooterValue
     txtMontoRecibido.Text = txtDeudaFecha.Value
     
     txtMontoRecibido_KeyPress 13
@@ -3491,6 +3503,8 @@ Private Sub CalculaPrelacion(ByRef strMsgError As String)
     Dim dblInteresPagado As Double
     Dim dblIGVInteresPagado As Double
     Dim dblPrincipalPagado As Double
+    Dim dblInteresMoratorioPagado As Double
+    Dim dblIGVInteresMoratorioPagado As Double
     
     On Error GoTo err
 
@@ -3503,6 +3517,8 @@ Private Sub CalculaPrelacion(ByRef strMsgError As String)
         gDetalle.Columns.ColumnByFieldName("PagoIGVIntereses").Value = 0
         gDetalle.Columns.ColumnByFieldName("PagoInteresAdicional").Value = 0
         gDetalle.Columns.ColumnByFieldName("PagoIGVInteresAdicional").Value = 0
+        gDetalle.Columns.ColumnByFieldName("PagoInteresMoratorio").Value = 0
+        gDetalle.Columns.ColumnByFieldName("PagoIGVInteresMoratorio").Value = 0
         gDetalle.Dataset.Post
     
         gDetalle.Dataset.Next
@@ -3515,37 +3531,28 @@ Private Sub CalculaPrelacion(ByRef strMsgError As String)
     gDetalle.Dataset.First
 
     Do While Not gDetalle.Dataset.EOF And dblMontoRestado <> 0
-'
-'        Select Case intPrelacion
-'
-'            Case 0 'Intereses Adicionales
-'                strColDato = "InteresAdicional"
-'                strColPago = "PagoInteresAdicional"
-'
-'            Case 1 'IGV Intereses Adicionales
-'                strColDato = "IGVInteresAdicional"
-'                strColPago = "PagoIGVInteresAdicional"
-'
-'            Case 2 'Intereses
-'                strColDato = "Intereses"
-'                strColPago = "PagoIntereses"
-'
-'            Case 3 'IGV Intereses
-'                strColDato = "IGVIntereses"
-'                strColPago = "PagoIGVIntereses"
-'
-'            Case 4 'Principal
-'                strColDato = "Principal"
-'                strColPago = "PagoPrincipal"
-'
-'        End Select
         
+        dblInteresMoratorioPagado = 0
+        dblIGVInteresMoratorioPagado = 0
         dblInteresAdicPagado = 0
         dblIGVInteresAdicPagado = 0
         dblInteresPagado = 0
         dblIGVInteresPagado = 0
         dblPrincipalPagado = 0
-
+        
+        If gDetalle.Columns.ColumnByFieldName("InteresMoratorio").Value > 0 Then
+            If dblMontoRestado >= gDetalle.Columns.ColumnByFieldName("InteresMoratorio").Value + gDetalle.Columns.ColumnByFieldName("IGVInteresMoratorio").Value Then
+                dblInteresMoratorioPagado = gDetalle.Columns.ColumnByFieldName("InteresMoratorio").Value
+                dblIGVInteresMoratorioPagado = gDetalle.Columns.ColumnByFieldName("IGVInteresMoratorio").Value
+            Else
+                dblInteresMoratorioPagado = dblMontoRestado / (1 + gdblTasaIgv)
+                dblIGVInteresMoratorioPagado = dblMontoRestado - dblInteresAdicPagado
+            End If
+            
+            dblMontoRestado = dblMontoRestado - dblInteresMoratorioPagado - dblIGVInteresMoratorioPagado
+        
+        End If
+        
         If gDetalle.Columns.ColumnByFieldName("InteresAdicional").Value > 0 Then
             If dblMontoRestado >= gDetalle.Columns.ColumnByFieldName("InteresAdicional").Value + gDetalle.Columns.ColumnByFieldName("IGVInteresAdicional").Value Then
                 dblInteresAdicPagado = gDetalle.Columns.ColumnByFieldName("InteresAdicional").Value
@@ -3588,30 +3595,12 @@ Private Sub CalculaPrelacion(ByRef strMsgError As String)
         gDetalle.Columns.ColumnByFieldName("PagoIGVIntereses").Value = dblIGVInteresPagado
         gDetalle.Columns.ColumnByFieldName("PagoInteresAdicional").Value = dblInteresAdicPagado
         gDetalle.Columns.ColumnByFieldName("PagoIGVInteresAdicional").Value = dblIGVInteresAdicPagado
+        gDetalle.Columns.ColumnByFieldName("PagoInteresMoratorio").Value = dblInteresMoratorioPagado
+        gDetalle.Columns.ColumnByFieldName("PagoIGVInteresMoratorio").Value = dblIGVInteresMoratorioPagado
         
         gDetalle.Dataset.Post
         
         gDetalle.Dataset.Next
-'        If gDetalle.Columns.ColumnByFieldName(strColDato).Value > 0 Then
-'            gDetalle.Dataset.Edit
-'
-'            If dblMontoRestado >= CDec(gDetalle.Columns.ColumnByFieldName(strColDato).Value) Then
-'                gDetalle.Columns.ColumnByFieldName(strColPago).Value = CDec(gDetalle.Columns.ColumnByFieldName(strColDato).Value)
-'                dblMontoRestado = dblMontoRestado - CDec(gDetalle.Columns.ColumnByFieldName(strColDato).Value)
-'            Else
-'                gDetalle.Columns.ColumnByFieldName(strColPago).Value = dblMontoRestado
-'                dblMontoRestado = 0
-'            End If
-'
-'            gDetalle.Dataset.Post
-'        End If
-'
-'        intPrelacion = intPrelacion + 1
-'
-'        If intPrelacion > 4 Then
-'            intPrelacion = 0
-'            gDetalle.Dataset.Next
-'        End If
 
     Loop
 

@@ -78,7 +78,7 @@ Begin VB.Form frmCierreDiario
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   179109889
+            Format          =   178454529
             CurrentDate     =   38068
          End
          Begin MSComCtl2.DTPicker dtpFechaCierreHasta 
@@ -100,7 +100,7 @@ Begin VB.Form frmCierreDiario
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   179109889
+            Format          =   178454529
             CurrentDate     =   38068
          End
          Begin VB.Label lblDescrip 
@@ -199,7 +199,7 @@ Begin VB.Form frmCierreDiario
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   179109889
+         Format          =   178454529
          CurrentDate     =   38068
       End
       Begin TrueOleDBGrid60.TDBGrid tdgTipoCambioCierre 
@@ -7110,6 +7110,12 @@ Private Sub ValorizacionFlujos(strTipoCierre As String)
                 .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
                                 "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Adicionales & "') }"
                 .Execute
+                
+                '*** Contabilizamos Devengado Moratorio ***
+                .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
+                                "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Moratorios & "') }"
+                .Execute
+
             End If
             
             adoRegistro.MoveNext

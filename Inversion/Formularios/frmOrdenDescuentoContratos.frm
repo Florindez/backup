@@ -30,12 +30,15 @@ Begin VB.Form frmOrdenDescuentoContratos
       Buttons         =   3
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
+      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Eliminar"
       Tag1            =   "4"
+      Visible1        =   0   'False
       ToolTipText1    =   "Eliminar"
       Caption2        =   "&Buscar"
       Tag2            =   "5"
+      Visible2        =   0   'False
       ToolTipText2    =   "Buscar"
       UserControlWidth=   4200
    End
@@ -65,17 +68,17 @@ Begin VB.Form frmOrdenDescuentoContratos
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmOrdenDescuentoContratos.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "cmdOpcion1"
+      Tab(0).Control(0)=   "tdgConsulta"
       Tab(0).Control(1)=   "fraCriterio"
-      Tab(0).Control(2)=   "tdgConsulta"
+      Tab(0).Control(2)=   "cmdOpcion1"
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Datos Orden Inversión"
       TabPicture(1)   =   "frmOrdenDescuentoContratos.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "fraDatosTitulo"
-      Tab(1).Control(1)=   "fraDatosBasicos"
-      Tab(1).Control(2)=   "fraResumen"
-      Tab(1).Control(3)=   "fraDatosAnexo"
+      Tab(1).Control(0)=   "fraDatosAnexo"
+      Tab(1).Control(1)=   "fraResumen"
+      Tab(1).Control(2)=   "fraDatosBasicos"
+      Tab(1).Control(3)=   "fraDatosTitulo"
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Negociación"
       TabPicture(2)   =   "frmOrdenDescuentoContratos.frx":0038
@@ -472,7 +475,7 @@ Begin VB.Form frmOrdenDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   293404673
+            Format          =   48234497
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionCancel 
@@ -493,7 +496,7 @@ Begin VB.Form frmOrdenDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   293404673
+            Format          =   48234497
             CurrentDate     =   38776
          End
          Begin TAMControls.TAMTextBox txtMontoTotalRecibido 
@@ -920,7 +923,7 @@ Begin VB.Form frmOrdenDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   293404673
+            Format          =   48234497
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacion 
@@ -941,7 +944,7 @@ Begin VB.Form frmOrdenDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   293404673
+            Format          =   48234497
             CurrentDate     =   38776
          End
          Begin MSComCtl2.UpDown updDiasPlazo 
@@ -979,7 +982,7 @@ Begin VB.Form frmOrdenDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   293404673
+            Format          =   48234497
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaPago 
@@ -1000,7 +1003,7 @@ Begin VB.Form frmOrdenDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   293404673
+            Format          =   48234497
             CurrentDate     =   38776
          End
          Begin TAMControls.TAMTextBox txtDiasPlazo 
@@ -4729,12 +4732,15 @@ Begin VB.Form frmOrdenDescuentoContratos
          Buttons         =   3
          Caption0        =   "&Nuevo"
          Tag0            =   "0"
+         Visible0        =   0   'False
          ToolTipText0    =   "Nuevo"
          Caption1        =   "&Eliminar"
          Tag1            =   "4"
+         Visible1        =   0   'False
          ToolTipText1    =   "Eliminar"
          Caption2        =   "&Buscar"
          Tag2            =   "5"
+         Visible2        =   0   'False
          ToolTipText2    =   "Buscar"
          UserControlWidth=   4200
       End
@@ -4826,7 +4832,7 @@ Begin VB.Form frmOrdenDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   293404673
+            Format          =   48234497
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -4848,7 +4854,7 @@ Begin VB.Form frmOrdenDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   293404673
+            Format          =   48234497
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -4870,7 +4876,7 @@ Begin VB.Form frmOrdenDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   293404673
+            Format          =   48234497
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -4892,7 +4898,7 @@ Begin VB.Form frmOrdenDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   293404673
+            Format          =   48234497
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -5176,6 +5182,7 @@ Begin VB.Form frmOrdenDescuentoContratos
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
+      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -5190,9 +5197,11 @@ Begin VB.Form frmOrdenDescuentoContratos
       Buttons         =   2
       Caption0        =   "&Guardar"
       Tag0            =   "2"
+      Visible0        =   0   'False
       ToolTipText0    =   "Guardar"
       Caption1        =   "&Cancelar"
       Tag1            =   "8"
+      Visible1        =   0   'False
       ToolTipText1    =   "Cancelar"
       UserControlWidth=   2700
    End
@@ -5897,8 +5906,8 @@ Public Sub GrabarNew()
                    "','" & strCodGestor & "','" & strCodFiador & "',0,'','X','X','" & strCodTipoTasa & "','" & strCodBaseAnual & "'," & _
                    CDec(dblTasaInteres) & ",'05','X','07',''," & CDec(dblTasaInteres) & "," & CDec(dblTasaInteres) & "," & CDec(dblTasaInteres) & ",'" & _
                    strCodRiesgo & "','" & strCodSubRiesgo & "','" & Trim$(txtObservacion.Text) & "','" & gstrLogin & "','" & gstrFechaActual & "','','" & _
-                   "19000101','" & strCodTitulo & "','" & strCodCobroInteres & "'," & CDec(lblIntAdelantado(0).Caption) & ",0," & CDec(txtIntAdicional(0).Text) & _
-                   ",0,0,'01'," & CDec(txtPorcenIgvInt(0).Text) & "," & CDec(txtImptoInteres(0).Text) & "," & CDec(txtImptoInteresAdic(0).Text) & "," & _
+                   "19000101','" & strCodTitulo & "','" & strCodCobroInteres & "'," & CDec(lblIntAdelantado(0).Caption) & ",0,0," & CDec(txtIntAdicional(0).Text) & _
+                   ",0,0,'01'," & CDec(txtPorcenIgvInt(0).Text) & "," & CDec(txtImptoInteres(0).Text) & "," & CDec(txtImptoInteresAdic(0).Text) & ",0," & _
                    CDec(txtPorcenIgv(0).Text) & "," & CDec(lblComisionIgv(0).Caption) & ",0,0,0,0,0,0,'" & Format$(CStr(txtNumAnexo.Text), "0000000000") & "','','','" & _
                    Format$(CStr(txtNumAnexo.Text), "0000000000") & "','" & strLineaCliente & "','" & Codigo_LimiteRE_Cliente & "','" & strCodEmisor & _
                    "','" & strTipoPersonaLim & "','" & strResponsablePago & "','" & strViaCobranza & "'," & CDec(txtValorNominalDcto.Text) & ",1," & _

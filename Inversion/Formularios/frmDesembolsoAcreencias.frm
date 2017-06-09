@@ -80,12 +80,15 @@ Begin VB.Form frmDesembolsoAcreencias
       Buttons         =   3
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
+      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Eliminar"
       Tag1            =   "4"
+      Visible1        =   0   'False
       ToolTipText1    =   "Eliminar"
       Caption2        =   "&Buscar"
       Tag2            =   "5"
+      Visible2        =   0   'False
       ToolTipText2    =   "Buscar"
       UserControlWidth=   4200
    End
@@ -99,6 +102,7 @@ Begin VB.Form frmDesembolsoAcreencias
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
+      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -175,8 +179,8 @@ Begin VB.Form frmDesembolsoAcreencias
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmDesembolsoAcreencias.frx":0B62
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "fraCriterio"
-      Tab(0).Control(1)=   "tdgConsulta"
+      Tab(0).Control(0)=   "tdgConsulta"
+      Tab(0).Control(1)=   "fraCriterio"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Datos Orden Inversión"
       TabPicture(1)   =   "frmDesembolsoAcreencias.frx":0B7E
@@ -193,9 +197,9 @@ Begin VB.Form frmDesembolsoAcreencias
       TabCaption(2)   =   "Negociación"
       TabPicture(2)   =   "frmDesembolsoAcreencias.frx":0B9A
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "fraComisiones"
+      Tab(2).Control(0)=   "fraDatosNegociacion"
       Tab(2).Control(1)=   "fraComisionMontoFL1"
-      Tab(2).Control(2)=   "fraDatosNegociacion"
+      Tab(2).Control(2)=   "fraComisiones"
       Tab(2).ControlCount=   3
       Begin VB.Frame fraDatosBasicos 
          Caption         =   "Datos Básicos"
@@ -2522,7 +2526,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   176095233
+            Format          =   180617217
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -2544,7 +2548,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   176095233
+            Format          =   180617217
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -2566,7 +2570,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   176095233
+            Format          =   180617217
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -2588,7 +2592,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   176095233
+            Format          =   180617217
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -3238,7 +3242,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   176095233
+            Format          =   180617217
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacion 
@@ -3260,7 +3264,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   176095233
+            Format          =   180617217
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaEmision 
@@ -3283,7 +3287,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   176095233
+            Format          =   180617217
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaVencimiento 
@@ -3304,7 +3308,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   176095233
+            Format          =   180617217
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaPago 
@@ -3327,7 +3331,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   176095233
+            Format          =   180617217
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaVencimientoDcto 
@@ -3350,7 +3354,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   176095233
+            Format          =   180617217
             CurrentDate     =   38776
          End
          Begin TAMControls.TAMTextBox txtDiasPlazo 
@@ -5184,8 +5188,8 @@ Public Sub GrabarNew()
                    strCodObligado & "','" & strCodObligado & "','" & strCodGestor & "','" & strCodFiador & "',0,'','X','" & strIndTitulo & "','" & strCodTipoTasa & "','" & strCodBaseAnual & _
                    "'," & CDec(dblTasaInteres) & ",'" & strPeriodoTasa & "','" & strIndCapitalizable & "','" & strPeriodoCapitalizable & "','" & strIndGeneraLetra & "'," & CDec(dblTasaInteres) & "," & _
                    CDec(dblTasaInteres) & "," & CDec(dblTasaInteres) & ",'" & strCodRiesgo & "','" & strCodSubRiesgo & "','" & Trim$(txtObservacion.Text) & "','" & gstrLogin & "','" & gstrFechaActual & "','" & _
-                   gstrLogin & "','" & gstrFechaActual & "','" & strCodTitulo & "','" & strCodCobroInteres & "'," & CDec(lblIntAdelantado(0).Caption) & "," & CDec(txtCobroMinimoInteres.Text) & ",0," & CDec(txtDiasCobroMinimoInteres.Text) & ",0,'01'," & CDec(txtPorcenIgvInt(0).Text) & "," & _
-                   CDec(lblComisionIgvInt(0).Caption) & ",0," & CDec(txtPorcenIgv(0).Text) & "," & CDec(lblComisionIgv(0).Caption) & ",0,0,0,0,0,0,'" & Trim$(txtNumAnexo.Text) & "','" & txtNumContrato.Text & "','" & _
+                   gstrLogin & "','" & gstrFechaActual & "','" & strCodTitulo & "','" & strCodCobroInteres & "'," & CDec(lblIntAdelantado(0).Caption) & "," & CDec(txtCobroMinimoInteres.Text) & ",0,0," & CDec(txtDiasCobroMinimoInteres.Text) & ",0,'01'," & CDec(txtPorcenIgvInt(0).Text) & "," & _
+                   CDec(lblComisionIgvInt(0).Caption) & ",0,0," & CDec(txtPorcenIgv(0).Text) & "," & CDec(lblComisionIgv(0).Caption) & ",0,0,0,0,0,0,'" & Trim$(txtNumAnexo.Text) & "','" & txtNumContrato.Text & "','" & _
                    Trim$(txtNumDocDscto.Text) & "','','" & strLineaCliente & "','" & Codigo_LimiteRE_Cliente & "','" & strCodPersonaLim & "','" & strTipoPersonaLim & "','" & strResponsablePago & "','" & _
                    strViaCobranza & "'," & CDec(txtTotalMNAnexo.Text) & "," & CDec(txtTotalDctosAnexo.Text) & "," & CDec(txtPorcenAgente(0).Text) & ",0) }"
 

@@ -3,10 +3,11 @@ Object = "{6A24B331-7634-11D3-A5B0-0050044A7E1A}#1.5#0"; "DXDBGrid.dll"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{830D5A06-9B70-4F8C-98B6-7A19C4E7760B}#1.0#0"; "TAMControls.ocx"
+Object = "{5D1B2F4C-4B16-4B89-95C7-87E9AF4DB6BC}#1.0#0"; "TAMControls2.ocx"
 Begin VB.Form frmComprobanteCobro 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Comprobantes de Ventas"
-   ClientHeight    =   9435
+   ClientHeight    =   10800
    ClientLeft      =   45
    ClientTop       =   345
    ClientWidth     =   10785
@@ -14,14 +15,14 @@ Begin VB.Form frmComprobanteCobro
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   9435
+   ScaleHeight     =   10800
    ScaleWidth      =   10785
    ShowInTaskbar   =   0   'False
    Begin TAMControls.ucBotonEdicion cmdAccion 
       Height          =   390
-      Left            =   4470
+      Left            =   4500
       TabIndex        =   0
-      Top             =   8010
+      Top             =   8190
       Visible         =   0   'False
       Width           =   5700
       _ExtentX        =   10054
@@ -56,41 +57,17 @@ Begin VB.Form frmComprobanteCobro
       UserControlHeight=   390
       UserControlWidth=   1200
    End
-   Begin TAMControls.ucBotonEdicion cmdOpcion 
-      Height          =   390
-      Left            =   300
-      TabIndex        =   2
-      Top             =   8940
-      Width           =   5700
-      _ExtentX        =   10054
-      _ExtentY        =   688
-      Buttons         =   4
-      Caption0        =   "&Nuevo"
-      Tag0            =   "0"
-      ToolTipText0    =   "Nuevo"
-      Caption1        =   "&Modificar"
-      Tag1            =   "1"
-      ToolTipText1    =   "Modificar"
-      Caption2        =   "&Eliminar"
-      Tag2            =   "4"
-      ToolTipText2    =   "Eliminar"
-      Caption3        =   "&Buscar"
-      Tag3            =   "5"
-      ToolTipText3    =   "Buscar"
-      UserControlHeight=   390
-      UserControlWidth=   5700
-   End
    Begin TabDlg.SSTab tabRegistroCompras 
       Height          =   8520
       Left            =   120
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   210
       Width           =   10515
       _ExtentX        =   18547
       _ExtentY        =   15028
       _Version        =   393216
       Style           =   1
-      Tab             =   2
+      Tab             =   1
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -104,19 +81,23 @@ Begin VB.Form frmComprobanteCobro
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmComprobanteCobro.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "fraCompras(0)"
+      Tab(0).Control(0)=   "gLista"
       Tab(0).Control(1)=   "ucBotonNavegacion1"
-      Tab(0).Control(2)=   "gLista"
+      Tab(0).Control(2)=   "fraCompras(0)"
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Datos Generales"
       TabPicture(1)   =   "frmComprobanteCobro.frx":001C
-      Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "fraCompras(1)"
+      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).Control(0)=   "ucBotonEdicion21"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "fraCompras(3)"
-      Tab(1).ControlCount=   2
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "fraCompras(1)"
+      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).ControlCount=   3
       TabCaption(2)   =   "Ordenes de Cobro"
       TabPicture(2)   =   "frmComprobanteCobro.frx":0038
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "Frame1"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
@@ -134,14 +115,14 @@ Begin VB.Form frmComprobanteCobro
          Height          =   1695
          Index           =   0
          Left            =   -74640
-         TabIndex        =   49
+         TabIndex        =   48
          Top             =   420
          Width           =   9705
          Begin VB.ComboBox cboEstado 
             Height          =   315
             Left            =   2520
             Style           =   2  'Dropdown List
-            TabIndex        =   68
+            TabIndex        =   67
             Top             =   740
             Width           =   2055
          End
@@ -149,32 +130,32 @@ Begin VB.Form frmComprobanteCobro
             Height          =   315
             Left            =   2520
             Style           =   2  'Dropdown List
-            TabIndex        =   51
+            TabIndex        =   50
             Top             =   360
             Width           =   6255
          End
          Begin MSComCtl2.DTPicker dtpFechaDesde 
             Height          =   345
             Left            =   3600
-            TabIndex        =   50
+            TabIndex        =   49
             Top             =   1200
             Width           =   1575
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   50397185
+            Format          =   179896321
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaHasta 
             Height          =   345
             Left            =   7200
-            TabIndex        =   52
+            TabIndex        =   51
             Top             =   1200
             Width           =   1575
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   50397185
+            Format          =   179896321
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -193,7 +174,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   9
             Left            =   840
-            TabIndex        =   67
+            TabIndex        =   66
             Top             =   840
             Width           =   600
          End
@@ -213,7 +194,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   0
             Left            =   840
-            TabIndex        =   56
+            TabIndex        =   55
             Top             =   360
             Width           =   540
          End
@@ -233,7 +214,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   1
             Left            =   2520
-            TabIndex        =   55
+            TabIndex        =   54
             Top             =   1260
             Width           =   555
          End
@@ -253,7 +234,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   2
             Left            =   6000
-            TabIndex        =   54
+            TabIndex        =   53
             Top             =   1260
             Width           =   510
          End
@@ -273,7 +254,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   15
             Left            =   840
-            TabIndex        =   53
+            TabIndex        =   52
             Top             =   1290
             Width           =   1575
          End
@@ -289,50 +270,50 @@ Begin VB.Form frmComprobanteCobro
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   4725
+         Height          =   4395
          Index           =   1
-         Left            =   -74760
-         TabIndex        =   24
+         Left            =   240
+         TabIndex        =   23
          Top             =   420
          Width           =   9885
          Begin VB.ComboBox cboIngreso 
             Height          =   315
             Left            =   2280
             Style           =   2  'Dropdown List
-            TabIndex        =   64
-            Top             =   3810
+            TabIndex        =   63
+            Top             =   3450
             Width           =   7215
          End
          Begin VB.TextBox txtNumComprobante 
             Height          =   315
             Left            =   7680
             MaxLength       =   10
-            TabIndex        =   30
-            Top             =   1380
+            TabIndex        =   29
+            Top             =   1260
             Width           =   1815
          End
          Begin VB.ComboBox cboTipoComprobante 
             Height          =   315
             Left            =   2280
             Style           =   2  'Dropdown List
-            TabIndex        =   29
-            Top             =   885
+            TabIndex        =   28
+            Top             =   825
             Width           =   7215
          End
          Begin VB.TextBox txtDescripcion 
             Height          =   315
-            Left            =   2250
+            Left            =   2280
             MaxLength       =   800
-            TabIndex        =   28
-            Top             =   4230
+            TabIndex        =   27
+            Top             =   3870
             Width           =   7215
          End
          Begin VB.ComboBox cboMoneda 
             Height          =   315
             Left            =   2280
             Style           =   2  'Dropdown List
-            TabIndex        =   27
-            Top             =   1875
+            TabIndex        =   26
+            Top             =   1695
             Width           =   2295
          End
          Begin VB.CommandButton cmdContratante 
@@ -348,24 +329,24 @@ Begin VB.Form frmComprobanteCobro
             EndProperty
             Height          =   315
             Left            =   9120
-            TabIndex        =   26
+            TabIndex        =   25
             ToolTipText     =   "Buscar Contratante"
-            Top             =   2385
+            Top             =   2145
             Width           =   375
          End
          Begin VB.TextBox txtSerieComprobante 
             Height          =   315
             Left            =   6960
             MaxLength       =   3
-            TabIndex        =   25
-            Top             =   1380
+            TabIndex        =   24
+            Top             =   1260
             Width           =   615
          End
          Begin MSComCtl2.DTPicker dtpFechaRegistro 
             Height          =   315
             Left            =   6960
-            TabIndex        =   31
-            Top             =   360
+            TabIndex        =   30
+            Top             =   390
             Width           =   2535
             _ExtentX        =   4471
             _ExtentY        =   556
@@ -380,14 +361,14 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   50397185
+            Format          =   179896321
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaComprobante 
             Height          =   315
             Left            =   2280
-            TabIndex        =   32
-            Top             =   1380
+            TabIndex        =   31
+            Top             =   1260
             Width           =   2295
             _ExtentX        =   4048
             _ExtentY        =   556
@@ -401,7 +382,7 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   50397185
+            Format          =   179896321
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -420,8 +401,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   7
             Left            =   360
-            TabIndex        =   65
-            Top             =   3870
+            TabIndex        =   64
+            Top             =   3510
             Width           =   825
          End
          Begin VB.Label lblDescrip 
@@ -440,8 +421,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   3
             Left            =   5160
-            TabIndex        =   48
-            Top             =   1410
+            TabIndex        =   47
+            Top             =   1290
             Width           =   1620
          End
          Begin VB.Label lblDescrip 
@@ -460,8 +441,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   4
             Left            =   360
-            TabIndex        =   47
-            Top             =   375
+            TabIndex        =   46
+            Top             =   465
             Width           =   1215
          End
          Begin VB.Label lblDescrip 
@@ -480,8 +461,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   5
             Left            =   360
-            TabIndex        =   46
-            Top             =   2400
+            TabIndex        =   45
+            Top             =   2220
             Width           =   1005
          End
          Begin VB.Label lblDescrip 
@@ -500,8 +481,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   6
             Left            =   360
-            TabIndex        =   45
-            Top             =   4290
+            TabIndex        =   44
+            Top             =   3930
             Width           =   1005
          End
          Begin VB.Label lblDescrip 
@@ -520,8 +501,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   8
             Left            =   360
-            TabIndex        =   44
-            Top             =   3405
+            TabIndex        =   43
+            Top             =   3105
             Width           =   810
          End
          Begin VB.Label lblDescrip 
@@ -540,8 +521,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   11
             Left            =   360
-            TabIndex        =   43
-            Top             =   870
+            TabIndex        =   42
+            Top             =   900
             Width           =   1560
          End
          Begin VB.Label lblDescrip 
@@ -560,8 +541,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   12
             Left            =   360
-            TabIndex        =   42
-            Top             =   1905
+            TabIndex        =   41
+            Top             =   1755
             Width           =   690
          End
          Begin VB.Label lblDescrip 
@@ -580,8 +561,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   13
             Left            =   360
-            TabIndex        =   41
-            Top             =   2880
+            TabIndex        =   40
+            Top             =   2670
             Width           =   1230
          End
          Begin VB.Label lblDescrip 
@@ -600,16 +581,16 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   17
             Left            =   5160
-            TabIndex        =   40
-            Top             =   375
+            TabIndex        =   39
+            Top             =   465
             Width           =   540
          End
          Begin VB.Label lblNumSecuencial 
             BorderStyle     =   1  'Fixed Single
             Height          =   315
             Left            =   2280
-            TabIndex        =   39
-            Top             =   360
+            TabIndex        =   38
+            Top             =   390
             Width           =   2295
          End
          Begin VB.Label lblDescrip 
@@ -628,32 +609,32 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   18
             Left            =   360
-            TabIndex        =   38
-            Top             =   1410
+            TabIndex        =   37
+            Top             =   1320
             Width           =   1710
          End
          Begin VB.Label lblContratante 
             BorderStyle     =   1  'Fixed Single
             Height          =   315
             Left            =   2280
-            TabIndex        =   37
-            Top             =   2385
+            TabIndex        =   36
+            Top             =   2145
             Width           =   6600
          End
          Begin VB.Label lblDireccion 
             BorderStyle     =   1  'Fixed Single
             Height          =   315
             Left            =   2280
-            TabIndex        =   36
-            Top             =   3390
+            TabIndex        =   35
+            Top             =   3030
             Width           =   7200
          End
          Begin VB.Label lblCodContratante 
             BorderStyle     =   1  'Fixed Single
             Height          =   255
             Left            =   5550
-            TabIndex        =   35
-            Top             =   2010
+            TabIndex        =   34
+            Top             =   1830
             Visible         =   0   'False
             Width           =   1815
          End
@@ -661,16 +642,16 @@ Begin VB.Form frmComprobanteCobro
             BorderStyle     =   1  'Fixed Single
             Height          =   315
             Left            =   4170
-            TabIndex        =   34
-            Top             =   2880
+            TabIndex        =   33
+            Top             =   2580
             Width           =   2655
          End
          Begin VB.Label lblTipoDocID 
             BorderStyle     =   1  'Fixed Single
             Height          =   315
             Left            =   2280
-            TabIndex        =   33
-            Top             =   2880
+            TabIndex        =   32
+            Top             =   2580
             Width           =   1815
          End
       End
@@ -686,8 +667,8 @@ Begin VB.Form frmComprobanteCobro
             Strikethrough   =   0   'False
          EndProperty
          Height          =   6735
-         Left            =   360
-         TabIndex        =   11
+         Left            =   -74640
+         TabIndex        =   10
          Top             =   630
          Width           =   9735
          Begin VB.CommandButton cmdCobro 
@@ -703,7 +684,7 @@ Begin VB.Form frmComprobanteCobro
             EndProperty
             Height          =   285
             Left            =   9120
-            TabIndex        =   63
+            TabIndex        =   62
             ToolTipText     =   "Buscar Proveedor"
             Top             =   510
             Width           =   315
@@ -713,7 +694,7 @@ Begin VB.Form frmComprobanteCobro
             Enabled         =   0   'False
             Height          =   315
             Left            =   7140
-            TabIndex        =   17
+            TabIndex        =   16
             Top             =   5910
             Width           =   2295
          End
@@ -722,7 +703,7 @@ Begin VB.Form frmComprobanteCobro
             Enabled         =   0   'False
             Height          =   315
             Left            =   7140
-            TabIndex        =   16
+            TabIndex        =   15
             Top             =   5520
             Width           =   2295
          End
@@ -731,7 +712,7 @@ Begin VB.Form frmComprobanteCobro
             Enabled         =   0   'False
             Height          =   315
             Left            =   7140
-            TabIndex        =   15
+            TabIndex        =   14
             Top             =   5145
             Width           =   2295
          End
@@ -739,7 +720,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   315
             Left            =   1830
             Style           =   2  'Dropdown List
-            TabIndex        =   14
+            TabIndex        =   13
             Top             =   510
             Width           =   7215
          End
@@ -756,7 +737,7 @@ Begin VB.Form frmComprobanteCobro
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   13
+            TabIndex        =   12
             Top             =   1140
             Width           =   435
          End
@@ -773,7 +754,7 @@ Begin VB.Form frmComprobanteCobro
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   12
+            TabIndex        =   11
             Top             =   1710
             Width           =   435
          End
@@ -781,7 +762,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   3795
             Left            =   810
             OleObjectBlob   =   "frmComprobanteCobro.frx":0054
-            TabIndex        =   18
+            TabIndex        =   17
             TabStop         =   0   'False
             Top             =   1110
             Width           =   8640
@@ -801,7 +782,7 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   5760
-            TabIndex        =   66
+            TabIndex        =   65
             Top             =   5550
             Width           =   75
          End
@@ -820,7 +801,7 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   6690
-            TabIndex        =   62
+            TabIndex        =   61
             Top             =   5190
             Width           =   75
          End
@@ -839,7 +820,7 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   6690
-            TabIndex        =   61
+            TabIndex        =   60
             Top             =   5580
             Width           =   75
          End
@@ -858,14 +839,14 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   6690
-            TabIndex        =   60
+            TabIndex        =   59
             Top             =   5940
             Width           =   75
          End
          Begin VB.Label lblTotalLetras 
             Height          =   255
             Left            =   150
-            TabIndex        =   59
+            TabIndex        =   58
             Top             =   6300
             Width           =   9255
          End
@@ -873,7 +854,7 @@ Begin VB.Form frmComprobanteCobro
             BorderStyle     =   1  'Fixed Single
             Height          =   255
             Left            =   1560
-            TabIndex        =   58
+            TabIndex        =   57
             Top             =   5700
             Visible         =   0   'False
             Width           =   1815
@@ -893,7 +874,7 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   5160
-            TabIndex        =   22
+            TabIndex        =   21
             Top             =   5925
             Width           =   1380
          End
@@ -912,7 +893,7 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   5160
-            TabIndex        =   21
+            TabIndex        =   20
             Top             =   5550
             Width           =   330
          End
@@ -931,7 +912,7 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   5160
-            TabIndex        =   20
+            TabIndex        =   19
             Top             =   5175
             Width           =   1275
          End
@@ -951,7 +932,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   14
             Left            =   240
-            TabIndex        =   19
+            TabIndex        =   18
             Top             =   570
             Width           =   1350
          End
@@ -967,18 +948,18 @@ Begin VB.Form frmComprobanteCobro
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   1605
+         Height          =   1215
          Index           =   3
-         Left            =   -74760
-         TabIndex        =   4
-         Top             =   5250
-         Width           =   9825
+         Left            =   240
+         TabIndex        =   3
+         Top             =   4830
+         Width           =   9885
          Begin VB.ComboBox cboAfectacion 
             Height          =   315
             Left            =   2520
             Style           =   2  'Dropdown List
-            TabIndex        =   7
-            Top             =   420
+            TabIndex        =   6
+            Top             =   300
             Width           =   2295
          End
          Begin VB.ComboBox cboCreditoFiscal 
@@ -987,15 +968,15 @@ Begin VB.Form frmComprobanteCobro
             Left            =   2520
             List            =   "frmComprobanteCobro.frx":46D7
             Style           =   2  'Dropdown List
-            TabIndex        =   6
-            Top             =   885
+            TabIndex        =   5
+            Top             =   705
             Width           =   2295
          End
          Begin VB.TextBox txtPeriodoFiscal 
             Height          =   315
             Left            =   7080
-            TabIndex        =   5
-            Top             =   420
+            TabIndex        =   4
+            Top             =   300
             Width           =   2295
          End
          Begin VB.Label lblDescrip 
@@ -1014,8 +995,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   19
             Left            =   360
-            TabIndex        =   10
-            Top             =   495
+            TabIndex        =   9
+            Top             =   405
             Width           =   780
          End
          Begin VB.Label lblDescrip 
@@ -1034,8 +1015,8 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   20
             Left            =   360
-            TabIndex        =   9
-            Top             =   900
+            TabIndex        =   8
+            Top             =   750
             Width           =   1155
          End
          Begin VB.Label lblDescrip 
@@ -1053,15 +1034,15 @@ Begin VB.Form frmComprobanteCobro
             Height          =   405
             Index           =   21
             Left            =   5400
-            TabIndex        =   8
-            Top             =   450
+            TabIndex        =   7
+            Top             =   330
             Width           =   1455
          End
       End
       Begin TAMControls.ucBotonNavegacion ucBotonNavegacion1 
          Height          =   30
          Left            =   -69450
-         TabIndex        =   23
+         TabIndex        =   22
          Top             =   4920
          Width           =   30
          _ExtentX        =   53
@@ -1071,11 +1052,57 @@ Begin VB.Form frmComprobanteCobro
          Height          =   4785
          Left            =   -74640
          OleObjectBlob   =   "frmComprobanteCobro.frx":46ED
-         TabIndex        =   57
+         TabIndex        =   56
          TabStop         =   0   'False
          Top             =   2340
          Width           =   9690
       End
+      Begin TAMControls2.ucBotonEdicion2 ucBotonEdicion21 
+         Height          =   735
+         Left            =   4380
+         TabIndex        =   72
+         Top             =   7230
+         Width           =   5700
+         _ExtentX        =   10054
+         _ExtentY        =   1296
+         Buttons         =   4
+         Caption0        =   "&Guardar"
+         Tag0            =   "2"
+         ToolTipText0    =   "Guardar"
+         Caption1        =   "&Imprimir"
+         Tag1            =   "6"
+         ToolTipText1    =   "Imprimir"
+         Caption2        =   "Anular"
+         Tag2            =   "7"
+         ToolTipText2    =   "Anular"
+         Caption3        =   "Cancelar"
+         Tag3            =   "8"
+         ToolTipText3    =   "Cancelar"
+         UserControlWidth=   5700
+      End
+   End
+   Begin TAMControls2.ucBotonEdicion2 cmdOpcion 
+      Height          =   735
+      Left            =   330
+      TabIndex        =   70
+      Top             =   9510
+      Width           =   5700
+      _ExtentX        =   10054
+      _ExtentY        =   1296
+      Buttons         =   4
+      Caption0        =   "&Nuevo"
+      Tag0            =   "0"
+      ToolTipText0    =   "Nuevo"
+      Caption1        =   "&Modificar"
+      Tag1            =   "1"
+      ToolTipText1    =   "Modificar"
+      Caption2        =   "&Eliminar"
+      Tag2            =   "4"
+      ToolTipText2    =   "Eliminar"
+      Caption3        =   "&Buscar"
+      Tag3            =   "5"
+      ToolTipText3    =   "Buscar"
+      UserControlWidth=   5700
    End
 End
 Attribute VB_Name = "frmComprobanteCobro"
@@ -2880,3 +2907,6 @@ End Sub
 
 
 
+Private Sub ucBotonEdicion21_GotFocus()
+
+End Sub

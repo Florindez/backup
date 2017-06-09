@@ -2191,9 +2191,9 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
                                 "','" & Format$(numCupon, "000") & "','001',0,'01','" & Convertyyyymmdd(fechaCorteAnterior) & "','" & Convertyyyymmdd(fechaPago) & _
                                 "','" & Convertyyyymmdd(fechaCorteDesplazada) & "','19000101','19000101'," & DateDiff("d", fechaCorteAnterior, fechaCorteDesplazada) & _
                                 ",cast(" & saldoDeudorInicial & " as decimal(19,2)),cast(" & amortizacion & " as decimal(19,2)),cast(" & amortizacion & _
-                                " as decimal(19,2)),0,0,cast(" & interes & " as decimal(19,2)),0,0,0,0,0,0,0,0,0,0,0,'01'," & _
+                                " as decimal(19,2)),0,0,cast(" & interes & " as decimal(19,2)),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'01'," & _
                                 gdblTasaIgv * 100 & ",cast(" & igvIntereses & _
-                                " as decimal(19,2)),0," & gdblTasaIgv * 100 & ",0,0,0,0,0,0,'" & gstrFechaActual & "','" & gstrLogin & "')"
+                                " as decimal(19,2)),0,0," & gdblTasaIgv * 100 & ",0,0,0,0,0,0,'" & gstrFechaActual & "','" & gstrLogin & "')"
         
         adoConn.Execute adoComm.CommandText, intRegistro
         
@@ -2225,8 +2225,8 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
                                             "','001'," & (i + 1) & ",'01','" & fechaIni & "','" & fechaCorteDesplazada & "','" & fechaPago & "','19000101','19000101'," & _
                                             DateDiff("d", fechaIni, fechaCorteDesplazada) & ",cast(" & SDI(i) & " as decimal(19,2)),cast(" & Amort(i) & _
                                             " as decimal(19,2)),cast(" & Amort(i) & " as decimal(19,2)),0,0,cast(" & Inter(i) & _
-                                            " as decimal(19,2)),0,0,0,0,0,0,0,0,0,0,0,'01'," & gdblTasaIgv * 100 & _
-                                            ",cast(" & IGVDesemb(i) & " as decimal(19,2)),0," & gdblTasaIgv * 100 & ",0,0,0,0,0,0,'" & gstrFechaActual & _
+                                            " as decimal(19,2)),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'01'," & gdblTasaIgv * 100 & _
+                                            ",cast(" & IGVDesemb(i) & " as decimal(19,2)),0,0," & gdblTasaIgv * 100 & ",0,0,0,0,0,0,'" & gstrFechaActual & _
                                             "','" & gstrLogin & "')"
                 ElseIf numOrigen = 1 Then
 
