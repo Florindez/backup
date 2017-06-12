@@ -88,7 +88,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
          Strikethrough   =   0   'False
       EndProperty
       Height          =   735
-      Left            =   12690
+      Left            =   15630
       Picture         =   "frmCancelacionDescuentoContratos.frx":0000
       Style           =   1  'Graphical
       TabIndex        =   72
@@ -781,7 +781,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   180551681
+            Format          =   178913281
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -803,7 +803,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   180551681
+            Format          =   178913281
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -825,7 +825,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   180551681
+            Format          =   178913281
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -847,7 +847,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   180551681
+            Format          =   178913281
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -1163,7 +1163,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   180551681
+            Format          =   178913281
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacion 
@@ -1185,7 +1185,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   180551681
+            Format          =   178913281
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaPago 
@@ -1207,7 +1207,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   180551681
+            Format          =   178913281
             CurrentDate     =   38776
          End
          Begin VB.Label lblDescrip 
@@ -3546,7 +3546,7 @@ Private Sub CalculaPrelacion(ByRef strMsgError As String)
                 dblIGVInteresMoratorioPagado = gDetalle.Columns.ColumnByFieldName("IGVInteresMoratorio").Value
             Else
                 dblInteresMoratorioPagado = dblMontoRestado / (1 + gdblTasaIgv)
-                dblIGVInteresMoratorioPagado = dblMontoRestado - dblInteresAdicPagado
+                dblIGVInteresMoratorioPagado = dblMontoRestado - dblInteresMoratorioPagado
             End If
             
             dblMontoRestado = dblMontoRestado - dblInteresMoratorioPagado - dblIGVInteresMoratorioPagado
