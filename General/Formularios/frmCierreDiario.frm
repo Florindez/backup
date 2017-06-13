@@ -7105,19 +7105,57 @@ Private Sub ValorizacionFlujos(strTipoCierre As String)
                 .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
                                 "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision & "') }"
                 .Execute
-            Else
-                '*** Contabilizamos Devengado Adicional ***
-                .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
-                                "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Adicionales & "') }"
-                .Execute
-                
-                '*** Contabilizamos Devengado Moratorio ***
-                .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
-                                "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Moratorios & "') }"
-                .Execute
+'            Else
+'                '*** Contabilizamos Devengado Adicional ***
+'                .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
+'                                "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Adicionales & "') }"
+'                .Execute
+'
+'                '*** Contabilizamos Devengado Moratorio ***
+'                .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
+'                                "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Moratorios & "') }"
+'                .Execute
 
             End If
             
+            adoRegistro.MoveNext
+        Loop
+        
+        'Dado que cuando hay muchas cuotas vencidas solo debe contabilizarse una vez para todas:
+        .CommandText = "SELECT DISTINCT IO.NumOperacion as NumOperacion, CC.CodFile, CC.CodAnalitica, CC.CodTitulo " & _
+                        "FROM InversionOperacionCalendarioCuota CC " & _
+                        "JOIN InstrumentoInversion II ON (CC.CodFondo = II.CodFondo and CC.CodAdministradora = II.CodAdministradora " & _
+                        "and CC.CodFile = II.CodFile and CC.CodAnalitica = II.CodAnalitica and II.CodTitulo=CC.CodTitulo) " & _
+                        "JOIN InversionKardex IK on (IK.CodFondo = CC.CodFondo and IK.CodAdministradora = CC.CodAdministradora " & _
+                        "and IK.CodFile = CC.CodFile and IK.CodAnalitica = CC.CodAnalitica and IK.CodTitulo = CC.CodTitulo) " & _
+                        "JOIN InversionOperacion IO on (IO.CodFondo = CC.CodFondo and IO.CodAdministradora = CC.CodAdministradora " & _
+                        "and IO.CodFile = CC.CodFile and IO.CodAnalitica = CC.CodAnalitica and IO.CodTitulo=CC.CodTitulo) " & _
+                        "WHERE CC.CodAdministradora = '" & gstrCodAdministradora & "' AND CC.CodFondo = '" & strCodFondo & "' " & _
+                        "AND CC.CodFile IN ('016') " & _
+                        "AND IK.SaldoFinal > 0 " & _
+                        "AND IK.NumKardex = dbo.uf_IVObtenerUltimoMovimientoKardexValor(IK.CodFondo,IK.CodAdministradora,IK.CodTitulo,'" & strFechaCierre & "') " & _
+                        "AND CC.NumDesembolso = 0 " & _
+                        "AND IO.TipoOperacion = '01' AND  " & _
+                        "CC.NumSecuencial = dbo.uf_IVObtenerUltimoCalendarioCuotaVigente(CC.CodFondo,CC.CodAdministradora,CC.CodFile, CC.CodAnalitica,CC.NumCuota,'" & strFechaCierre & "') " & _
+                        "AND (CC.FechaVencimientoCuota < '" & strFechaCierre & "' OR CC.FechaVencimientoCuota = '29990101') ORDER BY CC.CodFile, CC.CodAnalitica "
+        Set adoRegistro = .Execute
+    
+        Do Until adoRegistro.EOF
+            strNumOperacion = Trim$(adoRegistro("NumOperacion"))
+            strCodFile = Trim$(adoRegistro("CodFile"))
+            strCodAnalitica = Trim$(adoRegistro("CodAnalitica"))
+            strCodTitulo = Trim$(adoRegistro("CodTitulo"))
+           
+            '*** Contabilizamos Devengado Adicional ***
+            .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
+                            "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Adicionales & "') }"
+            .Execute
+            
+            '*** Contabilizamos Devengado Moratorio ***
+            .CommandText = "{ call up_ACProcContabilizarOperacion('" & strCodFondo & "','" & gstrCodAdministradora & _
+                            "','" & strFechaCierre & "','" & strCodFile & "','" & strNumOperacion & "', '" & Codigo_Caja_Provision_Intereses_Moratorios & "') }"
+            .Execute
+
             adoRegistro.MoveNext
         Loop
         

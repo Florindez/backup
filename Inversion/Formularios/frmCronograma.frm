@@ -377,7 +377,7 @@ Begin VB.Form frmCronograma
          _ExtentY        =   556
          _Version        =   393216
          Enabled         =   0   'False
-         Format          =   175570945
+         Format          =   180027393
          CurrentDate     =   40413
       End
       Begin VB.CheckBox chkCortePrimer 
@@ -408,7 +408,7 @@ Begin VB.Form frmCronograma
          _ExtentY        =   556
          _Version        =   393216
          Enabled         =   0   'False
-         Format          =   175570945
+         Format          =   180027393
          CurrentDate     =   40413
       End
       Begin VB.CheckBox chkAPartir 
@@ -841,7 +841,7 @@ Begin VB.Form frmCronograma
       _ExtentX        =   2408
       _ExtentY        =   556
       _Version        =   393216
-      Format          =   175570945
+      Format          =   180027393
       CurrentDate     =   40413
    End
    Begin MSComCtl2.DTPicker dtpEmision 
@@ -853,7 +853,7 @@ Begin VB.Form frmCronograma
       _ExtentX        =   2408
       _ExtentY        =   556
       _Version        =   393216
-      Format          =   175570945
+      Format          =   180027393
       CurrentDate     =   40413
    End
    Begin TAMControls.TAMTextBox txtTasa 
@@ -2079,6 +2079,9 @@ End Function
 Private Sub Grabar(ByVal blnVistaPrevia As Boolean)
     Dim numDesembolso As Integer
     Dim numTramo      As Integer
+    Dim strIndFinPeriodo As String
+    Dim strIndIGV As String
+    
     
     'Se limpia informacion proveniente de las vistas previas anteriores
     adoComm.CommandText = "DELETE FROM InstrumentoInversionCondicionesFinancieras WHERE CodTitulo = '" & codigoUnico & "'"
@@ -2093,7 +2096,7 @@ Private Sub Grabar(ByVal blnVistaPrevia As Boolean)
     adoComm.CommandText = "INSERT INTO InstrumentoInversionCondicionesFinancieras (CodTitulo, IndNumCuotas, NumCuotas, FechaEmision, FechaVencimiento, " & _
        "ValorNominal, Tasa, TipoTasa, PeriodoTasa, TipoCupon, BaseCalculo, TipoAmortizacion, PeriodoCupon, IndPeriodoPersonalizable, " & _
        "CantUnidadesPeriodo, UnidadPeriodo, DesplazamientoCorte, DesplazamientoPago, IndCortePrimerCupon, FechaPrimerCorte,  " & _
-       "IndFechaAPartir, FechaAPartir, DiasMinimosCobroInteres, IndDesembolsosMultiples, CantDesembolsos, CantTramos, TipoTramo) " & _
+       "IndFechaAPartir, FechaAPartir, DiasMinimosCobroInteres, IndDesembolsosMultiples, CantDesembolsos, CantTramos, TipoTramo, PeriodoCapitalizacion, IndIGV, IndFinPeriodo) " & _
        "VALUES ('" & codigoUnico & "'," & chkNumeroCuotas.Value & "," & cantCupones & ",'" & Format$(fechaEmision, "yyyyMMdd") & "','" & _
        Format$(fechavencimiento, "yyyyMMdd") & "'," & valorNominal & "," & _
        txtTasa.Value & ",'" & Format$(arrTipoTasa(cbTipoTasa.ListIndex), "00") & "','" & Format$(arrPeriodo(cbPeriodoTasa.ListIndex), "00") & _
@@ -2113,10 +2116,25 @@ Private Sub Grabar(ByVal blnVistaPrevia As Boolean)
                         txtCantidadTramos.Value & ","
 
     If optCuota.Value = True Then
-        adoComm.CommandText = adoComm.CommandText & "'cuota')"
+        adoComm.CommandText = adoComm.CommandText & "'cuota',"
     Else
-        adoComm.CommandText = adoComm.CommandText & "'amort')"
+        adoComm.CommandText = adoComm.CommandText & "'amort',"
     End If
+    
+    If chkCorteAFinPeriodo.Value = vbChecked Then
+        strIndFinPeriodo = Valor_Indicador
+    Else
+        strIndFinPeriodo = Valor_Caracter
+    End If
+    
+    If chkigv.Value = vbChecked Then
+        strIndIGV = Valor_Indicador
+    Else
+        strIndIGV = Valor_Caracter
+    End If
+    
+    
+    adoComm.CommandText = adoComm.CommandText & "'07','" & strIndIGV & "','" & strIndFinPeriodo & "')"
 
     adoConn.Execute adoComm.CommandText
 
