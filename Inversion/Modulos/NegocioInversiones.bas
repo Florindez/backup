@@ -1432,6 +1432,7 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
     Dim fechaCorte               As Date
     Dim fechaCorteAnterior       As Date
     Dim fechaCorteDesplazada     As Date
+    Dim fechaCorteDesplazadaAnt  As Date
     Dim fechaPago                As Date
     Dim interes                  As Double
     Dim total                    As Double
@@ -1487,6 +1488,8 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
     Dim indexTipoAmortizacion    As Integer
     Dim indexDesplazamientoCorte As Integer
     Dim indexDesplazamientoPago  As Integer
+    
+    
     
     Dim strCodDesplazamientoCorte   As String
     Dim strCodDesplazamientoPago    As String
@@ -1702,12 +1705,14 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
     While blnFaltanCupones
         saldoDeudorInicial = saldoDeudorFinal
         numCupon = numCupon + 1
-        fechaCorteAnterior = fechaCorteDesplazada
+        fechaCorteAnterior = fechaCorte
+        fechaCorteDesplazadaAnt = fechaCorteDesplazada
         
         'calculo de la fecha de corte
         If (numCupon = 1) And (indCortePrimerCupon = 1) Then
             fechaCorte = fechaPrimerCorte
             fechaCorteAnterior = fechaInicio
+            fechaCorteDesplazadaAnt = fechaInicio
             fechaPago = fechaCorte
         Else
 
@@ -1724,8 +1729,8 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
 
             Else
                 'JAFR 14/04/2011 Encapsulación de calculo de fecha de corte.
-                fechaCorteAnterior = fechaInicio
-                fechaCorte = CalculaFechaSiguienteCalendario(fechaInicio, indexBaseCalculo, indexPeriodoCupon, indexUnidadPeriodo, unidadesPeriodo)
+                'fechaCorteAnterior = fechaInicio
+                fechaCorte = CalculaFechaSiguienteCalendario(fechaCorteAnterior, indexBaseCalculo, indexPeriodoCupon, indexUnidadPeriodo, unidadesPeriodo)
             End If
 
             If ((fechaCorte >= fechavencimiento) And Not (indNumeroCuotas = True)) Or ((numCupon = cantCupones) And (indNumeroCuotas = True)) Then
@@ -1739,16 +1744,18 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
         
         'si no es el primer cupon con fecha de corte especifica....
         'se realiza el desplazamiento especificado tanto para fecha de corte como para fecha de pago
-        If Not ((numCupon = 1) And (indCortePrimerCupon = 1)) Then
-            fechaCorteDesplazada = desplazamientoDiaLaborable(fechaCorte, strCodDesplazamientoCorte)
-            fechaPago = desplazamientoDiaLaborable(fechaCorte, strCodDesplazamientoPago)
-            fechaCorte = fechaCorteDesplazada
-        End If
+        'If Not ((numCupon = 1)) Then 'And (indCortePrimerCupon = 1)) Then
+        fechaCorteDesplazada = desplazamientoDiaLaborable(fechaCorte, strCodDesplazamientoCorte)
+        fechaPago = desplazamientoDiaLaborable(fechaCorte, strCodDesplazamientoPago)
+            'fechaCorte = fechaCorteDesplazada
+        'Else
+        '    fechaCorteDesplazada = fechaCorte
+        'End If
         
         'Teniendo la fecha de corte desplazada, se calcula tasa entre las dos fechas de corte pertinentes
-        Tasa = recalcularTasaDifDias(tasaIni / 100, indexPeriodoTasa, indexBaseCalculo, fechaEmision, indexPeriodoCupon, strTipoTasa, DateDiff("d", fechaCorteAnterior, fechaCorte))
+        Tasa = recalcularTasaDifDias(tasaIni / 100, indexPeriodoTasa, indexBaseCalculo, fechaEmision, indexPeriodoCupon, strTipoTasa, DateDiff("d", fechaCorteDesplazadaAnt, fechaCorteDesplazada))
         
-        If fechaCorte >= fechavencimiento Then blnFaltanCupones = False
+        If fechaCorteDesplazada >= fechavencimiento Then blnFaltanCupones = False
         'hasta aqui ya se tienen calculadas las fechas.
         
         'aqui inicia el cálculo del monto a pagar en el cupon
@@ -1860,7 +1867,7 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
 
                     fechaDesemb(numDesembolso) = fechadesembolso
                     
-                    If (fechaCorteDesplazada >= fechadesembolso) And (fechaCorteAnterior <= fechadesembolso) And (tempSDIAnterior(numDesembolso) = 0) Then
+                    If (fechaCorteDesplazada >= fechadesembolso) And (fechaCorteDesplazadaAnt <= fechadesembolso) And (tempSDIAnterior(numDesembolso) = 0) Then
 
                         'se obtiene el valor del desembolso
                         If indDesembolsosMultiples = 1 Then
@@ -1883,7 +1890,7 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
                         
                         Tasa = recalcularTasaDifDias(tasaIni / 100, indexPeriodoTasa, indexBaseCalculo, fechaEmision, indexPeriodoCupon, strTipoTasa, difDias)
                     
-                        If (fechaCorteDesplazada >= fechadesembolso) And (fechaCorteAnterior <= fechadesembolso) And (tempIntAnterior(numDesembolso) = 0) Then
+                        If (fechaCorteDesplazada >= fechadesembolso) And (fechaCorteDesplazadaAnt <= fechadesembolso) And (tempIntAnterior(numDesembolso) = 0) Then
                             
                             'se calcula el interes de los dias que pasaron desde el desembolso hasta la fecha de corte actual, si es que aplica
                             If indDesembolsosMultiples = 1 Then
@@ -1914,7 +1921,7 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
                     sumaTempInt = sumaTempInt + tempInt(i)
                 Next
                 
-                difDias = Abs(DateDiff("d", fechaCorteDesplazada, fechaCorteAnterior))
+                difDias = Abs(DateDiff("d", fechaCorteDesplazada, fechaCorteDesplazadaAnt))
                 Tasa = recalcularTasaDifDias(tasaIni / 100, indexPeriodoTasa, indexBaseCalculo, fechaEmision, indexPeriodoCupon, strTipoTasa, difDias)
                 
                 If sumaTempInt = 0 Then
@@ -1954,7 +1961,7 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
                         amortizacion = adoRegistroTramo.Fields.Item("Valor").Value
                     ElseIf numTramo = cantTramos Then
                         'cálculo de la amortización para el ÚLTIMO tramo
-                        difDias = Abs(DateDiff("d", fechaCorteDesplazada, fechaCorteAnterior))
+                        difDias = Abs(DateDiff("d", fechaCorteDesplazada, fechaCorteDesplazadaAnt))
                         Tasa = recalcularTasaDifDias(tasaIni / 100, indexPeriodoTasa, indexBaseCalculo, fechaEmision, indexPeriodoCupon, strTipoTasa, difDias)
 
                         tasaTemp = Tasa
@@ -1994,7 +2001,7 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
 
                     ElseIf numTramo = cantTramos Then
                         'cálculo de la cuota para el ÚLTIMO tramo
-                        difDias = Abs(DateDiff("d", fechaCorteDesplazada, fechaCorteAnterior))
+                        difDias = Abs(DateDiff("d", fechaCorteDesplazada, fechaCorteDesplazadaAnt))
                         Tasa = recalcularTasaDifDias(tasaIni / 100, indexPeriodoTasa, indexBaseCalculo, fechaEmision, indexPeriodoCupon, strTipoTasa, difDias)
 
                         amortizacion = saldoDeudorInicial
@@ -2003,7 +2010,7 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
                         If tasaTemp = 0 Then
                             cuota = 0
                         Else
-                            cuota = CalculoCuotaConstante(CodTitulo, SubDetalleFile, cti_igv, saldoDeudorInicial, numCuponesDelTramo, fechaCorteAnterior, fechavencimiento, 0.01)
+                            cuota = CalculoCuotaConstante(CodTitulo, SubDetalleFile, cti_igv, saldoDeudorInicial, numCuponesDelTramo, fechaCorteDesplazadaAnt, fechavencimiento, 0.01)
                         End If
                         
                         amortizacion = saldoDeudorInicial
@@ -2064,7 +2071,7 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
                                         
                     'Se obtiene el saldo deudor inicial dependiendo si la fecha de los desembolsos
                     'coincide o no con la fecha de los cupones.
-                    If (fechaCorteDesplazada >= fechaDesemb(i)) And (fechaCorteAnterior <= fechaDesemb(i)) Then
+                    If (fechaCorteDesplazada >= fechaDesemb(i)) And (fechaCorteDesplazadaAnt <= fechaDesemb(i)) Then
                         SDIAnterior(i) = 0
                         SDFAnterior(i) = 0
 
@@ -2086,11 +2093,11 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
                     'Se obtiene el interés dependiendo si la tasa de interés se tiene que recalcular
                     'o si seguirá siendo la misma.
                     If fechaCorteDesplazada > fechaDesemb(i) Then
-                        If fechaCorteAnterior < fechaDesemb(i) Then
+                        If fechaCorteDesplazadaAnt < fechaDesemb(i) Then
                             'JAFR: Cálculo de la tasa dependiendo de la diferencia de días
                             difDias = Abs(DateDiff("d", fechaCorteDesplazada, fechaDesemb(i)))
                         Else
-                            difDias = Abs(DateDiff("d", fechaCorteDesplazada, fechaCorteAnterior))
+                            difDias = Abs(DateDiff("d", fechaCorteDesplazada, fechaCorteDesplazadaAnt))
                         End If
                         
                         Tasa = recalcularTasaDifDias(tasaIni / 100, indexPeriodoTasa, indexBaseCalculo, fechaEmision, indexPeriodoCupon, strTipoTasa, difDias)
@@ -2188,8 +2195,8 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
         ' If numOrigen = 0 Then
         adoComm.CommandText = "INSERT INTO InversionOperacionCalendarioCuota VALUES ('" & strCodFondo & "','" & codAdministradora & _
                                 "','" & codSolicitud & "','','','" & CodTitulo & "','" & CodFile_Descuento_Flujos_Dinerarios & "','" & codAnalitica & _
-                                "','" & Format$(numCupon, "000") & "','001',0,'01','" & Convertyyyymmdd(fechaCorteAnterior) & "','" & Convertyyyymmdd(fechaPago) & _
-                                "','" & Convertyyyymmdd(fechaCorteDesplazada) & "','19000101','19000101'," & DateDiff("d", fechaCorteAnterior, fechaCorteDesplazada) & _
+                                "','" & Format$(numCupon, "000") & "','001',0,'01','" & Convertyyyymmdd(fechaCorteDesplazadaAnt) & "','" & Convertyyyymmdd(fechaPago) & _
+                                "','" & Convertyyyymmdd(fechaCorteDesplazada) & "','19000101','19000101'," & DateDiff("d", fechaCorteDesplazadaAnt, fechaCorteDesplazada) & _
                                 ",cast(" & saldoDeudorInicial & " as decimal(19,2)),cast(" & amortizacion & " as decimal(19,2)),cast(" & amortizacion & _
                                 " as decimal(19,2)),0,0,cast(" & interes & " as decimal(19,2)),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'01'," & _
                                 gdblTasaIgv * 100 & ",cast(" & igvIntereses & _
@@ -2202,10 +2209,10 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
             
             For i = 0 To cantDesembolsos
 
-                If fechaDesemb(i) > fechaCorteAnterior Then
+                If fechaDesemb(i) > fechaCorteDesplazadaAnt Then
                     fechaIni = fechaDesemb(i)
                 Else
-                    fechaIni = fechaCorteAnterior
+                    fechaIni = fechaCorteDesplazadaAnt
                 End If
                 
                 If SubDetalleFile = "001" Then
@@ -2233,7 +2240,7 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
                     If numDesembolsos = 1 Then
                         adoComm.CommandText = "INSERT INTO InversionOperacionCalendarioCuota VALUES ('" & strCodFondo & "','" & codAdministradora & "','" & codSolicitud & "','','','" & CodTitulo & "','" & CodFile_Descuento_Flujos_Dinerarios & "','" & codAnalitica & "','" & Format$(numCupon, "000") & "','001'," & (i + 1) & ",'01','" & fechaIni & "','" & fechaCorteDesplazada & "','" & fechaPago & "','19000101'," & DateDiff("d", fechaIni, fechaCorteDesplazada) & ",cast(" & SDI(i) & " as decimal(19,2)),cast(" & Amort(i) & " as decimal(19,2)),cast(" & Amort(i) & " as decimal(19,2)),0,cast(" & interes & " as decimal(19,2)),cast(" & Inter(i) & " as decimal(19,2)),cast(" & Inter(i) & " as decimal(19,2)),0,0,0,0,0,0,0,0,0,0,'01'," & gdblTasaIgv * 100 & ",cast(" & IGVDesemb(i) & " as decimal(19,2)),0," & gdblTasaIgv * 100 & ",0,0,0,0,0,0,'" & gstrFechaActual & "','" & gstrLogin & "')"
                                             
-                    ElseIf (numDesembolsos > 1) And (fechaDesembolsoNuevo < fechaCorte) Then
+                    ElseIf (numDesembolsos > 1) And (fechaDesembolsoNuevo < fechaCorteDesplazada) Then
 
                         If i < cantDesembolsos Then
                             adoComm.CommandText = "UPDATE InversionOperacionCalendarioCuota SET " & "MontoPrincipalAdeudado = cast(" & SDI(i) & " as decimal(19,2)), MontoPrincipalCuota = cast(" & Amort(i) & " as decimal(19,2)), MontoPrincipalSecuencial = cast(" & Amort(i) & " as decimal(19,2)), MontoInteresCuota = cast(" & Inter(i) & " as decimal(19,2)), MontoInteresSecuencial = cast(" & Inter(i) & " as decimal(19,2)), MontoImpuestoInteres = cast(" & IGVDesemb(i) & " as decimal(19,2)), InteresAdicAdeudado = 0, InteresAdicionalCuota = 0, InteresAdicionalSecuencial = 0, " & " MontoImpuestoInteresAdic = 0 " & "WHERE CodFondo = '" & strCodFondo & "' and CodAdministradora = '" & codAdministradora & "' and NumOperacionOrig = '" & codSolicitud & "' and NumCuota = '" & Format$(numCupon, "000") & "' and NumDesembolso = " & (i + 1)
@@ -2255,7 +2262,7 @@ Public Sub GeneraCuponera(ByVal numOrigen As Integer, _
             saldoDeudorFinal = 0
         End If
         
-        fechaInicio = fechaCorte
+        'fechaInicio = fechaCorte
         cuota = cuotaTmp
     Wend
     cantCupones = numCupon
