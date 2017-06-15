@@ -136,8 +136,8 @@ Begin VB.Form frmCancelacionAcreencias
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmCancelacionAcreencias.frx":0D6F
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "tdgConsulta"
-      Tab(0).Control(1)=   "fraCriterio"
+      Tab(0).Control(0)=   "fraCriterio"
+      Tab(0).Control(1)=   "tdgConsulta"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Operación / Anexo"
       TabPicture(1)   =   "frmCancelacionAcreencias.frx":0D8B
@@ -154,11 +154,11 @@ Begin VB.Form frmCancelacionAcreencias
       TabCaption(2)   =   "Detalle de Pago"
       TabPicture(2)   =   "frmCancelacionAcreencias.frx":0DA7
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "cmdGuardar"
-      Tab(2).Control(1)=   "fraDetalleTotalPago"
+      Tab(2).Control(0)=   "fraDetallePago"
+      Tab(2).Control(1)=   "cmdAnterior"
       Tab(2).Control(2)=   "fraDetallePagoParcial"
-      Tab(2).Control(3)=   "cmdAnterior"
-      Tab(2).Control(4)=   "fraDetallePago"
+      Tab(2).Control(3)=   "fraDetalleTotalPago"
+      Tab(2).Control(4)=   "cmdGuardar"
       Tab(2).ControlCount=   5
       Begin VB.CommandButton cmdGuardar 
          Caption         =   "Guardar"
@@ -2629,7 +2629,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178913281
+            Format          =   178847745
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -2651,7 +2651,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178913281
+            Format          =   178847745
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -2673,7 +2673,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178913281
+            Format          =   178847745
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -2695,7 +2695,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178913281
+            Format          =   178847745
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -3590,12 +3590,16 @@ Private Sub CalcularTotalesAnexoFacturas()
     Dim dblTotalValorNominal        As Double
     Dim dblTotalValorNominalDscto   As Double
     Dim dblTotalInteres             As Double
+    Dim dblTotalInteresAdicional    As Double
+    Dim dblTotalInteresMoratorio    As Double
     Dim dblTotalDeudaAnexo          As Double
     Dim dblTotalCobroMinimo         As Double
     
     dblTotalValorNominal = 0
     dblTotalValorNominalDscto = 0
     dblTotalInteres = 0
+    dblTotalInteresAdicional = 0
+    dblTotalInteresMoratorio = 0
     dblTotalDeudaAnexo = 0
     dblTotalCobroMinimo = 0
     
@@ -3604,6 +3608,8 @@ Private Sub CalcularTotalesAnexoFacturas()
         dblTotalValorNominal = dblTotalValorNominal + adoDetalleAnexo("ValorNominal")
         dblTotalValorNominalDscto = dblTotalValorNominalDscto + adoDetalleAnexo("ValorNominalDscto")
         dblTotalInteres = dblTotalInteres + adoDetalleAnexo("MontoInteres")
+        dblTotalInteresAdicional = dblTotalInteresAdicional + adoDetalleAnexo("InteresAdicional")
+        dblTotalInteresMoratorio = dblTotalInteresMoratorio + adoDetalleAnexo("InteresMoratorio")
         dblTotalCobroMinimo = dblTotalCobroMinimo + adoDetalleAnexo("MontoInteresCobroMinimo")
         dblTotalDeudaAnexo = dblTotalDeudaAnexo + adoDetalleAnexo("Deuda")
         adoDetalleAnexo.MoveNext
@@ -3613,7 +3619,9 @@ Private Sub CalcularTotalesAnexoFacturas()
     tdgAnexo.Columns(6).FooterText = dblTotalValorNominalDscto
     tdgAnexo.Columns(7).FooterText = dblTotalInteres
     tdgAnexo.Columns(8).FooterText = dblTotalCobroMinimo
-    tdgAnexo.Columns(9).FooterText = dblTotalDeudaAnexo
+    tdgAnexo.Columns(9).FooterText = dblTotalInteresAdicional
+    tdgAnexo.Columns(10).FooterText = dblTotalInteresMoratorio
+    tdgAnexo.Columns(11).FooterText = dblTotalDeudaAnexo
     
     adoDetalleAnexo.MoveFirst
     
