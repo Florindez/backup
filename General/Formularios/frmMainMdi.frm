@@ -5,7 +5,7 @@ Begin VB.MDIForm frmMainMdi
    Caption         =   "Módulo General"
    ClientHeight    =   9810
    ClientLeft      =   225
-   ClientTop       =   855
+   ClientTop       =   870
    ClientWidth     =   15960
    Icon            =   "frmMainMdi.frx":0000
    LinkTopic       =   "MDIForm1"
@@ -478,7 +478,7 @@ Begin VB.MDIForm frmMainMdi
          Index           =   2
       End
       Begin VB.Menu mnuMantenimiento 
-         Caption         =   "-"
+         Caption         =   "Asesores"
          Index           =   3
       End
       Begin VB.Menu mnuMantenimiento 
@@ -1017,6 +1017,16 @@ Private Sub mnuMantenimiento_Click(Index As Integer)
                 Else
                     frmRelacionados.Show
                 End If
+        
+        Case 3: strNombreObjeto = "frmAsesores"
+                'gstrNombreObjetoMenuPulsado = mnuMantenimiento.Item(Index).Name + "(" + CStr(Index) + ")"
+                'strCodObjeto = Trim(App.Title) + Separador_Codigo_Objeto + gstrNombreObjetoMenuPulsado + _
+                '                        Separador_Codigo_Objeto + strNombreObjeto
+                'If Not ValidarPermisoAccesoObjeto(Trim(gstrLoginUS), strCodObjeto, Codigo_Tipo_Objeto_Formulario) Then
+                '    Exit Sub
+                'Else
+                    frmAsesores.Show
+                'End If
 
         Case 4: strNombreObjeto = "frmTasas"
                 gstrNombreObjetoMenuPulsado = mnuMantenimiento.Item(Index).Name + "(" + CStr(Index) + ")"

@@ -36,7 +36,6 @@ Begin VB.Form frmInstitucion
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
-      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -51,15 +50,12 @@ Begin VB.Form frmInstitucion
       Buttons         =   3
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
-      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "3"
-      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Eliminar"
       Tag2            =   "4"
-      Visible2        =   0   'False
       ToolTipText2    =   "Eliminar"
       UserControlWidth=   4200
    End
@@ -90,9 +86,9 @@ Begin VB.Form frmInstitucion
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmInstitucion.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "tdgConsulta"
+      Tab(0).Control(0)=   "lblInstitucion(0)"
       Tab(0).Control(1)=   "cboTipoInstitucion"
-      Tab(0).Control(2)=   "lblInstitucion(0)"
+      Tab(0).Control(2)=   "tdgConsulta"
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Datos Básicos"
       TabPicture(1)   =   "frmInstitucion.frx":001C
@@ -103,9 +99,9 @@ Begin VB.Form frmInstitucion
       TabCaption(2)   =   "Datos Complementarios"
       TabPicture(2)   =   "frmInstitucion.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "cmdAccion"
+      Tab(2).Control(0)=   "fraDireccion"
       Tab(2).Control(1)=   "fraClasificacion"
-      Tab(2).Control(2)=   "fraDireccion"
+      Tab(2).Control(2)=   "cmdAccion"
       Tab(2).ControlCount=   3
       TabCaption(3)   =   "Calificación Instrumento"
       TabPicture(3)   =   "frmInstitucion.frx":0054
@@ -123,11 +119,9 @@ Begin VB.Form frmInstitucion
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
-         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
-         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlWidth=   2700
       End
@@ -1392,7 +1386,7 @@ Dim strCodRiesgo2               As String, strCodSubRiesgo2         As String
 Dim strCodRiesgoFinal           As String, strCodSector             As String
 Dim strCodPais                  As String, strCodNacionalidad       As String
 Dim strCodDepartamento          As String, strCodProvincia          As String
-Dim strCodDistrito              As String, strSQL                   As String
+Dim strCodDistrito              As String, strsql                   As String
 Dim strCodCiiu                  As String, strCodGrupo              As String
 Dim strCodClasificadoraI        As String, strCodClasificadoraII    As String
 Dim strCodClasificadora1        As String, strCodClasificadora2     As String
@@ -1406,12 +1400,12 @@ Dim blnNemotecnicoUnico         As Boolean
 
 Private Sub CargarTitulosEmitidos()
 
-    Dim strSQL As String
+    Dim strsql As String
     Dim adoresultAux1 As ADODB.Recordset
                                                                                     
     Me.MousePointer = vbHourglass
             
-    strSQL = "SELECT EmisionInstitucionPersona.CodFile,EmisionInstitucionPersona.CodDetalleFile,CodCategoriaRiesgo,CodClasificadoraI,CodSubRiesgoI,CodClasificadoraII,CodSubRiesgoII,CodRiesgoFinal,CodSubRiesgoFinal,(DescripFile + ' ' + DescripDetalleFile) DescripTitulo,ValorParametro,(RTRIM(ValorParametro) + ' ' + RTRIM(CodSubRiesgoFinal)) DescripRiesgo " & _
+    strsql = "SELECT EmisionInstitucionPersona.CodFile,EmisionInstitucionPersona.CodDetalleFile,CodCategoriaRiesgo,CodClasificadoraI,CodSubRiesgoI,CodClasificadoraII,CodSubRiesgoII,CodRiesgoFinal,CodSubRiesgoFinal,(DescripFile + ' ' + DescripDetalleFile) DescripTitulo,ValorParametro,(RTRIM(ValorParametro) + ' ' + RTRIM(CodSubRiesgoFinal)) DescripRiesgo " & _
         "FROM EmisionInstitucionPersona JOIN InversionDetalleFile " & _
         "ON (InversionDetalleFile.CodDetalleFile=EmisionInstitucionPersona.CodDetalleFile AND InversionDetalleFile.CodFile=EmisionInstitucionPersona.CodFile) " & _
         "JOIN InversionFile ON (InversionFile.CodFile=InversionDetalleFile.CodFile) " & _
@@ -1420,7 +1414,7 @@ Private Sub CargarTitulosEmitidos()
         
     With adoEmisor
         .ConnectionString = gstrConnectConsulta
-        .RecordSource = strSQL
+        .RecordSource = strsql
         .Refresh
     End With
         
@@ -1460,7 +1454,7 @@ End Sub
 Private Sub LlenarFormulario(strModo As String)
 
     Dim adoRegistro   As ADODB.Recordset
-    Dim strSQL      As String
+    Dim strsql      As String
     Dim intRegistro As Integer
     
     Select Case strModo
@@ -1667,62 +1661,62 @@ End Sub
 
 Private Sub CargarListas()
 
-    Dim strSQL As String
+    Dim strsql As String
     
     '*** Tipo Institución ***
-    strSQL = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='TIPPER' AND ValorParametro='X' ORDER BY DescripParametro"
-    CargarControlLista strSQL, cboTipoInstitucion, arrTipoInstitucion(), ""
-    CargarControlLista strSQL, cboTipoEntidad, arrTipoEntidad(), ""
+    strsql = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='TIPPER' AND ValorParametro='X' ORDER BY DescripParametro"
+    CargarControlLista strsql, cboTipoInstitucion, arrTipoInstitucion(), ""
+    CargarControlLista strsql, cboTipoEntidad, arrTipoEntidad(), ""
     If cboTipoInstitucion.ListCount > 0 Then cboTipoInstitucion.ListIndex = 0
     
     '*** País ***
-    strSQL = "{ call up_ACSelDatos(13) }"
-    CargarControlLista strSQL, cboPais, arrPais(), Sel_Defecto
+    strsql = "{ call up_ACSelDatos(13) }"
+    CargarControlLista strsql, cboPais, arrPais(), Sel_Defecto
 
     '*** Nacionalidad ***
-    strSQL = "{ call up_ACSelDatos(12) }"
-    CargarControlLista strSQL, cboExtranjero, arrNacionalidad(), Sel_Defecto
+    strsql = "{ call up_ACSelDatos(12) }"
+    CargarControlLista strsql, cboExtranjero, arrNacionalidad(), Sel_Defecto
     
     '*** Tipos de documentos juridico ***
     'strSQL = "{ call up_ACSelDatos(27) }"
     'CargarControlLista strSQL, cboTipoIdentidad, arrTipoIdentidad(), Sel_Defecto
     
     '*** Sectores ***
-    strSQL = "SELECT CodSector CODIGO,DescripSector DESCRIP FROM SectorBursatil ORDER BY DescripSector"
-    CargarControlLista strSQL, cboSector, arrSector(), Sel_Defecto
+    strsql = "SELECT CodSector CODIGO,DescripSector DESCRIP FROM SectorBursatil ORDER BY DescripSector"
+    CargarControlLista strsql, cboSector, arrSector(), Sel_Defecto
     
     '*** Ciiu ***
-    strSQL = "SELECT CodCiiu CODIGO ,(CodCiiu + Space(1) + DescripCiiu) DESCRIP FROM Ciiu WHERE IndVigente='X'ORDER BY CodCiiu"
-    CargarControlLista strSQL, cboCiiu, arrCiiu(), Sel_Defecto
+    strsql = "SELECT CodCiiu CODIGO ,(CodCiiu + Space(1) + DescripCiiu) DESCRIP FROM Ciiu WHERE IndVigente='X'ORDER BY CodCiiu"
+    CargarControlLista strsql, cboCiiu, arrCiiu(), Sel_Defecto
 
     '*** Grupo Económico ***
-    strSQL = "SELECT CodGrupo CODIGO ,DescripGrupo DESCRIP FROM GrupoEconomico WHERE IndVigente='X' ORDER BY DescripGrupo"
-    CargarControlLista strSQL, cboGrupo, arrGrupo(), Sel_Defecto
+    strsql = "SELECT CodGrupo CODIGO ,DescripGrupo DESCRIP FROM GrupoEconomico WHERE IndVigente='X' ORDER BY DescripGrupo"
+    CargarControlLista strsql, cboGrupo, arrGrupo(), Sel_Defecto
 
     '*** Categoría Clasificación Riesgo ***
-    strSQL = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='CATRIE' ORDER BY DescripParametro"
-    CargarControlLista strSQL, cboCategoria, arrCategoria(), ""
+    strsql = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='CATRIE' ORDER BY DescripParametro"
+    CargarControlLista strsql, cboCategoria, arrCategoria(), ""
     If cboCategoria.ListCount > 0 Then cboCategoria.ListIndex = 0
     
-    strSQL = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='CATRIE' AND CodParametro <> '03' ORDER BY DescripParametro"
-    CargarControlLista strSQL, cboPlazo, arrPlazo(), ""
+    strsql = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='CATRIE' AND CodParametro <> '03' ORDER BY DescripParametro"
+    CargarControlLista strsql, cboPlazo, arrPlazo(), ""
     If cboPlazo.ListCount > 0 Then cboPlazo.ListIndex = 0
                               
     '*** Empresas Clasificadoras ***
-    strSQL = "SELECT CodClasificadora CODIGO,DescripClasificadora DESCRIP FROM Clasificadora WHERE CodClasificadora<>'001' ORDER BY DescripClasificadora"
-    CargarControlLista strSQL, cboClasificadoraI, arrClasificadoraI(), Sel_Defecto
-    CargarControlLista strSQL, cboClasificadoraII, arrClasificadoraII(), Sel_Defecto
-    CargarControlLista strSQL, cboClasificadora1, arrClasificadora1(), Sel_Defecto
-    CargarControlLista strSQL, cboClasificadora2, arrClasificadora2(), Sel_Defecto
+    strsql = "SELECT CodClasificadora CODIGO,DescripClasificadora DESCRIP FROM Clasificadora WHERE CodClasificadora<>'001' ORDER BY DescripClasificadora"
+    CargarControlLista strsql, cboClasificadoraI, arrClasificadoraI(), Sel_Defecto
+    CargarControlLista strsql, cboClasificadoraII, arrClasificadoraII(), Sel_Defecto
+    CargarControlLista strsql, cboClasificadora1, arrClasificadora1(), Sel_Defecto
+    CargarControlLista strsql, cboClasificadora2, arrClasificadora2(), Sel_Defecto
     
     '*** Títulos Emitidos ***
-    strSQL = "SELECT (InversionDetalleFile.CodFile + CodDetalleFile) CODIGO,(RTRIM(DescripFile) + ' ' + DescripDetalleFile) DESCRIP "
-    strSQL = strSQL & "FROM InversionDetalleFile JOIN InversionFile ON(InversionFile.CodFile=InversionDetalleFile.CodFile) WHERE IndEmision='X' ORDER BY DescripFile"
-    CargarControlLista strSQL, cboInstrumentoEmitido, arrInstrumentoEmitido(), Sel_Defecto
+    strsql = "SELECT (InversionDetalleFile.CodFile + CodDetalleFile) CODIGO,(RTRIM(DescripFile) + ' ' + DescripDetalleFile) DESCRIP "
+    strsql = strsql & "FROM InversionDetalleFile JOIN InversionFile ON(InversionFile.CodFile=InversionDetalleFile.CodFile) WHERE IndEmision='X' ORDER BY DescripFile"
+    CargarControlLista strsql, cboInstrumentoEmitido, arrInstrumentoEmitido(), Sel_Defecto
     
     '*** Clase de Persona ***
-    strSQL = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='CLSPER' ORDER BY DescripParametro"
-    CargarControlLista strSQL, cboClasePersona, arrClasePersona(), ""
+    strsql = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='CLSPER' ORDER BY DescripParametro"
+    CargarControlLista strsql, cboClasePersona, arrClasePersona(), ""
     If cboClasePersona.ListCount > Valor_Numero Then cboClasePersona.ListIndex = Valor_Numero
         
 End Sub
@@ -1735,7 +1729,7 @@ Public Sub Buscar()
                                                                                     
     Me.MousePointer = vbHourglass
             
-    strSQL = "SELECT CodPersona,DescripPersona,(CodRiesgo + ' ' + CodSubRiesgo) CodRiesgo FROM InstitucionPersona WHERE TipoPersona='" & strTipoInstitucion & "' AND IndVigente='X' ORDER BY DescripPersona"
+    strsql = "SELECT CodPersona,DescripPersona,(CodRiesgo + ' ' + CodSubRiesgo) CodRiesgo FROM InstitucionPersona WHERE TipoPersona='" & strTipoInstitucion & "' AND IndVigente='X' ORDER BY DescripPersona"
         
     strEstado = Reg_Defecto
     With adoConsulta
@@ -1743,7 +1737,7 @@ Public Sub Buscar()
         .CursorLocation = adUseClient
         .CursorType = adOpenStatic
         .LockType = adLockBatchOptimistic
-        .Open strSQL
+        .Open strsql
     End With
         
     tdgConsulta.DataSource = adoConsulta
@@ -2249,23 +2243,23 @@ Private Sub cboClasePersona_Click()
 
     cboTipoIdentidad.Clear
     
-    strSQL = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='TIPIDE' AND ValorParametro ='" & strClasePersona & "' ORDER BY DescripParametro"
-    CargarControlLista strSQL, cboTipoIdentidad, arrTipoIdentidad(), Sel_Defecto
+    strsql = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='TIPIDE' AND ValorParametro ='" & strClasePersona & "' ORDER BY DescripParametro"
+    CargarControlLista strsql, cboTipoIdentidad, arrTipoIdentidad(), Sel_Defecto
     If cboTipoIdentidad.ListCount > Valor_Numero Then cboTipoIdentidad.ListIndex = Valor_Numero
     
 End Sub
 
 Private Sub cboClasificadora1_Click()
 
-    Dim strSQL As String
+    Dim strsql As String
     
     strCodClasificadora1 = Valor_Caracter
     If cboClasificadora1.ListIndex < 0 Then Exit Sub
     
     strCodClasificadora1 = Trim(arrClasificadora1(cboClasificadora1.ListIndex))
     
-    strSQL = "SELECT (CodRiesgo + CodSubRiesgo) CODIGO, CodSubRiesgo DESCRIP FROM ClasificacionRiesgoDetalle WHERE CodClasificadora='" & strCodClasificadora1 & "' AND CodCategoria='" & strCodPlazo & "'"
-    CargarControlLista strSQL, cboSubRiesgo1, arrSubRiesgo1(), Sel_Defecto
+    strsql = "SELECT (CodRiesgo + CodSubRiesgo) CODIGO, CodSubRiesgo DESCRIP FROM ClasificacionRiesgoDetalle WHERE CodClasificadora='" & strCodClasificadora1 & "' AND CodCategoria='" & strCodPlazo & "'"
+    CargarControlLista strsql, cboSubRiesgo1, arrSubRiesgo1(), Sel_Defecto
     
     If cboSubRiesgo1.ListCount > 0 Then cboSubRiesgo1.ListIndex = 0
     
@@ -2274,15 +2268,15 @@ End Sub
 
 Private Sub cboClasificadora2_Click()
 
-    Dim strSQL As String
+    Dim strsql As String
     
     strCodClasificadora2 = Valor_Caracter
     If cboClasificadora2.ListIndex < 0 Then Exit Sub
     
     strCodClasificadora2 = Trim(arrClasificadora2(cboClasificadora2.ListIndex))
     
-    strSQL = "SELECT (CodRiesgo + CodSubRiesgo) CODIGO, CodSubRiesgo DESCRIP FROM ClasificacionRiesgoDetalle WHERE CodClasificadora='" & strCodClasificadora2 & "' AND CodCategoria='" & strCodPlazo & "'"
-    CargarControlLista strSQL, cboSubRiesgo2, arrSubRiesgo2(), Sel_Defecto
+    strsql = "SELECT (CodRiesgo + CodSubRiesgo) CODIGO, CodSubRiesgo DESCRIP FROM ClasificacionRiesgoDetalle WHERE CodClasificadora='" & strCodClasificadora2 & "' AND CodCategoria='" & strCodPlazo & "'"
+    CargarControlLista strsql, cboSubRiesgo2, arrSubRiesgo2(), Sel_Defecto
     
     If cboSubRiesgo2.ListCount > 0 Then cboSubRiesgo2.ListIndex = 0
     
@@ -2291,15 +2285,15 @@ End Sub
 
 Private Sub cboClasificadoraI_Click()
 
-    Dim strSQL As String
+    Dim strsql As String
     
     strCodClasificadoraI = Valor_Caracter
     If cboClasificadoraI.ListIndex < 0 Then Exit Sub
     
     strCodClasificadoraI = Trim(arrClasificadoraI(cboClasificadoraI.ListIndex))
     
-    strSQL = "SELECT (CodRiesgo + CodSubRiesgo) CODIGO, CodSubRiesgo DESCRIP FROM ClasificacionRiesgoDetalle WHERE CodClasificadora='" & strCodClasificadoraI & "' AND CodCategoria='" & strCodCategoria & "'"
-    CargarControlLista strSQL, cboSubRiesgoI, arrSubRiesgoI(), Sel_Defecto
+    strsql = "SELECT (CodRiesgo + CodSubRiesgo) CODIGO, CodSubRiesgo DESCRIP FROM ClasificacionRiesgoDetalle WHERE CodClasificadora='" & strCodClasificadoraI & "' AND CodCategoria='" & strCodCategoria & "'"
+    CargarControlLista strsql, cboSubRiesgoI, arrSubRiesgoI(), Sel_Defecto
     
     If cboSubRiesgoI.ListCount > 0 Then cboSubRiesgoI.ListIndex = 0
     
@@ -2308,15 +2302,15 @@ End Sub
 
 Private Sub cboClasificadoraII_Click()
 
-    Dim strSQL As String
+    Dim strsql As String
     
     strCodClasificadoraII = ""
     If cboClasificadoraII.ListIndex < 0 Then Exit Sub
     
     strCodClasificadoraII = Trim(arrClasificadoraII(cboClasificadoraII.ListIndex))
     
-    strSQL = "SELECT (CodRiesgo + CodSubRiesgo) CODIGO, CodSubRiesgo DESCRIP FROM ClasificacionRiesgoDetalle WHERE CodClasificadora='" & strCodClasificadoraII & "' AND CodCategoria='" & strCodCategoria & "'"
-    CargarControlLista strSQL, cboSubRiesgoII, arrSubRiesgoII(), Sel_Defecto
+    strsql = "SELECT (CodRiesgo + CodSubRiesgo) CODIGO, CodSubRiesgo DESCRIP FROM ClasificacionRiesgoDetalle WHERE CodClasificadora='" & strCodClasificadoraII & "' AND CodCategoria='" & strCodCategoria & "'"
+    CargarControlLista strsql, cboSubRiesgoII, arrSubRiesgoII(), Sel_Defecto
     
     If cboSubRiesgoII.ListCount > 0 Then cboSubRiesgoII.ListIndex = 0
     
@@ -2325,15 +2319,15 @@ End Sub
 
 Private Sub cboDepartamento_Click()
 
-    Dim strSQL As String
+    Dim strsql As String
     
     strCodDepartamento = ""
     If cboDepartamento.ListIndex < 0 Then Exit Sub
     
     strCodDepartamento = Trim(arrDepartamento(cboDepartamento.ListIndex))
     
-    strSQL = "{ call up_ACSelDatosParametro(2,'" & strCodPais & "','" & strCodDepartamento & "') }"
-    CargarControlLista strSQL, cboProvincia, arrProvincia(), Sel_Defecto
+    strsql = "{ call up_ACSelDatosParametro(2,'" & strCodPais & "','" & strCodDepartamento & "') }"
+    CargarControlLista strsql, cboProvincia, arrProvincia(), Sel_Defecto
     
     If cboProvincia.ListCount > -1 Then cboProvincia.ListIndex = 0
     
@@ -2384,15 +2378,15 @@ End Sub
 
 Private Sub cboPais_Click()
 
-    Dim strSQL As String
+    Dim strsql As String
     
     strCodPais = ""
     If cboPais.ListIndex < 0 Then Exit Sub
     
     strCodPais = Trim(arrPais(cboPais.ListIndex))
     
-    strSQL = "{ call up_ACSelDatosParametro(1,'" & strCodPais & "') }"
-    CargarControlLista strSQL, cboDepartamento, arrDepartamento(), Sel_Defecto
+    strsql = "{ call up_ACSelDatosParametro(1,'" & strCodPais & "') }"
+    CargarControlLista strsql, cboDepartamento, arrDepartamento(), Sel_Defecto
     
     If cboDepartamento.ListCount > -1 Then cboDepartamento.ListIndex = 0
     
@@ -2414,15 +2408,15 @@ End Sub
 
 Private Sub cboProvincia_Click()
 
-    Dim strSQL As String
+    Dim strsql As String
     
     strCodProvincia = ""
     If cboProvincia.ListIndex < 0 Then Exit Sub
     
     strCodProvincia = Trim(arrProvincia(cboProvincia.ListIndex))
     
-    strSQL = "{ call up_ACSelDatosParametro(3,'" & strCodPais & "','" & strCodDepartamento & "','" & strCodProvincia & "') }"
-    CargarControlLista strSQL, cboDistrito, arrDistrito(), Sel_Defecto
+    strsql = "{ call up_ACSelDatosParametro(3,'" & strCodPais & "','" & strCodDepartamento & "','" & strCodProvincia & "') }"
+    CargarControlLista strsql, cboDistrito, arrDistrito(), Sel_Defecto
     
     If cboDistrito.ListCount > -1 Then cboDistrito.ListIndex = 0
     

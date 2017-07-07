@@ -2629,7 +2629,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178847745
+            Format          =   181207041
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -2651,7 +2651,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178847745
+            Format          =   181207041
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -2673,7 +2673,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178847745
+            Format          =   181207041
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -2695,7 +2695,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178847745
+            Format          =   181207041
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -3239,6 +3239,7 @@ Dim dblImptoInteresDevuelto      As Double
 
 Dim strTipoTasa                  As String
 Dim strPeriodoTasa               As String
+Dim strPeriodoCapitalizacion     As String
 Dim strBaseAnual                 As String
 
 'Dim dblValorNominal              As Double
@@ -4103,7 +4104,7 @@ Private Sub cmdNuevo_Click()
 End Sub
 
 Private Sub cmdPagoTotal_Click()
-    txtMontoRecibido.Text = tdgAnexo.Columns(9).FooterText
+    txtMontoRecibido.Text = tdgAnexo.Columns(11).FooterText
 End Sub
 
 Private Sub cmdSalir_Click()
@@ -4209,7 +4210,7 @@ Private Sub GenerarDetallePagoFactura()
         End If
         
         dblMontoInteresMoratorio = adoConsulta("InteresMoratorio")
-        dblMontoImptoInteresMoratorio = Round(dblMontoInteresMoratorio * gdblTasaIgv, 2)
+        dblMontoImptoInteresMoratorio = 0 ' Round(dblMontoInteresMoratorio * gdblTasaIgv, 2)
         adoDetallePago("InteresMoratorio") = dblMontoInteresMoratorio
         adoDetallePago("IGVInteresMoratorio") = dblMontoImptoInteresMoratorio
         
@@ -4225,7 +4226,7 @@ Private Sub GenerarDetallePagoFactura()
         End If
         
         With adoComm
-            .CommandText = "select FechaVencimiento, TasaInteres,TipoTasa, PeriodoTasa, BaseAnual from InversionOperacion " & " Where CodFondo = '" & gstrCodFondoContable & "' AND NumOperacion = '" & adoDetallePago("NumOperacion") & "'"
+            .CommandText = "select FechaVencimiento, TasaInteres,TipoTasa, PeriodoTasa, PeriodoCapitalizacion, BaseAnual from InversionOperacion " & " Where CodFondo = '" & gstrCodFondoContable & "' AND NumOperacion = '" & adoDetallePago("NumOperacion") & "'"
             Set adoConsulta = .Execute
         End With
 
@@ -4237,6 +4238,7 @@ Private Sub GenerarDetallePagoFactura()
         datFechaVencimiento = adoConsulta("FechaVencimiento")
         strTipoTasa = adoConsulta("TipoTasa")
         strPeriodoTasa = adoConsulta("PeriodoTasa")
+        strPeriodoCapitalizacion = adoConsulta("PeriodoCapitalizacion")
         strBaseAnual = adoConsulta("BaseAnual")
         
         If adoDetallePago("TipoOperacion") = Codigo_Orden_Prepago Then
@@ -4260,7 +4262,7 @@ Private Sub GenerarDetallePagoFactura()
                 
                 If strCodModalidadCalculoInteres = "01" Then
                      With adoComm
-                        .CommandText = "select dbo.uf_ACCalcularInteres(" & dblTasaInteres & ", '" & strTipoTasa & "', '" & strPeriodoTasa & "',  '" & strBaseAnual & "'," & adoDetallePago("PrincipalAdeudado") - (dblMontoPagado + dblMontoInteresAFavor) & ", '" & gstrFechaActual & "','" & Convertyyyymmdd(datFechaVencimiento) & "') as InteresAjuste"
+                        .CommandText = "select dbo.uf_ACCalcularInteres(" & dblTasaInteres & ", '" & strTipoTasa & "', '" & strPeriodoTasa & "', '" & strPeriodoCapitalizacion & "', '" & strBaseAnual & "'," & adoDetallePago("PrincipalAdeudado") - (dblMontoPagado + dblMontoInteresAFavor) & ", '" & gstrFechaActual & "','" & Convertyyyymmdd(datFechaVencimiento) & "') as InteresAjuste"
                         Set adoConsulta = .Execute
                     End With
     
@@ -4272,7 +4274,7 @@ Private Sub GenerarDetallePagoFactura()
 
                 ElseIf strCodModalidadCalculoInteres = "02" Then
                     With adoComm
-                        .CommandText = "select dbo.uf_ACCalcularInteres(" & dblTasaInteres & ", '" & strTipoTasa & "', '" & strPeriodoTasa & "',  '" & strBaseAnual & "'," & dblMontoPagado & ", '" & gstrFechaActual & "','" & Convertyyyymmdd(datFechaVencimiento) & "') as InteresAjuste"
+                        .CommandText = "select dbo.uf_ACCalcularInteres(" & dblTasaInteres & ", '" & strTipoTasa & "', '" & strPeriodoTasa & "', '" & strPeriodoCapitalizacion & "', '" & strBaseAnual & "'," & dblMontoPagado & ", '" & gstrFechaActual & "','" & Convertyyyymmdd(datFechaVencimiento) & "') as InteresAjuste"
                         Set adoConsulta = .Execute
                     End With
     
@@ -4396,7 +4398,7 @@ Private Sub GenerarDetallePagoFactura()
         'Si es pago total adelantado:
         If Convertddmmyyyy(gstrFechaActual) < datFechaVencimiento And adoDetallePago("TipoOperacion") = Codigo_Orden_PagoCancelacion And strCodModalidadCalculoInteres = "02" Then
             With adoComm
-                .CommandText = "select dbo.uf_ACCalcularInteres(" & dblTasaInteres & ", '" & strTipoTasa & "', '" & strPeriodoTasa & "',  '" & strBaseAnual & "'," & adoDetallePago("PrincipalAdeudado") & ", '" & gstrFechaActual & "','" & Convertyyyymmdd(datFechaVencimiento) & "') as InteresAjuste"
+                .CommandText = "select dbo.uf_ACCalcularInteres(" & dblTasaInteres & ", '" & strTipoTasa & "', '" & strPeriodoTasa & "','" & strPeriodoCapitalizacion & "',  '" & strBaseAnual & "'," & adoDetallePago("PrincipalAdeudado") & ", '" & gstrFechaActual & "','" & Convertyyyymmdd(datFechaVencimiento) & "') as InteresAjuste"
                 Set adoConsulta = .Execute
             End With
             
