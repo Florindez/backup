@@ -168,8 +168,8 @@ Begin VB.Form frmCancelacionDescuentoContratos
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmCancelacionDescuentoContratos.frx":0582
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "tdgConsulta"
-      Tab(0).Control(1)=   "fraCriterio"
+      Tab(0).Control(0)=   "fraCriterio"
+      Tab(0).Control(1)=   "tdgConsulta"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Datos Orden Inversión"
       TabPicture(1)   =   "frmCancelacionDescuentoContratos.frx":059E
@@ -781,7 +781,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178913281
+            Format          =   178782209
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -803,7 +803,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178913281
+            Format          =   178782209
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -825,7 +825,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178913281
+            Format          =   178782209
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -847,7 +847,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   178913281
+            Format          =   178782209
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -1163,7 +1163,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178913281
+            Format          =   178782209
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacion 
@@ -1185,7 +1185,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178913281
+            Format          =   178782209
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaPago 
@@ -1207,7 +1207,7 @@ Begin VB.Form frmCancelacionDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178913281
+            Format          =   178782209
             CurrentDate     =   38776
          End
          Begin VB.Label lblDescrip 
@@ -3459,7 +3459,7 @@ Private Sub FormatoGrillaCancelacion(ByRef strMsgError As String, _
         rsgrilla.Fields("InteresAdicional") = Round(CDbl("" & rst.Fields("InteresAdicional")), 2)
         rsgrilla.Fields("IGVInteresAdicional") = Round(CDbl("" & rst.Fields("InteresAdicional") * gdblTasaIgv), 2)
         rsgrilla.Fields("InteresMoratorio") = Round(CDbl("" & rst.Fields("InteresMoratorio")), 2)
-        rsgrilla.Fields("IGVInteresMoratorio") = Round(CDbl("" & rst.Fields("InteresMoratorio") * gdblTasaIgv), 2)
+        rsgrilla.Fields("IGVInteresMoratorio") = 0  'Round(CDbl("" & rst.Fields("InteresMoratorio") * gdblTasaIgv), 2)
 
         rsgrilla.Fields("TotalCupon") = Round(CDbl("" & rst.Fields("TotalCupon")), 2)
 
@@ -3545,7 +3545,7 @@ Private Sub CalculaPrelacion(ByRef strMsgError As String)
                 dblInteresMoratorioPagado = gDetalle.Columns.ColumnByFieldName("InteresMoratorio").Value
                 dblIGVInteresMoratorioPagado = gDetalle.Columns.ColumnByFieldName("IGVInteresMoratorio").Value
             Else
-                dblInteresMoratorioPagado = dblMontoRestado / (1 + gdblTasaIgv)
+                dblInteresMoratorioPagado = dblMontoRestado '/ (1 + gdblTasaIgv)
                 dblIGVInteresMoratorioPagado = dblMontoRestado - dblInteresMoratorioPagado
             End If
             
