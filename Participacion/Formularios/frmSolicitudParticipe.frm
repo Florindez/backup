@@ -37,6 +37,7 @@ Begin VB.Form frmSolicitudParticipe
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
+      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -51,12 +52,15 @@ Begin VB.Form frmSolicitudParticipe
       Buttons         =   3
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
+      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Eliminar"
       Tag1            =   "4"
+      Visible1        =   0   'False
       ToolTipText1    =   "Eliminar"
       Caption2        =   "&Buscar"
       Tag2            =   "5"
+      Visible2        =   0   'False
       ToolTipText2    =   "Buscar"
       UserControlWidth=   4200
    End
@@ -358,9 +362,11 @@ Begin VB.Form frmSolicitudParticipe
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
+         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
+         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlWidth=   2700
       End
@@ -723,7 +729,7 @@ Begin VB.Form frmSolicitudParticipe
                Strikethrough   =   0   'False
             EndProperty
             CustomFormat    =   "HH:mm"
-            Format          =   48955395
+            Format          =   51511299
             UpDown          =   -1  'True
             CurrentDate     =   38831
          End
@@ -745,7 +751,7 @@ Begin VB.Form frmSolicitudParticipe
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   48955393
+            Format          =   51511297
             CurrentDate     =   38068
          End
          Begin VB.Label lblDescrip 
@@ -997,7 +1003,7 @@ Begin VB.Form frmSolicitudParticipe
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   48955393
+            Format          =   51511297
             CurrentDate     =   38068
          End
          Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -1018,7 +1024,7 @@ Begin VB.Form frmSolicitudParticipe
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   48955393
+            Format          =   51511297
             CurrentDate     =   38068
          End
          Begin VB.Label lblDescrip 
@@ -4183,9 +4189,9 @@ Private Sub dtpFechaDesde_Click()
 
     If IsNull(dtpFechaDesde.Value) Then
         dtpFechaHasta.Value = Null
-    Else
-        dtpFechaDesde.Value = gdatFechaActual
-        dtpFechaHasta.Value = dtpFechaDesde.Value
+   ' Else
+   '     dtpFechaDesde.Value = gdatFechaActual
+   '     dtpFechaHasta.Value = dtpFechaDesde.Value
     End If
     
 End Sub
@@ -4195,9 +4201,9 @@ Private Sub dtpFechaHasta_Click()
 
     If IsNull(dtpFechaHasta.Value) Then
         dtpFechaDesde.Value = Null
-    Else
-        dtpFechaDesde.Value = gdatFechaActual
-        dtpFechaHasta.Value = dtpFechaDesde.Value
+    'Else
+        'dtpFechaDesde.Value = gdatFechaActual
+        'dtpFechaHasta.Value = dtpFechaDesde.Value
     End If
     
 End Sub
