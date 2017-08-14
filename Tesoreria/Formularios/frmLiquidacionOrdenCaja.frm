@@ -48,11 +48,9 @@ Begin VB.Form frmLiquidacionOrdenCaja
       Buttons         =   2
       Caption0        =   "&Eliminar"
       Tag0            =   "4"
-      Visible0        =   0   'False
       ToolTipText0    =   "Eliminar"
       Caption1        =   "&Buscar"
       Tag1            =   "5"
-      Visible1        =   0   'False
       ToolTipText1    =   "Buscar"
       UserControlWidth=   2700
    End
@@ -206,7 +204,6 @@ Begin VB.Form frmLiquidacionOrdenCaja
             ForeColor       =   &H00800000&
             Height          =   285
             Left            =   7500
-            Locked          =   -1  'True
             TabIndex        =   24
             Text            =   " 1"
             Top             =   3000
@@ -292,7 +289,7 @@ Begin VB.Form frmLiquidacionOrdenCaja
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   207159297
+            Format          =   79233025
             CurrentDate     =   38068
          End
          Begin TAMControls.TAMTextBox txtMonto 
@@ -789,11 +786,9 @@ Begin VB.Form frmLiquidacionOrdenCaja
          Buttons         =   2
          Caption0        =   "&Procesar"
          Tag0            =   "2"
-         Visible0        =   0   'False
          ToolTipText0    =   "Procesar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
-         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlWidth=   2700
       End
@@ -909,7 +904,7 @@ Begin VB.Form frmLiquidacionOrdenCaja
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   207159297
+            Format          =   79233025
             CurrentDate     =   38068
          End
          Begin VB.Label lblDescrip 
@@ -1012,7 +1007,6 @@ Begin VB.Form frmLiquidacionOrdenCaja
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
-      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -1324,8 +1318,24 @@ Public Sub Grabar()
     Dim strNumCheque                        As String
     Dim strMovimientoFondoLiquidacionXML    As String
     Dim objMovimientoFondoLiquidacionXML    As DOMDocument60
+    Dim strTipoCambioReemplazoXML           As String
+    Dim objTipoCambioReemplazoXML           As DOMDocument60
     Dim strMsgError                         As String
     Dim strCodTipoCambio                    As String
+    
+    Dim adoRegistroAuxTC As ADODB.Recordset
+    
+    Set adoRegistroAuxTC = New ADODB.Recordset
+    
+    With adoRegistroAuxTC.Fields
+        .Append "CodMonedaOrigen", adVarChar, 2
+        .Append "CodMonedaCambio", adVarChar, 2
+        .Append "ValorTipoCambio", adDecimal, 19
+     
+        .Item("ValorTipoCambio").Precision = 19
+        .Item("ValorTipoCambio").NumericScale = 6
+    
+    End With
     
     On Error GoTo ErrorHandler
     
@@ -1372,19 +1382,30 @@ Public Sub Grabar()
             Next
             
             Call XMLADORecordset(objMovimientoFondoLiquidacionXML, "MovimientoFondoLiquidacion", "Movimiento", adoRegistroAux, strMsgError)
-                strMovimientoFondoLiquidacionXML = objMovimientoFondoLiquidacionXML.xml 'CrearXMLDetalle(objTipoCambioReemplazoXML)
+                strMovimientoFondoLiquidacionXML = objMovimientoFondoLiquidacionXML.xml '
+                
+            ''CrearXMLDetalle (objTipoCambioReemplazoXML)
+            adoRegistroAuxTC.Open
+            adoRegistroAuxTC.AddNew
+            adoRegistroAuxTC("CodMonedaOrigen") = strCodMonedaOrden
+            adoRegistroAuxTC("CodMonedaCambio") = strCodMonedaPago
+            adoRegistroAuxTC("ValorTipoCambio") = txtTipoCambio.Text
+            
+            Call XMLADORecordset(objTipoCambioReemplazoXML, "TipoCambioReemplazo", "MonedaTipoCambio", adoRegistroAuxTC, strMsgError)
+            strTipoCambioReemplazoXML = objTipoCambioReemplazoXML.xml 'CrearXMLDetalle(objTipoCambioReemplazoXML)
+
            
             .CommandText = "{ call up_ACProcMovimientoFondoLiquidacion('" & _
                             strCodFondo & "','" & gstrCodAdministradora & "','" & strFechaGrabar & "','" & _
                             Trim(txtDescripMotivo.Text) & "','" & strCodCuenta & "','" & strCodFile & "','" & _
                             strCodAnalitica & "','" & strCodBanco & "','" & strCodFormaPago & "', '" & strNumCheque & "', '" & _
-                            strCodMonedaOrden & "'," & CDbl(txtMonto.Text) & ",'" & strCodMonedaPago & "'," & _
+                            strCodMonedaOrden & "'," & CDbl(lblMovCuenta.Caption) & ",'" & strCodMonedaPago & "'," & _
                             CDbl(lblMovCuenta.Caption) & ",''," & CDbl(lblMontoContable.Caption) & ",'" & _
                             strCodTipoCambio & "','" & strCodTipoCambio & "'," & dblTipoCambioOrden & ",'" & _
                             Trim(txtNumReferencia.Text) & "','" & _
                             Trim(frmMainMdi.Tag) & "','" & strCodProceso & "','" & _
                             strMovimientoFondoLiquidacionXML & "','" & _
-                            XML_TipoCambioReemplazo & "','" & _
+                            strTipoCambioReemplazoXML & "','" & _
                             "','" & tdgConsulta.Columns("CodContraparte") & "','" & tdgConsulta.Columns("TipoContraparte") & "')}"
 
             adoConn.Execute .CommandText
@@ -1862,7 +1883,7 @@ Private Sub cboMonedaPago_Click()
     strCodMonedaParEvaluacion = strCodMonedaOrden & strCodMonedaPago
    
     If strCodMonedaOrden <> strCodMonedaPago Then
-        strCodMonedaParPorDefecto = ObtenerMonedaParPorDefecto(strCodTipoCambio, strCodMonedaParEvaluacion)
+        strCodMonedaParPorDefecto = ObtenerMonedaParPorDefecto(gstrCodClaseTipoCambioOperacionFondo, strCodMonedaParEvaluacion) 'SBS
     Else
         strCodMonedaParPorDefecto = strCodMonedaParEvaluacion
     End If
@@ -1879,7 +1900,7 @@ Private Sub cboMonedaPago_Click()
         'lblMonedaTC.Caption = "(" & strCodSignoMonedaPago & "/" & strCodSignoMonedaOrden & ")"
         lblMonedaTC.Caption = "(" + Trim(ObtenerCodSignoMoneda(Mid(strCodMonedaParPorDefecto, 1, 2))) + "/" + Trim(ObtenerCodSignoMoneda(Mid(strCodMonedaParPorDefecto, 3, 2))) + ")"
    
-        dblTipoCambioOrden = CStr(ObtenerTipoCambioMoneda(gstrCodClaseTipoCambioOperacionFondo, gstrValorTipoCambioOperacion, datFechaConsulta, Mid(strCodMonedaParPorDefecto, 3, 2), Mid(strCodMonedaParPorDefecto, 1, 2)))
+        dblTipoCambioOrden = CStr(ObtenerTipoCambioMoneda(gstrCodClaseTipoCambioOperacionFondo, gstrValorTipoCambioOperacion, datFechaConsulta, Mid(strCodMonedaParPorDefecto, 1, 2), Mid(strCodMonedaParPorDefecto, 3, 2)))
         txtTipoCambio.Text = 0#
         txtTipoCambio.Text = dblTipoCambioOrden 'CStr(ObtenerTipoCambioMoneda(strCodTipoCambio, strValorCambio, datFechaConsulta, Mid(strCodMonedaParPorDefecto, 1, 2), Mid(strCodMonedaParPorDefecto, 3, 2)))
    
@@ -2323,6 +2344,16 @@ End Sub
 Private Sub txtTipoCambio_Change()
 
     Call FormatoCajaTexto(txtTipoCambio, Decimales_TipoCambio)
+    
+    lblMovCuenta.Caption = Round(ObtenerMontoArbitraje(CDbl(txtMonto.Text), CDbl(txtTipoCambio.Text), strCodMonedaParEvaluacion, strCodMonedaParPorDefecto), 2)
+  
+    If cboCuentas.ListIndex <> 0 Then
+        If txtTipoCambio.Visible = True Then
+            lblMovCuenta.Caption = Round(ObtenerMontoArbitraje(CDbl(txtMonto.Text), CDbl(txtTipoCambio.Text), strCodMonedaParEvaluacion, strCodMonedaParPorDefecto), 2)
+        Else
+            lblMovCuenta.Caption = CDbl(txtMonto.Text)
+        End If
+    End If
     
 End Sub
 
