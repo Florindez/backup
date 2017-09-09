@@ -28,9 +28,11 @@ Begin VB.Form frmComprobantePago
       Buttons         =   2
       Caption0        =   "&Guardar"
       Tag0            =   "2"
+      Visible0        =   0   'False
       ToolTipText0    =   "Guardar"
       Caption1        =   "&Cancelar"
       Tag1            =   "8"
+      Visible1        =   0   'False
       ToolTipText1    =   "Cancelar"
       UserControlHeight=   390
       UserControlWidth=   2700
@@ -45,6 +47,7 @@ Begin VB.Form frmComprobantePago
       _ExtentY        =   688
       Caption0        =   "&Salir"
       Tag0            =   "9"
+      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlHeight=   390
       UserControlWidth=   1200
@@ -60,15 +63,19 @@ Begin VB.Form frmComprobantePago
       Buttons         =   4
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
+      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "1"
+      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Eliminar"
       Tag2            =   "4"
+      Visible2        =   0   'False
       ToolTipText2    =   "Eliminar"
       Caption3        =   "&Buscar"
       Tag3            =   "5"
+      Visible3        =   0   'False
       ToolTipText3    =   "Buscar"
       UserControlHeight=   390
       UserControlWidth=   5700
@@ -632,7 +639,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178520065
+            Format          =   178782209
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaTipoCambioPago 
@@ -655,7 +662,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178520065
+            Format          =   178782209
             CurrentDate     =   39042
          End
          Begin TAMControls.TAMTextBox txtTipoCambioPago 
@@ -703,7 +710,7 @@ Begin VB.Form frmComprobantePago
             _ExtentX        =   4048
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   178520065
+            Format          =   178782209
             CurrentDate     =   42178
          End
          Begin VB.Label lblFechaEmisionDetrac 
@@ -1095,7 +1102,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178520065
+            Format          =   178782209
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaComprobante 
@@ -1116,7 +1123,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178520065
+            Format          =   178782209
             CurrentDate     =   39042
          End
          Begin VB.Label lblTipoProveedor 
@@ -1425,7 +1432,7 @@ Begin VB.Form frmComprobantePago
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   178520065
+            Format          =   178782209
             CurrentDate     =   39042
          End
          Begin VB.ComboBox cboFondo 
@@ -1445,7 +1452,7 @@ Begin VB.Form frmComprobantePago
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   178520065
+            Format          =   178782209
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -2574,8 +2581,10 @@ Private Sub LlenarFormulario(strModo As String)
                     .CommandText = "SELECT IP.NumIdentidad, IP.DescripPersona, IP.Direccion1 + IP.Direccion2 Direccion, AP.DescripParametro TipoIdentidad " & _
                         "FROM InstitucionPersona IP " & _
                         "JOIN AuxiliarParametro AP ON (AP.CodParametro = IP.TipoIdentidad AND AP.CodTipoParametro = 'TIPIDE')" & _
-                        "WHERE CodPersona='" & lblCodProveedor.Caption & "' AND TipoPersona='" & Codigo_Tipo_Persona_Proveedor & "'"
+                        "WHERE CodPersona='" & lblCodProveedor.Caption & "' AND TipoPersona='" & adoRegistro("TipoProveedor") & "'"
                     Set adoAuxiliar = .Execute
+                    cboTipoProveedor.Enabled = True
+                    cboTipoProveedor.ListIndex = ObtenerItemLista(arrTipoProveedor, adoRegistro("TipoProveedor"))
 
                     If Not adoAuxiliar.EOF Then
                         lblTipoDocID.Caption = Trim(adoAuxiliar("TipoIdentidad"))
@@ -3435,11 +3444,12 @@ Public Sub Buscar()
             
     strSQL = "SELECT NumRegistro,CodTipoComprobante,CodProveedor,DescripRegistro,RC.CodMoneda,ValorTotal, " & _
         "TCP.DescripTipoComprobantePago DescripTipoComprobante, CodSigno,FechaRegistro, " & _
-        "case TipoProveedor  when '04' then IP1.DescripPersona when '10' then IP2.DescripPersona end as DescripProveedor,RC.NumGasto " & _
+        "case TipoProveedor  when '04' then IP1.DescripPersona when '10' then IP2.DescripPersona when '02' then IP3.DescripPersona end as DescripProveedor,RC.NumGasto " & _
         "FROM RegistroCompra RC JOIN TipoComprobantePago TCP ON(TCP.CodTipoComprobantePago=RC.CodTipoComprobante) " & _
         "JOIN Moneda MON ON(MON.CodMoneda=RC.CodMoneda) " & _
         "LEFT JOIN InstitucionPersona IP1 ON(IP1.CodPersona=RC.CodProveedor AND IP1.TipoPersona='" & Codigo_Tipo_Persona_Proveedor & "') " & _
         "LEFT JOIN InstitucionPersona IP2 ON(IP2.CodPersona=RC.CodProveedor AND IP2.TipoPersona='" & Codigo_Tipo_Persona_Comisionista & "')  " & _
+        "LEFT JOIN InstitucionPersona IP3 ON(IP3.CodPersona=RC.CodProveedor AND IP3.TipoPersona='" & Codigo_Tipo_Persona_Emisor & "')  " & _
         "WHERE (FechaRegistro>='" & Convertyyyymmdd(dtpFechaDesde.Value) & "' AND FechaRegistro<'" & Convertyyyymmdd(DateAdd("d", 1, dtpFechaHasta.Value)) & "') AND " & _
         "CodAdministradora='" & gstrCodAdministradora & "' AND CodFondo='" & strCodFondo & "' AND RC.Estado NOT IN ('03')" & _
         "ORDER BY NumRegistro"

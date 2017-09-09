@@ -7,7 +7,7 @@ Object = "{5D1B2F4C-4B16-4B89-95C7-87E9AF4DB6BC}#1.0#0"; "TAMControls2.ocx"
 Begin VB.Form frmComprobanteCobro 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Comprobantes de Ventas"
-   ClientHeight    =   10800
+   ClientHeight    =   9300
    ClientLeft      =   45
    ClientTop       =   345
    ClientWidth     =   10785
@@ -15,56 +15,17 @@ Begin VB.Form frmComprobanteCobro
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   10800
+   ScaleHeight     =   9300
    ScaleWidth      =   10785
    ShowInTaskbar   =   0   'False
-   Begin TAMControls.ucBotonEdicion cmdAccion 
-      Height          =   390
-      Left            =   4500
-      TabIndex        =   0
-      Top             =   8190
-      Visible         =   0   'False
-      Width           =   5700
-      _ExtentX        =   10054
-      _ExtentY        =   688
-      Buttons         =   4
-      Caption0        =   "&Guardar"
-      Tag0            =   "2"
-      ToolTipText0    =   "Guardar"
-      Caption1        =   "&Imprimir"
-      Tag1            =   "6"
-      ToolTipText1    =   "Imprimir"
-      Caption2        =   "&Anular"
-      Tag2            =   "7"
-      ToolTipText2    =   "Anular"
-      Caption3        =   "&Cancelar"
-      Tag3            =   "8"
-      ToolTipText3    =   "Cancelar"
-      UserControlHeight=   390
-      UserControlWidth=   5700
-   End
-   Begin TAMControls.ucBotonEdicion cmdSalir 
-      Height          =   390
-      Left            =   8940
-      TabIndex        =   1
-      Top             =   8940
-      Width           =   1200
-      _ExtentX        =   2117
-      _ExtentY        =   688
-      Caption0        =   "&Salir"
-      Tag0            =   "9"
-      ToolTipText0    =   "Salir"
-      UserControlHeight=   390
-      UserControlWidth=   1200
-   End
    Begin TabDlg.SSTab tabRegistroCompras 
-      Height          =   8520
+      Height          =   8190
       Left            =   120
-      TabIndex        =   2
+      TabIndex        =   0
       Top             =   210
       Width           =   10515
       _ExtentX        =   18547
-      _ExtentY        =   15028
+      _ExtentY        =   14446
       _Version        =   393216
       Style           =   1
       Tab             =   1
@@ -88,19 +49,269 @@ Begin VB.Form frmComprobanteCobro
       TabCaption(1)   =   "Datos Generales"
       TabPicture(1)   =   "frmComprobanteCobro.frx":001C
       Tab(1).ControlEnabled=   -1  'True
-      Tab(1).Control(0)=   "ucBotonEdicion21"
+      Tab(1).Control(0)=   "cmdAccion"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "fraCompras(3)"
       Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "fraCompras(1)"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).ControlCount=   3
+      Tab(1).Control(3)=   "fraNotaCredito"
+      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).ControlCount=   4
       TabCaption(2)   =   "Ordenes de Cobro"
       TabPicture(2)   =   "frmComprobanteCobro.frx":0038
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "Frame1"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
+      Begin VB.Frame fraNotaCredito 
+         Caption         =   "Nota de Crédito"
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1155
+         Left            =   240
+         TabIndex        =   68
+         Top             =   6060
+         Width           =   9885
+         Begin TAMControls.TAMTextBox txtDocReferenciaNC 
+            Height          =   315
+            Left            =   1980
+            TabIndex        =   77
+            Top             =   270
+            Width           =   1275
+            _ExtentX        =   2249
+            _ExtentY        =   556
+            BackColor       =   16777215
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            FontName        =   "MS Sans Serif"
+            FontSize        =   8.25
+            ForeColor       =   -2147483640
+            Locked          =   -1  'True
+            Container       =   "frmComprobanteCobro.frx":0054
+            Apariencia      =   1
+            Borde           =   1
+            MaximoValor     =   0
+         End
+         Begin VB.CommandButton cmdBuscarDocumento 
+            Caption         =   "..."
+            BeginProperty Font 
+               Name            =   "Arial"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   315
+            Left            =   5070
+            TabIndex        =   76
+            ToolTipText     =   "Buscar Contratante"
+            Top             =   255
+            Width           =   375
+         End
+         Begin VB.CheckBox chkOtros 
+            Caption         =   "Otros"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   285
+            Left            =   8820
+            TabIndex        =   75
+            Top             =   300
+            Width           =   855
+         End
+         Begin VB.CheckBox chkDevoluciones 
+            Caption         =   "Devoluciones"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   285
+            Left            =   7230
+            TabIndex        =   74
+            Top             =   690
+            Width           =   1485
+         End
+         Begin VB.CheckBox chkDescuentos 
+            Caption         =   "Descuentos"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   285
+            Left            =   7230
+            TabIndex        =   73
+            Top             =   300
+            Width           =   1485
+         End
+         Begin VB.CheckBox chkBonificaciones 
+            Caption         =   "Bonificaciones"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   285
+            Left            =   5550
+            TabIndex        =   72
+            Top             =   690
+            Width           =   1665
+         End
+         Begin VB.CheckBox chkAnulacion 
+            Caption         =   "Anulación"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   285
+            Left            =   5550
+            TabIndex        =   71
+            Top             =   300
+            Width           =   1485
+         End
+         Begin TAMControls.TAMTextBox txtFechaDocReferencia 
+            Height          =   315
+            Left            =   1980
+            TabIndex        =   78
+            Top             =   660
+            Width           =   1275
+            _ExtentX        =   2249
+            _ExtentY        =   556
+            BackColor       =   16777215
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            FontName        =   "MS Sans Serif"
+            FontSize        =   8.25
+            ForeColor       =   -2147483640
+            Locked          =   -1  'True
+            Container       =   "frmComprobanteCobro.frx":0070
+            Apariencia      =   1
+            Borde           =   1
+            MaximoValor     =   0
+         End
+         Begin TAMControls.TAMTextBox txtTipoDocReferencia 
+            Height          =   315
+            Left            =   3270
+            TabIndex        =   79
+            Top             =   270
+            Width           =   1755
+            _ExtentX        =   3096
+            _ExtentY        =   556
+            BackColor       =   16777215
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            FontName        =   "MS Sans Serif"
+            FontSize        =   8.25
+            ForeColor       =   -2147483640
+            Locked          =   -1  'True
+            Container       =   "frmComprobanteCobro.frx":008C
+            Apariencia      =   1
+            Borde           =   1
+            MaximoValor     =   0
+         End
+         Begin VB.Label lblDescrip 
+            AutoSize        =   -1  'True
+            BackStyle       =   0  'Transparent
+            Caption         =   "Fecha Documento"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   195
+            Index           =   16
+            Left            =   360
+            TabIndex        =   70
+            Top             =   720
+            Width           =   1560
+         End
+         Begin VB.Label lblDescrip 
+            AutoSize        =   -1  'True
+            BackStyle       =   0  'Transparent
+            Caption         =   "Documento"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   195
+            Index           =   10
+            Left            =   360
+            TabIndex        =   69
+            Top             =   330
+            Width           =   1200
+         End
+      End
       Begin VB.Frame fraCompras 
          Caption         =   "Criterios de búsqueda"
          BeginProperty Font 
@@ -115,14 +326,14 @@ Begin VB.Form frmComprobanteCobro
          Height          =   1695
          Index           =   0
          Left            =   -74640
-         TabIndex        =   48
+         TabIndex        =   46
          Top             =   420
          Width           =   9705
          Begin VB.ComboBox cboEstado 
             Height          =   315
             Left            =   2520
             Style           =   2  'Dropdown List
-            TabIndex        =   67
+            TabIndex        =   65
             Top             =   740
             Width           =   2055
          End
@@ -130,32 +341,32 @@ Begin VB.Form frmComprobanteCobro
             Height          =   315
             Left            =   2520
             Style           =   2  'Dropdown List
-            TabIndex        =   50
+            TabIndex        =   48
             Top             =   360
             Width           =   6255
          End
          Begin MSComCtl2.DTPicker dtpFechaDesde 
             Height          =   345
             Left            =   3600
+            TabIndex        =   47
+            Top             =   1200
+            Width           =   1575
+            _ExtentX        =   2778
+            _ExtentY        =   609
+            _Version        =   393216
+            Format          =   178454529
+            CurrentDate     =   39042
+         End
+         Begin MSComCtl2.DTPicker dtpFechaHasta 
+            Height          =   345
+            Left            =   7200
             TabIndex        =   49
             Top             =   1200
             Width           =   1575
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   179896321
-            CurrentDate     =   39042
-         End
-         Begin MSComCtl2.DTPicker dtpFechaHasta 
-            Height          =   345
-            Left            =   7200
-            TabIndex        =   51
-            Top             =   1200
-            Width           =   1575
-            _ExtentX        =   2778
-            _ExtentY        =   609
-            _Version        =   393216
-            Format          =   179896321
+            Format          =   178454529
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -174,7 +385,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   9
             Left            =   840
-            TabIndex        =   66
+            TabIndex        =   64
             Top             =   840
             Width           =   600
          End
@@ -194,7 +405,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   0
             Left            =   840
-            TabIndex        =   55
+            TabIndex        =   53
             Top             =   360
             Width           =   540
          End
@@ -214,7 +425,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   1
             Left            =   2520
-            TabIndex        =   54
+            TabIndex        =   52
             Top             =   1260
             Width           =   555
          End
@@ -234,7 +445,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   2
             Left            =   6000
-            TabIndex        =   53
+            TabIndex        =   51
             Top             =   1260
             Width           =   510
          End
@@ -254,7 +465,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   15
             Left            =   840
-            TabIndex        =   52
+            TabIndex        =   50
             Top             =   1290
             Width           =   1575
          End
@@ -273,14 +484,14 @@ Begin VB.Form frmComprobanteCobro
          Height          =   4395
          Index           =   1
          Left            =   240
-         TabIndex        =   23
+         TabIndex        =   21
          Top             =   420
          Width           =   9885
          Begin VB.ComboBox cboIngreso 
             Height          =   315
             Left            =   2280
             Style           =   2  'Dropdown List
-            TabIndex        =   63
+            TabIndex        =   61
             Top             =   3450
             Width           =   7215
          End
@@ -288,7 +499,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   315
             Left            =   7680
             MaxLength       =   10
-            TabIndex        =   29
+            TabIndex        =   27
             Top             =   1260
             Width           =   1815
          End
@@ -296,7 +507,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   315
             Left            =   2280
             Style           =   2  'Dropdown List
-            TabIndex        =   28
+            TabIndex        =   26
             Top             =   825
             Width           =   7215
          End
@@ -304,7 +515,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   315
             Left            =   2280
             MaxLength       =   800
-            TabIndex        =   27
+            TabIndex        =   25
             Top             =   3870
             Width           =   7215
          End
@@ -312,7 +523,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   315
             Left            =   2280
             Style           =   2  'Dropdown List
-            TabIndex        =   26
+            TabIndex        =   24
             Top             =   1695
             Width           =   2295
          End
@@ -329,23 +540,23 @@ Begin VB.Form frmComprobanteCobro
             EndProperty
             Height          =   315
             Left            =   9120
-            TabIndex        =   25
+            TabIndex        =   23
             ToolTipText     =   "Buscar Contratante"
-            Top             =   2145
+            Top             =   2130
             Width           =   375
          End
          Begin VB.TextBox txtSerieComprobante 
             Height          =   315
             Left            =   6960
             MaxLength       =   3
-            TabIndex        =   24
+            TabIndex        =   22
             Top             =   1260
             Width           =   615
          End
          Begin MSComCtl2.DTPicker dtpFechaRegistro 
             Height          =   315
             Left            =   6960
-            TabIndex        =   30
+            TabIndex        =   28
             Top             =   390
             Width           =   2535
             _ExtentX        =   4471
@@ -361,13 +572,13 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   179896321
+            Format          =   178454529
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaComprobante 
             Height          =   315
             Left            =   2280
-            TabIndex        =   31
+            TabIndex        =   29
             Top             =   1260
             Width           =   2295
             _ExtentX        =   4048
@@ -382,7 +593,7 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   179896321
+            Format          =   178454529
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -401,7 +612,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   7
             Left            =   360
-            TabIndex        =   64
+            TabIndex        =   62
             Top             =   3510
             Width           =   825
          End
@@ -421,7 +632,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   3
             Left            =   5160
-            TabIndex        =   47
+            TabIndex        =   45
             Top             =   1290
             Width           =   1620
          End
@@ -441,7 +652,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   4
             Left            =   360
-            TabIndex        =   46
+            TabIndex        =   44
             Top             =   465
             Width           =   1215
          End
@@ -461,7 +672,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   5
             Left            =   360
-            TabIndex        =   45
+            TabIndex        =   43
             Top             =   2220
             Width           =   1005
          End
@@ -481,7 +692,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   6
             Left            =   360
-            TabIndex        =   44
+            TabIndex        =   42
             Top             =   3930
             Width           =   1005
          End
@@ -501,7 +712,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   8
             Left            =   360
-            TabIndex        =   43
+            TabIndex        =   41
             Top             =   3105
             Width           =   810
          End
@@ -521,7 +732,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   11
             Left            =   360
-            TabIndex        =   42
+            TabIndex        =   40
             Top             =   900
             Width           =   1560
          End
@@ -541,7 +752,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   12
             Left            =   360
-            TabIndex        =   41
+            TabIndex        =   39
             Top             =   1755
             Width           =   690
          End
@@ -561,7 +772,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   13
             Left            =   360
-            TabIndex        =   40
+            TabIndex        =   38
             Top             =   2670
             Width           =   1230
          End
@@ -581,7 +792,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   17
             Left            =   5160
-            TabIndex        =   39
+            TabIndex        =   37
             Top             =   465
             Width           =   540
          End
@@ -589,7 +800,7 @@ Begin VB.Form frmComprobanteCobro
             BorderStyle     =   1  'Fixed Single
             Height          =   315
             Left            =   2280
-            TabIndex        =   38
+            TabIndex        =   36
             Top             =   390
             Width           =   2295
          End
@@ -609,7 +820,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   18
             Left            =   360
-            TabIndex        =   37
+            TabIndex        =   35
             Top             =   1320
             Width           =   1710
          End
@@ -617,15 +828,15 @@ Begin VB.Form frmComprobanteCobro
             BorderStyle     =   1  'Fixed Single
             Height          =   315
             Left            =   2280
-            TabIndex        =   36
+            TabIndex        =   34
             Top             =   2145
-            Width           =   6600
+            Width           =   6780
          End
          Begin VB.Label lblDireccion 
             BorderStyle     =   1  'Fixed Single
             Height          =   315
             Left            =   2280
-            TabIndex        =   35
+            TabIndex        =   33
             Top             =   3030
             Width           =   7200
          End
@@ -633,7 +844,7 @@ Begin VB.Form frmComprobanteCobro
             BorderStyle     =   1  'Fixed Single
             Height          =   255
             Left            =   5550
-            TabIndex        =   34
+            TabIndex        =   32
             Top             =   1830
             Visible         =   0   'False
             Width           =   1815
@@ -642,7 +853,7 @@ Begin VB.Form frmComprobanteCobro
             BorderStyle     =   1  'Fixed Single
             Height          =   315
             Left            =   4170
-            TabIndex        =   33
+            TabIndex        =   31
             Top             =   2580
             Width           =   2655
          End
@@ -650,7 +861,7 @@ Begin VB.Form frmComprobanteCobro
             BorderStyle     =   1  'Fixed Single
             Height          =   315
             Left            =   2280
-            TabIndex        =   32
+            TabIndex        =   30
             Top             =   2580
             Width           =   1815
          End
@@ -668,9 +879,17 @@ Begin VB.Form frmComprobanteCobro
          EndProperty
          Height          =   6735
          Left            =   -74640
-         TabIndex        =   10
+         TabIndex        =   8
          Top             =   630
          Width           =   9735
+         Begin VB.TextBox txtGlosaEditada 
+            Height          =   315
+            Left            =   1830
+            MaxLength       =   800
+            TabIndex        =   80
+            Top             =   870
+            Width           =   7215
+         End
          Begin VB.CommandButton cmdCobro 
             Caption         =   "..."
             BeginProperty Font 
@@ -684,7 +903,7 @@ Begin VB.Form frmComprobanteCobro
             EndProperty
             Height          =   285
             Left            =   9120
-            TabIndex        =   62
+            TabIndex        =   60
             ToolTipText     =   "Buscar Proveedor"
             Top             =   510
             Width           =   315
@@ -694,8 +913,8 @@ Begin VB.Form frmComprobanteCobro
             Enabled         =   0   'False
             Height          =   315
             Left            =   7140
-            TabIndex        =   16
-            Top             =   5910
+            TabIndex        =   14
+            Top             =   6210
             Width           =   2295
          End
          Begin VB.TextBox txtIgv 
@@ -703,8 +922,8 @@ Begin VB.Form frmComprobanteCobro
             Enabled         =   0   'False
             Height          =   315
             Left            =   7140
-            TabIndex        =   15
-            Top             =   5520
+            TabIndex        =   13
+            Top             =   5820
             Width           =   2295
          End
          Begin VB.TextBox txtSubTotal 
@@ -712,15 +931,15 @@ Begin VB.Form frmComprobanteCobro
             Enabled         =   0   'False
             Height          =   315
             Left            =   7140
-            TabIndex        =   14
-            Top             =   5145
+            TabIndex        =   12
+            Top             =   5445
             Width           =   2295
          End
          Begin VB.ComboBox cboCobro 
             Height          =   315
             Left            =   1830
             Style           =   2  'Dropdown List
-            TabIndex        =   13
+            TabIndex        =   11
             Top             =   510
             Width           =   7215
          End
@@ -737,8 +956,8 @@ Begin VB.Form frmComprobanteCobro
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   12
-            Top             =   1140
+            TabIndex        =   10
+            Top             =   1500
             Width           =   435
          End
          Begin VB.CommandButton cmdEliminarCobro 
@@ -754,18 +973,39 @@ Begin VB.Form frmComprobanteCobro
             EndProperty
             Height          =   375
             Left            =   240
-            TabIndex        =   11
-            Top             =   1710
+            TabIndex        =   9
+            Top             =   2070
             Width           =   435
          End
          Begin DXDBGRIDLibCtl.dxDBGrid gIngresos 
             Height          =   3795
             Left            =   810
-            OleObjectBlob   =   "frmComprobanteCobro.frx":0054
-            TabIndex        =   17
+            OleObjectBlob   =   "frmComprobanteCobro.frx":00A8
+            TabIndex        =   15
             TabStop         =   0   'False
-            Top             =   1110
+            Top             =   1440
             Width           =   8640
+         End
+         Begin VB.Label lblDescrip 
+            AutoSize        =   -1  'True
+            BackStyle       =   0  'Transparent
+            Caption         =   "Glosa Editada:"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   195
+            Index           =   22
+            Left            =   240
+            TabIndex        =   81
+            Top             =   960
+            Width           =   1350
          End
          Begin VB.Label lblTasaIGV 
             AutoSize        =   -1  'True
@@ -782,8 +1022,8 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   5760
-            TabIndex        =   65
-            Top             =   5550
+            TabIndex        =   63
+            Top             =   5850
             Width           =   75
          End
          Begin VB.Label lblSignoMonedaVV 
@@ -801,8 +1041,8 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   6690
-            TabIndex        =   61
-            Top             =   5190
+            TabIndex        =   59
+            Top             =   5490
             Width           =   75
          End
          Begin VB.Label lblSignoMonedaIGV 
@@ -820,8 +1060,8 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   6690
-            TabIndex        =   60
-            Top             =   5580
+            TabIndex        =   58
+            Top             =   5880
             Width           =   75
          End
          Begin VB.Label lblSignoMonedaPV 
@@ -839,22 +1079,22 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   6690
-            TabIndex        =   59
-            Top             =   5940
+            TabIndex        =   57
+            Top             =   6240
             Width           =   75
          End
          Begin VB.Label lblTotalLetras 
             Height          =   255
             Left            =   150
-            TabIndex        =   58
+            TabIndex        =   56
             Top             =   6300
-            Width           =   9255
+            Width           =   4785
          End
          Begin VB.Label lblMontoIngreso 
             BorderStyle     =   1  'Fixed Single
             Height          =   255
             Left            =   1560
-            TabIndex        =   57
+            TabIndex        =   55
             Top             =   5700
             Visible         =   0   'False
             Width           =   1815
@@ -874,8 +1114,8 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   5160
-            TabIndex        =   21
-            Top             =   5925
+            TabIndex        =   19
+            Top             =   6225
             Width           =   1380
          End
          Begin VB.Label lblIGV 
@@ -893,8 +1133,8 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   5160
-            TabIndex        =   20
-            Top             =   5550
+            TabIndex        =   18
+            Top             =   5850
             Width           =   330
          End
          Begin VB.Label lblVV 
@@ -912,8 +1152,8 @@ Begin VB.Form frmComprobanteCobro
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   5160
-            TabIndex        =   19
-            Top             =   5175
+            TabIndex        =   17
+            Top             =   5475
             Width           =   1275
          End
          Begin VB.Label lblDescrip 
@@ -932,7 +1172,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   14
             Left            =   240
-            TabIndex        =   18
+            TabIndex        =   16
             Top             =   570
             Width           =   1350
          End
@@ -951,31 +1191,31 @@ Begin VB.Form frmComprobanteCobro
          Height          =   1215
          Index           =   3
          Left            =   240
-         TabIndex        =   3
+         TabIndex        =   1
          Top             =   4830
          Width           =   9885
          Begin VB.ComboBox cboAfectacion 
             Height          =   315
             Left            =   2520
             Style           =   2  'Dropdown List
-            TabIndex        =   6
+            TabIndex        =   4
             Top             =   300
             Width           =   2295
          End
          Begin VB.ComboBox cboCreditoFiscal 
             Height          =   315
-            ItemData        =   "frmComprobanteCobro.frx":46D0
+            ItemData        =   "frmComprobanteCobro.frx":4724
             Left            =   2520
-            List            =   "frmComprobanteCobro.frx":46D7
+            List            =   "frmComprobanteCobro.frx":472B
             Style           =   2  'Dropdown List
-            TabIndex        =   5
+            TabIndex        =   3
             Top             =   705
             Width           =   2295
          End
          Begin VB.TextBox txtPeriodoFiscal 
             Height          =   315
             Left            =   7080
-            TabIndex        =   4
+            TabIndex        =   2
             Top             =   300
             Width           =   2295
          End
@@ -995,7 +1235,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   19
             Left            =   360
-            TabIndex        =   9
+            TabIndex        =   7
             Top             =   405
             Width           =   780
          End
@@ -1015,7 +1255,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   195
             Index           =   20
             Left            =   360
-            TabIndex        =   8
+            TabIndex        =   6
             Top             =   750
             Width           =   1155
          End
@@ -1034,7 +1274,7 @@ Begin VB.Form frmComprobanteCobro
             Height          =   405
             Index           =   21
             Left            =   5400
-            TabIndex        =   7
+            TabIndex        =   5
             Top             =   330
             Width           =   1455
          End
@@ -1042,7 +1282,7 @@ Begin VB.Form frmComprobanteCobro
       Begin TAMControls.ucBotonNavegacion ucBotonNavegacion1 
          Height          =   30
          Left            =   -69450
-         TabIndex        =   22
+         TabIndex        =   20
          Top             =   4920
          Width           =   30
          _ExtentX        =   53
@@ -1051,17 +1291,17 @@ Begin VB.Form frmComprobanteCobro
       Begin DXDBGRIDLibCtl.dxDBGrid gLista 
          Height          =   4785
          Left            =   -74640
-         OleObjectBlob   =   "frmComprobanteCobro.frx":46ED
-         TabIndex        =   56
+         OleObjectBlob   =   "frmComprobanteCobro.frx":4741
+         TabIndex        =   54
          TabStop         =   0   'False
          Top             =   2340
          Width           =   9690
       End
-      Begin TAMControls2.ucBotonEdicion2 ucBotonEdicion21 
+      Begin TAMControls2.ucBotonEdicion2 cmdAccion 
          Height          =   735
-         Left            =   4380
-         TabIndex        =   72
-         Top             =   7230
+         Left            =   4410
+         TabIndex        =   66
+         Top             =   7290
          Width           =   5700
          _ExtentX        =   10054
          _ExtentY        =   1296
@@ -1083,9 +1323,9 @@ Begin VB.Form frmComprobanteCobro
    End
    Begin TAMControls2.ucBotonEdicion2 cmdOpcion 
       Height          =   735
-      Left            =   330
-      TabIndex        =   70
-      Top             =   9510
+      Left            =   450
+      TabIndex        =   67
+      Top             =   8490
       Width           =   5700
       _ExtentX        =   10054
       _ExtentY        =   1296
@@ -1103,6 +1343,19 @@ Begin VB.Form frmComprobanteCobro
       Tag3            =   "5"
       ToolTipText3    =   "Buscar"
       UserControlWidth=   5700
+   End
+   Begin TAMControls2.ucBotonEdicion2 cmdSalir 
+      Height          =   735
+      Left            =   9150
+      TabIndex        =   82
+      Top             =   8490
+      Width           =   1200
+      _ExtentX        =   2117
+      _ExtentY        =   1296
+      Caption0        =   "&Salir"
+      Tag0            =   "9"
+      ToolTipText0    =   "Salir"
+      UserControlWidth=   1200
    End
 End
 Attribute VB_Name = "frmComprobanteCobro"
@@ -1393,39 +1646,33 @@ Public Sub Grabar()
     Dim dblTipCambio        As Double, strNuevoMod              As String
     Dim datFechaFinPeriodo  As Date
     
+    Dim strIndAnulacion As String
+    Dim strIndBonificacion As String
+    Dim strIndDescuento As String
+    Dim strIndDevolucion As String
+    Dim strIndOtros As String
+    
+    
     Dim xmlDocIngresos As DOMDocument60 'JCB
     Dim strNumDocumentoFisico As String
     Dim strMsgError As String 'JCB
     
-    'MEVH --06/03/2012
-    'Dim objMontoTexto As New TNumToWords.clsNumSpanishWord
     Dim montoEnTexto As String
     Dim montoNumero As Double
     
     montoNumero = CDbl(txtTotal.Text)
-'    If strCodMoneda = "02" Then
-'        montoEnTexto = objMontoTexto.ConvertCurrencyToSpanish(montoNumero, "") & " Dolares Americanos. "
-'    Else
-'        montoEnTexto = objMontoTexto.ConvertCurrencyToSpanish(montoNumero, "") & " Nuevos Soles. "
-'    End If
-'
-'
-    'FIN - MEVH --06/03/2012
-    
+
     Dim strNumDocumento As String
     Dim strFechaDesembolso As Date
     Dim strIndFactura As String, strIndBoleta As String
     Dim strdiaCancelacion As Integer, stranioCancelación As Integer
     Dim strmesCancelacion As String
-    'FIN - MEVH --04/05/2012
-    
     
     If strEstado = Reg_Consulta Then Exit Sub
     
     If Not TodoOK() Then Exit Sub
     
     XMLDetalleGrid xmlDocIngresos, "DetIngresos", gIngresos, "Item,DescripIngreso,NumOrdenCobro,CodMoneda,MontoIngreso,CodFile,CodDetalleFile,CodAnalitica", strMsgError 'JCB
-'''    If strMsgError <> "" Then GoTo CtrlError 'JCB
     
     strCodFile = "000"
     strCodAnalitica = "0000000000"
@@ -1455,36 +1702,8 @@ Public Sub Grabar()
                                 adoAuxiliar("NumOperacion") & "'"
                 Set adoAuxiliar = .Execute
     
-'                .CommandText = "Select NumIngreso from FondoIngreso where CodFondo = '" & strCodFondo & "' and CodFile = '" & _
-'                                adoAuxiliar("CodFile") & "' AND CodAnalitica = '" & adoAuxiliar("CodAnalitica") & "' --AND CodCuenta LIKE '70411[1-5]%'"
-'                Set adoAuxiliar = .Execute
-'                'fin comentarios ACR: 16/05/13
-'
-''                .CommandText = "Select NumIngreso from FondoIngreso where CodFondo = '" & strCodFondo & "' and NumOperacion = '" & _
-''                                adoAuxiliar("NumOperacion") & "'" ' AND CodCuenta LIKE '70411[1-5]%'"
-''                Set adoAuxiliar = .Execute
-'
-'
-'                .CommandText = "Select NumOrdenCobro from OrdenCobro where CodFondo = '" & strCodFondo & "' and NumIngreso = " & _
-'                               adoAuxiliar("NumIngreso")
-'                Set adoAuxiliar = .Execute
-'
-'                .CommandText = "Select NumRegistro, CodFile, CodDetalleFile, CodAnalitica from RegistroVentaDetalle where CodFondo = '" & strCodFondo & "' and NumOrdenCobro = '" & _
-'                               adoAuxiliar("NumOrdenCobro") & "'"
-'                Set adoAuxiliar = .Execute
-       
                 strCodFile = adoAuxiliar("CodFile")
-                'strCodDetalleFile = adoAuxiliar("CodDetalleFile")
                 strCodAnalitica = adoAuxiliar("CodAnalitica")
-                
-'                .CommandText = "Select SerieComprobante, NumComprobante, FechaComprobante from RegistroVenta where CodFondo = '" & strCodFondo & "' and NumRegistro = " & _
-                               adoAuxiliar("NumRegistro")
-'                Set adoAuxiliar = .Execute
-                
-'                strNumDocumento = Trim(adoAuxiliar("SerieComprobante") + "-" + adoAuxiliar("NumComprobante"))
-
-                'strNumDocumento = Trim(adoAuxiliar("NumComprobante"))
-'                strFechaDesembolso = adoAuxiliar("FechaComprobante")
                 
                 If strCodFile = "014" Then
                     strIndFactura = "X"
@@ -1500,6 +1719,13 @@ Public Sub Grabar()
 
             End If
         
+        
+            strIndAnulacion = IIf(chkAnulacion.Value = vbChecked, Valor_Indicador, Valor_Caracter)
+            strIndBonificacion = IIf(chkBonificaciones.Value = vbChecked, Valor_Indicador, Valor_Caracter)
+            strIndDescuento = IIf(chkDescuentos.Value = vbChecked, Valor_Indicador, Valor_Caracter)
+            strIndDevolucion = IIf(chkDevoluciones.Value = vbChecked, Valor_Indicador, Valor_Caracter)
+            strIndOtros = IIf(chkOtros.Value = vbChecked, Valor_Indicador, Valor_Caracter)
+            
             
             .CommandText = "{ call up_CNManRegistroVenta('" & _
                 strCodFondo & "','" & gstrCodAdministradora & "','" & lblNumSecuencial.Caption & "','" & Convertyyyymmdd(dtpFechaRegistro.Value) & "','','" & _
@@ -1510,15 +1736,8 @@ Public Sub Grabar()
                 Trim(txtPeriodoFiscal.Text) & "','" & strCodMoneda & "'," & CDec(txtSubTotal.Text) & "," & CDec(lblTasaIGV) & "," & _
                 CDec(txtIgv.Text) & "," & CDec(txtTotal.Text) & ",'','" & strCodFile & "','" & _
                 strCodAnalitica & "','" & Convertyyyymmdd(Valor_Fecha) & "',0,'" & Estado_Activo & "','','','" & CrearXMLDetalle(xmlDocIngresos) & _
-                "','" & strNuevoMod & "') }"
-
-                
-'            If strCodTipoComprobante = "07" Then
-'                .CommandText = .CommandText & ",'" & strNumDocumento & "','" & Convertyyyymmdd(strFechaDesembolso) & "','" & strIndFactura & "','" & strIndBoleta & "'," & _
-'                                strdiaCancelacion & ",'" & strmesCancelacion & "'," & stranioCancelación & ") }"
-'            Else
-'                .CommandText = .CommandText & ",'','','','',0,'',0) }"
-'            End If
+                "','" & strNuevoMod & "','" & txtDocReferenciaNC.Text & "','" & txtTipoDocReferencia.Text & "','" & txtFechaDocReferencia.Text & _
+                "','" & strIndAnulacion & "','" & strIndBonificacion & "','" & strIndDescuento & "','" & strIndDevolucion & "','" & strIndOtros & "') }"
             
             adoConn.Execute .CommandText
         
@@ -1579,6 +1798,20 @@ Private Function TodoOK() As Boolean
         If gIngresos.Enabled Then gIngresos.SetFocus
         Exit Function
     End If
+    
+    If strCodTipoComprobante = "07" Then
+        If Trim(txtDocReferenciaNC.Text) = Valor_Caracter Then
+            MsgBox "Seleccione el documento de referencia", vbCritical, Me.Caption
+            If cmdBuscarDocumento.Enabled Then cmdBuscarDocumento.SetFocus
+            Exit Function
+        End If
+        If chkAnulacion.Value = vbUnchecked And chkBonificaciones.Value = vbUnchecked And chkDescuentos.Value = vbUnchecked And chkDevoluciones.Value = vbUnchecked And chkOtros.Value = vbUnchecked Then
+            MsgBox "Seleccione un motivo de modificación del documento referido", vbCritical, Me.Caption
+            If cmdBuscarDocumento.Enabled Then cmdBuscarDocumento.SetFocus
+            Exit Function
+        End If
+    End If
+    
     
     '*** Si todo paso OK ***
     TodoOK = True
@@ -2062,7 +2295,15 @@ Private Sub cboTipoComprobante_Click()
         cboIngreso.Enabled = True
 '    End If
     
+    If strCodTipoComprobante = "07" Or strCodTipoComprobante = "08" Then
+        fraNotaCredito.Enabled = True
+    Else
+        fraNotaCredito.Enabled = False
+    
+    End If
+    
     'Call cboDetraccion_Click
+    Call LimpiarCamposNC
     Call CargarOrdenesCobro
     Call Calculos
    
@@ -2070,6 +2311,8 @@ End Sub
 
 Private Sub cmdAdicionarCobro_Click()
 Dim strMsgError As String
+
+Dim strGlosaOrden As String
 
 On Error GoTo err
 
@@ -2082,13 +2325,19 @@ On Error GoTo err
         gIngresos.Dataset.Insert
     End If
     
+    If Trim$(txtGlosaEditada) <> Valor_Caracter Then
+        strGlosaOrden = txtGlosaEditada.Text
+    Else
+        strGlosaOrden = cboCobro.Text
+    End If
+    
     gIngresos.Dataset.Edit
     
     gIngresos.Columns.ColumnByFieldName("item").Value = gIngresos.Count
     gIngresos.Columns.ColumnByFieldName("NumOrdenCobro").Value = strCodIngreso
     gIngresos.Columns.ColumnByFieldName("CodFile").Value = ""
     gIngresos.Columns.ColumnByFieldName("CodAnalitica").Value = ""
-    gIngresos.Columns.ColumnByFieldName("DescripIngreso").Value = cboCobro.Text
+    gIngresos.Columns.ColumnByFieldName("DescripIngreso").Value = strGlosaOrden
     gIngresos.Columns.ColumnByFieldName("CodMoneda").Value = ""
     gIngresos.Columns.ColumnByFieldName("MontoIngreso").Value = 0
     gIngresos.Columns.ColumnByFieldName("CodDetalleFile").Value = ""
@@ -2147,12 +2396,63 @@ On Error GoTo err
     
     Call CargarOrdenesCobro
     
+    txtGlosaEditada.Text = Valor_Caracter
+    
     cboCobro.ListIndex = 0
     
 Exit Sub
 err:
 If strMsgError = "" Then strMsgError = err.Description
 MsgBox strMsgError, vbInformation, App.Title
+End Sub
+
+Private Sub cmdBuscarDocumento_Click()
+   Dim sSql As String
+   
+    Screen.MousePointer = vbHourglass
+   
+    Dim frmBus As frmBuscar
+    
+    Set frmBus = New frmBuscar
+    
+    With frmBus.TBuscarRegistro1
+           
+        .ADOConexion = adoConn
+        .ADOConexion.CommandTimeout = 0
+        .iTipoGrilla = 2
+        '.rsADOBuscarRegistro.LockType adLockOptimistic
+        
+        
+        frmBus.Caption = " Relación de Documentos"
+        .sSql = "SELECT FechaComprobante as Fecha,SerieComprobante + '-' + NumComprobante AS NºDoc, " & _
+                "CodSigno AS Moneda, RV.Importe, RV.ValorImpuesto AS IGV, RV.ValorTotal AS Total, DescripTipoComprobantePago AS Tipo, CodTipoComprobante " & _
+                "FROM RegistroVenta RV " & _
+                "JOIN TipoComprobantePago TC ON (RV.CodTipoComprobante = TC.CodTipoComprobantePago) " & _
+                "JOIN Moneda M on (RV.CodMoneda = M.CodMoneda) " & _
+                "WHERE CodTipoComprobante NOT IN ('07','08') AND CodFondo = '" & gstrCodFondoContable & "' AND CodContratante = '" & lblCodContratante.Caption & "' "
+        
+        .OutputColumns = "1,2,3,4,5,6,7,8"
+        .HiddenColumns = "6,8"
+        
+        .BuscarTabla
+        
+        Screen.MousePointer = vbNormal
+        frmBus.Show 1
+       
+        If .iParams.Count = 0 Then Exit Sub
+        
+        If .iParams(1).Valor <> "" Then
+            txtDocReferenciaNC.Text = Trim$(.iParams(2).Valor)
+            txtFechaDocReferencia.Text = Trim$(.iParams(1).Valor)
+            txtTipoDocReferencia.Text = Trim$(.iParams(7).Valor)
+        End If
+            
+       
+    End With
+    
+    Set frmBus = Nothing
+    
+    Call CargarOrdenesCobro
 End Sub
 
 Private Sub cmdCobro_Click()
@@ -2309,11 +2609,6 @@ MsgBox strMsgError, vbInformation, App.Title
 End Sub
 
 Private Sub cmdContratante_Click()
-
-    'gstrFormulario = "frmComprobantePago"
-    'frmBusquedaInstitucionPersona.lblTipoInstitucion = Codigo_Tipo_Persona_Proveedor
-    'frmBusquedaInstitucionPersona.Caption = "Búsqueda de Proveedores"
-    'frmBusquedaInstitucionPersona.Show vbModal
    
     Dim sSql As String
    
@@ -2327,10 +2622,6 @@ Private Sub cmdContratante_Click()
            
         .ADOConexion = adoConn
         .ADOConexion.CommandTimeout = 0
-        'If Index <> 2 Then
-        '    .iTipoGrilla = 1
-        'Else
-        '    .iTipoGrilla = 2
         .iTipoGrilla = 2
         
         frmBus.Caption = " Relación de Contratantes"
@@ -2359,8 +2650,21 @@ Private Sub cmdContratante_Click()
     
     Set frmBus = Nothing
     
+    Call LimpiarCamposNC
     Call CargarOrdenesCobro
     
+End Sub
+
+Private Sub LimpiarCamposNC()
+    txtDocReferenciaNC.Text = Valor_Caracter
+    txtFechaDocReferencia.Text = Valor_Caracter
+    txtTipoDocReferencia.Text = Valor_Caracter
+    
+    chkAnulacion.Value = vbUnchecked
+    chkBonificaciones.Value = vbUnchecked
+    chkDescuentos.Value = vbUnchecked
+    chkDevoluciones.Value = vbUnchecked
+    chkOtros.Value = vbUnchecked
 End Sub
 
 Private Sub dtpFechaComprobante_Change()
@@ -2588,6 +2892,7 @@ Private Sub lblContratante_Change()
     
     CargarControlLista strSQL, cboCobro, arrCobro(), Sel_Defecto
 End Sub
+
 
 Private Sub tabRegistroCompras_Click(PreviousTab As Integer)
     cmdAccion.Visible = False
@@ -2907,6 +3212,3 @@ End Sub
 
 
 
-Private Sub ucBotonEdicion21_GotFocus()
-
-End Sub
