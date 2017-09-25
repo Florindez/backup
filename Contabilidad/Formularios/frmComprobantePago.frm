@@ -28,11 +28,9 @@ Begin VB.Form frmComprobantePago
       Buttons         =   2
       Caption0        =   "&Guardar"
       Tag0            =   "2"
-      Visible0        =   0   'False
       ToolTipText0    =   "Guardar"
       Caption1        =   "&Cancelar"
       Tag1            =   "8"
-      Visible1        =   0   'False
       ToolTipText1    =   "Cancelar"
       UserControlHeight=   390
       UserControlWidth=   2700
@@ -47,7 +45,6 @@ Begin VB.Form frmComprobantePago
       _ExtentY        =   688
       Caption0        =   "&Salir"
       Tag0            =   "9"
-      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlHeight=   390
       UserControlWidth=   1200
@@ -63,19 +60,15 @@ Begin VB.Form frmComprobantePago
       Buttons         =   4
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
-      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "1"
-      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Eliminar"
       Tag2            =   "4"
-      Visible2        =   0   'False
       ToolTipText2    =   "Eliminar"
       Caption3        =   "&Buscar"
       Tag3            =   "5"
-      Visible3        =   0   'False
       ToolTipText3    =   "Buscar"
       UserControlHeight=   390
       UserControlWidth=   5700
@@ -139,7 +132,6 @@ Begin VB.Form frmComprobantePago
       _Version        =   393216
       Style           =   1
       Tabs            =   4
-      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -153,20 +145,20 @@ Begin VB.Form frmComprobantePago
       EndProperty
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmComprobantePago.frx":0000
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "ucBotonNavegacion1"
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "gLista"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "fraCompras(0)"
-      Tab(0).Control(2)=   "gLista"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "ucBotonNavegacion1"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Datos Generales"
       TabPicture(1)   =   "frmComprobantePago.frx":001C
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "fraCompras(1)"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "fraCompras(3)"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "cmdContabilizar"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).ControlCount=   3
       TabCaption(2)   =   "Ordenes de Pago"
       TabPicture(2)   =   "frmComprobantePago.frx":0038
@@ -190,7 +182,7 @@ Begin VB.Form frmComprobantePago
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   3600
+         Left            =   -71400
          TabIndex        =   93
          Top             =   7260
          Width           =   1170
@@ -208,7 +200,7 @@ Begin VB.Form frmComprobantePago
          EndProperty
          Height          =   1605
          Index           =   3
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   80
          Top             =   4920
          Width           =   9705
@@ -639,7 +631,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178782209
+            Format          =   178847745
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaTipoCambioPago 
@@ -662,7 +654,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178782209
+            Format          =   178847745
             CurrentDate     =   39042
          End
          Begin TAMControls.TAMTextBox txtTipoCambioPago 
@@ -710,7 +702,7 @@ Begin VB.Form frmComprobantePago
             _ExtentX        =   4048
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   178782209
+            Format          =   178847745
             CurrentDate     =   42178
          End
          Begin VB.Label lblFechaEmisionDetrac 
@@ -990,7 +982,7 @@ Begin VB.Form frmComprobantePago
       End
       Begin TAMControls.ucBotonNavegacion ucBotonNavegacion1 
          Height          =   420
-         Left            =   -74250
+         Left            =   750
          TabIndex        =   21
          TabStop         =   0   'False
          Top             =   6960
@@ -1012,7 +1004,7 @@ Begin VB.Form frmComprobantePago
          EndProperty
          Height          =   4395
          Index           =   1
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   45
          Top             =   480
          Width           =   9705
@@ -1102,7 +1094,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178782209
+            Format          =   178847745
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaComprobante 
@@ -1123,7 +1115,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178782209
+            Format          =   178847745
             CurrentDate     =   39042
          End
          Begin VB.Label lblTipoProveedor 
@@ -1419,7 +1411,7 @@ Begin VB.Form frmComprobantePago
          EndProperty
          Height          =   1335
          Index           =   0
-         Left            =   -74850
+         Left            =   150
          TabIndex        =   41
          Top             =   480
          Width           =   9705
@@ -1432,7 +1424,7 @@ Begin VB.Form frmComprobantePago
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   178782209
+            Format          =   178847745
             CurrentDate     =   39042
          End
          Begin VB.ComboBox cboFondo 
@@ -1452,7 +1444,7 @@ Begin VB.Form frmComprobantePago
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   178782209
+            Format          =   178847745
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -1538,7 +1530,7 @@ Begin VB.Form frmComprobantePago
       End
       Begin DXDBGRIDLibCtl.dxDBGrid gLista 
          Height          =   4785
-         Left            =   -74850
+         Left            =   150
          OleObjectBlob   =   "frmComprobantePago.frx":4BAF
          TabIndex        =   20
          TabStop         =   0   'False
@@ -2270,8 +2262,9 @@ Public Sub SubImprimir(Index As Integer)
 
     Select Case Index
         Case 1, 2
-            If Index = 1 Then gstrNameRepo = "RegistroComprasParte1_1"
-            If Index = 2 Then gstrNameRepo = "RegistroComprasParte2"
+            gstrNameRepo = "RegistroComprasParte1_1"
+'            If Index = 1 Then gstrNameRepo = "RegistroComprasParte1_1"
+'            If Index = 2 Then gstrNameRepo = "RegistroComprasParte2"
             Set frmReporte = New frmVisorReporte
             
             ReDim aReportParamS(6)
@@ -2302,7 +2295,12 @@ Public Sub SubImprimir(Index As Integer)
             aReportParamS(3) = Convertyyyymmdd(DateAdd("d", 1, dtpFechaHasta.Value))
         
             'MsgBox "El reporte muestra el registro de compras en soles y dolares", vbInformation, Clave_Registro_NombreSistema
-            gstrCodMoneda = "0"
+            If Index = 1 Then
+                gstrCodMoneda = Codigo_Moneda_Local
+            ElseIf Index = 2 Then
+                gstrCodMoneda = Codigo_Moneda_Dolar_Americano
+            End If
+            
             aReportParamS(4) = gstrCodMoneda
             aReportParamS(5) = "04"
             aReportParamS(6) = "COMPRA"
@@ -2311,7 +2309,7 @@ Public Sub SubImprimir(Index As Integer)
     gstrSelFrml = Valor_Caracter
     
     frmReporte.strReportPath = gstrRptPath & gstrNameRepo & ".RPT"
-
+    frmReporte.SetLogo (Valor_Caracter)
     Call frmReporte.SetReportParam(aReportParamS(), aReportParamF(), aReportParamFn())
 
     frmReporte.Caption = "Reporte - (" & gstrNameRepo & ")"
@@ -3394,8 +3392,12 @@ End Sub
 
 Private Sub CargarReportes()
 
-    frmMainMdi.tlbMdi.Buttons("Reportes").ButtonMenus("Repo1").Text = "Registro de Compras"
+    frmMainMdi.tlbMdi.Buttons("Reportes").ButtonMenus("Repo1").Text = "Registro de Compras (Nuevos Soles)"
     frmMainMdi.tlbMdi.Buttons("Reportes").ButtonMenus("Repo1").Visible = True
+    
+    frmMainMdi.tlbMdi.Buttons("Reportes").ButtonMenus("Repo2").Text = "Registro de Compras (Dólares Americanos)"
+    frmMainMdi.tlbMdi.Buttons("Reportes").ButtonMenus("Repo2").Visible = True
+
 '    frmMainMdi.tlbMdi.Buttons("Reportes").ButtonMenus("Repo2").Text = "Registro de Compras - Parte2"
 '    frmMainMdi.tlbMdi.Buttons("Reportes").ButtonMenus("Repo2").Visible = True
     

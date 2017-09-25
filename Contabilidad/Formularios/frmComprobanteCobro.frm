@@ -360,7 +360,7 @@ Begin VB.Form frmComprobanteCobro
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   50135041
+            Format          =   178847745
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -372,7 +372,7 @@ Begin VB.Form frmComprobanteCobro
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   50135041
+            Format          =   178847745
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -599,7 +599,7 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   50135041
+            Format          =   178847745
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaComprobante 
@@ -620,7 +620,7 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   50135041
+            Format          =   178847745
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -1335,19 +1335,15 @@ Begin VB.Form frmComprobanteCobro
          Buttons         =   4
          Caption0        =   "&Guardar"
          Tag0            =   "2"
-         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Imprimir"
          Tag1            =   "6"
-         Visible1        =   0   'False
          ToolTipText1    =   "Imprimir"
          Caption2        =   "Anular"
          Tag2            =   "7"
-         Visible2        =   0   'False
          ToolTipText2    =   "Anular"
          Caption3        =   "Cancelar"
          Tag3            =   "8"
-         Visible3        =   0   'False
          ToolTipText3    =   "Cancelar"
          UserControlWidth=   5700
       End
@@ -1363,19 +1359,15 @@ Begin VB.Form frmComprobanteCobro
       Buttons         =   4
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
-      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "1"
-      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Eliminar"
       Tag2            =   "4"
-      Visible2        =   0   'False
       ToolTipText2    =   "Eliminar"
       Caption3        =   "&Buscar"
       Tag3            =   "5"
-      Visible3        =   0   'False
       ToolTipText3    =   "Buscar"
       UserControlWidth=   5700
    End
@@ -1389,7 +1381,6 @@ Begin VB.Form frmComprobanteCobro
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
-      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -3248,9 +3239,9 @@ Public Sub SubImprimir(Index As Integer)
     gstrSelFrml = Valor_Caracter
     
     frmReporte.strReportPath = gstrRptPath & gstrNameRepo & ".RPT"
-
+    frmReporte.SetLogo (Valor_Caracter)
     Call frmReporte.SetReportParam(aReportParamS(), aReportParamF(), aReportParamFn())
-
+    
     frmReporte.Caption = "Reporte - (" & gstrNameRepo & ")"
     frmReporte.Show vbModal
 

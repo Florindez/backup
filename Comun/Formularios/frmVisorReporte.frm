@@ -70,8 +70,12 @@ End Sub
 
 Private Sub Form_Initialize()
     
-    strIndLogo = "X"
+     strIndLogo = Valor_Indicador
    
+End Sub
+
+Public Sub SetLogo(ByVal IndLogo As String)
+    strIndLogo = IndLogo
 End Sub
 
 Private Sub Form_Load()
