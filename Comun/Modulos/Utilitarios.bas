@@ -679,8 +679,22 @@ On Error GoTo err
                  "AND CodTipoComprobante = '" & strTD & "' AND SerieComprobante = '" & strSerie & "' " & _
                "ORDER BY impY, impX"
         rst.Open csql, gstrConnectConsulta, adOpenForwardOnly, adLockReadOnly
+        
+        Dim strGLSCampo As String
         Do While Not rst.EOF
-            strCampos = strCampos & "" & rst.Fields("GlsCampo") & ","
+            strGLSCampo = rst.Fields("GlsCampo")
+            If strGLSCampo = "DiaComprobante" Then
+                strGLSCampo = "RIGHT('00'+CAST(DAY(FechaComprobante) AS VARCHAR(2)),2) AS DiaComprobante"
+            End If
+            If strGLSCampo = "MesComprobante" Then
+                strGLSCampo = "RIGHT('00'+CAST(MONTH(FechaComprobante) AS VARCHAR(2)),2) AS MesComprobante"
+            End If
+            If strGLSCampo = "AnhoComprobante" Then
+                strGLSCampo = "CAST(YEAR(FechaComprobante) AS VARCHAR(4)) AS AnhoComprobante"
+            End If
+            
+            
+            strCampos = strCampos & "" & strGLSCampo & ","
             rst.MoveNext
         Loop
         If strCampos = "" Then
@@ -800,7 +814,11 @@ On Error GoTo err
                "ORDER BY impY,impX"
         rst.Open csql, gstrConnectConsulta, adOpenForwardOnly, adLockReadOnly
         Do While Not rst.EOF
-            strCampos = strCampos & "" & rst.Fields("GlsCampo") & ","
+            strGLSCampo = rst.Fields("GlsCampo")
+            If strGLSCampo = "MontoTotalImporte" Then
+                strGLSCampo = "ValorTotal as MontoTotalImporte"
+            End If
+            strCampos = strCampos & "" & strGLSCampo & ","
             rst.MoveNext
         Loop
         If strCampos = "" Then
@@ -859,7 +877,21 @@ On Error GoTo err
                "ORDER BY impY, impX"
         rst.Open csql, gstrConnectConsulta, adOpenForwardOnly, adLockReadOnly
         Do While Not rst.EOF
-            strCampos = strCampos & "" & rst.Fields("GlsCampo") & ","
+            strGLSCampo = rst.Fields("GlsCampo")
+            If strGLSCampo = "ValorTotalLetras" Then
+                strGLSCampo = "dbo.uf_ACValorMonetarioLetras(ValorTotal,RV.CodMoneda) as ValorTotalLetras"
+            End If
+            If strGLSCampo = "SignoMoneda1" Then
+                strGLSCampo = "M.Signo as SignoMoneda1"
+            End If
+            If strGLSCampo = "SignoMoneda2" Then
+                strGLSCampo = "M.Signo as SignoMoneda2"
+            End If
+            If strGLSCampo = "SignoMoneda3" Then
+                strGLSCampo = "M.Signo as SignoMoneda3"
+            End If
+        
+            strCampos = strCampos & "" & strGLSCampo & ","
             rst.MoveNext
         Loop
         If Len(strCampos) > 0 Then
@@ -869,7 +901,7 @@ On Error GoTo err
         
         'traemos la data de lo campos seleccionados arriba
         If Len(strCampos) > 0 Then
-            csql = "SELECT " & strCampos & " FROM RegistroVenta " & _
+            csql = "SELECT " & strCampos & " FROM RegistroVenta RV JOIN Moneda M on (RV.CodMoneda = M.CodMoneda)" & _
                    "WHERE CodAdministradora = '" & gstrCodAdministradora & "' AND CodFondo = '" & strCodFondo & "' " & _
                      "AND NumRegistro = " & numRegistro
             rst.Open csql, gstrConnectConsulta, adOpenStatic, adLockReadOnly

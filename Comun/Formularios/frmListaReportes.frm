@@ -207,7 +207,7 @@ Begin VB.Form frmListaReportes
          _ExtentX        =   2355
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   48955393
+         Format          =   50135041
          CurrentDate     =   38779
       End
       Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -219,7 +219,7 @@ Begin VB.Form frmListaReportes
          _ExtentX        =   2355
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   48955393
+         Format          =   50135041
          CurrentDate     =   38779
       End
       Begin VB.Label lblBalanceEleccion 
@@ -317,7 +317,7 @@ Dim arrReporte()        As String, arrMoneda()              As String
 Dim strCodFondo         As String, strCodTipoCartera        As String
 Dim strCodReporte       As String, strDescripMoneda         As String
 Dim strCodModuloL       As String, strCodGrupoReporteL      As String
-Dim strSql              As String, strCodMoneda             As String
+Dim strSQL              As String, strCodMoneda             As String
 Dim dblTipoCambio       As Double
 
 Public Sub Adicionar()
@@ -331,14 +331,14 @@ Public Sub Buscar()
             
             If chkPersonalizado.Value Then chkPersonalizado.Value = False
             
-            strSql = "SELECT CodReporte,DescripReporte,IndRango,IndProcedimiento,NumParamFormulas," & _
+            strSQL = "SELECT CodReporte,DescripReporte,IndRango,IndProcedimiento,NumParamFormulas," & _
                 "NumParamProcedimiento,IndTipoFondo,IndOpciones,CodReporteAlterno,IndMoneda,IndPersonalizado FROM ControlReporte " & _
                 "WHERE SUBSTRING(GrupoReporte,PATINDEX('%" & strCodGrupoReporteL & "%',GrupoReporte),1)='" & strCodGrupoReporteL & "' AND " & _
                 "SUBSTRING(PerfilReporte,PATINDEX('%" & strCodModuloL & "%',PerfilReporte),1)='" & strCodModuloL & "' AND " & _
                 "IndVigente='X' And IndSimulacion='X' " & _
                 "ORDER BY DescripReporte"
         Else
-            strSql = "SELECT CodReporte,DescripReporte,IndRango,IndProcedimiento,NumParamFormulas," & _
+            strSQL = "SELECT CodReporte,DescripReporte,IndRango,IndProcedimiento,NumParamFormulas," & _
                 "NumParamProcedimiento,IndTipoFondo,IndOpciones,CodReporteAlterno,IndMoneda,IndPersonalizado FROM ControlReporte " & _
                 "WHERE SUBSTRING(GrupoReporte,PATINDEX('%" & strCodGrupoReporteL & "%',GrupoReporte),1)='" & strCodGrupoReporteL & "' AND " & _
                 "SUBSTRING(PerfilReporte,PATINDEX('%" & strCodModuloL & "%',PerfilReporte),1)='" & strCodModuloL & "' AND " & _
@@ -349,7 +349,7 @@ Public Sub Buscar()
 
     With adoReporte
         .ConnectionString = gstrConnectConsulta
-        .RecordSource = strSql
+        .RecordSource = strSQL
         .Refresh
     End With
     
@@ -365,13 +365,13 @@ Public Sub CargarReportes(strCodModulo, strGrupoReporte)
     If strCodModulo = "C" Then
         lblDescrip(4).Caption = "Tipo Instrumento"
         '*** Cartera del Fondo ***
-        strSql = "SELECT CodFile CODIGO,DescripFile DESCRIP FROM InversionFile WHERE CodEstructura<>'' AND IndVigente='X' ORDER BY DescripFile"
-        CargarControlLista strSql, cboTipoCartera, arrTipoCartera(), Sel_Defecto
+        strSQL = "SELECT CodFile CODIGO,DescripFile DESCRIP FROM InversionFile WHERE CodEstructura<>'' AND IndVigente='X' ORDER BY DescripFile"
+        CargarControlLista strSQL, cboTipoCartera, arrTipoCartera(), Sel_Defecto
     Else
         lblDescrip(4).Caption = "Tipo Cartera"
         '*** Cartera del Fondo ***
-        strSql = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='TIPCAR' ORDER BY DescripParametro"
-        CargarControlLista strSql, cboTipoCartera, arrTipoCartera(), Sel_Defecto
+        strSQL = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='TIPCAR' ORDER BY DescripParametro"
+        CargarControlLista strSQL, cboTipoCartera, arrTipoCartera(), Sel_Defecto
     End If
     
     If cboTipoCartera.ListCount > 0 Then cboTipoCartera.ListIndex = 0
@@ -390,7 +390,7 @@ Public Sub CargarReportes(strCodModulo, strGrupoReporte)
         adoRegistro.Close: Set adoRegistro = Nothing
     End With
             
-    strSql = "SELECT CodReporte,DescripReporte,IndRango,IndProcedimiento,NumParamFormulas," & _
+    strSQL = "SELECT CodReporte,DescripReporte,IndRango,IndProcedimiento,NumParamFormulas," & _
         "NumParamProcedimiento,IndTipoFondo,IndOpciones,CodReporteAlterno,IndPersonalizado FROM ControlReporte " & _
         "WHERE SUBSTRING(GrupoReporte,PATINDEX('%" & strGrupoReporte & "%',GrupoReporte),1)='" & strGrupoReporte & "' AND " & _
         "SUBSTRING(PerfilReporte,PATINDEX('%" & strCodModulo & "%',PerfilReporte),1)='" & strCodModulo & "' AND " & _
@@ -399,7 +399,7 @@ Public Sub CargarReportes(strCodModulo, strGrupoReporte)
         
     With adoReporte
         .ConnectionString = gstrConnectConsulta
-        .RecordSource = strSql
+        .RecordSource = strSQL
         .Refresh
     End With
     
@@ -438,8 +438,8 @@ Private Sub cboFondo_Click()
     With adoComm
     
         '*** Monedas contables del fondo ***
-        strSql = "{ call up_ACSelDatosParametro('70','" & strCodFondo & "','" & gstrCodAdministradora & "') }"
-        CargarControlLista strSql, cboMoneda, arrMoneda(), Valor_Caracter
+        strSQL = "{ call up_ACSelDatosParametro('70','" & strCodFondo & "','" & gstrCodAdministradora & "') }"
+        CargarControlLista strSQL, cboMoneda, arrMoneda(), Valor_Caracter
         If cboMoneda.ListCount > 0 Then cboMoneda.ListIndex = 0
     
         '*** Fecha Vigente, Valor Cuota, Valor Cuota T-1, Moneda y Cantidad Inicial de Cuotas del Fondo ***
@@ -484,7 +484,7 @@ Private Sub chkPersonalizado_Click()
         
             If chkSimulacion.Value Then chkSimulacion.Value = False
         
-            strSql = "SELECT CodReporte,DescripReporte,IndRango,IndProcedimiento,NumParamFormulas," & _
+            strSQL = "SELECT CodReporte,DescripReporte,IndRango,IndProcedimiento,NumParamFormulas," & _
                 "NumParamProcedimiento,IndTipoFondo,IndOpciones,CodReporteAlterno,IndMoneda,IndPersonalizado FROM ControlReporte " & _
                 "WHERE SUBSTRING(GrupoReporte,PATINDEX('%" & strCodGrupoReporteL & "%',GrupoReporte),1)='" & strCodGrupoReporteL & "' AND " & _
                 "SUBSTRING(PerfilReporte,PATINDEX('%" & strCodModuloL & "%',PerfilReporte),1)='" & strCodModuloL & "' AND " & _
@@ -493,7 +493,7 @@ Private Sub chkPersonalizado_Click()
                 
             
         Else
-            strSql = "SELECT CodReporte,DescripReporte,IndRango,IndProcedimiento,NumParamFormulas," & _
+            strSQL = "SELECT CodReporte,DescripReporte,IndRango,IndProcedimiento,NumParamFormulas," & _
                 "NumParamProcedimiento,IndTipoFondo,IndOpciones,CodReporteAlterno,IndMoneda,IndPersonalizado FROM ControlReporte " & _
                 "WHERE SUBSTRING(GrupoReporte,PATINDEX('%" & strCodGrupoReporteL & "%',GrupoReporte),1)='" & strCodGrupoReporteL & "' AND " & _
                 "SUBSTRING(PerfilReporte,PATINDEX('%" & strCodModuloL & "%',PerfilReporte),1)='" & strCodModuloL & "' AND " & _
@@ -505,7 +505,7 @@ Private Sub chkPersonalizado_Click()
    
     With adoReporte
         .ConnectionString = gstrConnectConsulta
-        .RecordSource = strSql
+        .RecordSource = strSQL
         .Refresh
     End With
    
@@ -614,9 +614,9 @@ Private Sub CargarListas()
     
     If gstrCodAdministradoraContable = Valor_Caracter Then
         '*** Fondos ***
-        strSql = "{ call up_ACSelDatosParametro(74,'" & gstrCodAdministradora & "','" & gstrCodFondoContable & "') }"
+        strSQL = "{ call up_ACSelDatosParametro(74,'" & gstrCodAdministradora & "','" & gstrCodFondoContable & "') }"
 '        strSQL = "{ call up_ACSelDatos(8) }"
-        CargarControlLista strSql, cboFondo, arrFondo(), Valor_Caracter
+        CargarControlLista strSQL, cboFondo, arrFondo(), Valor_Caracter
     Else
         strCodFondo = "000"
         cboFondo.AddItem Trim(frmMainMdi.txtEmpresa.Text)
@@ -970,6 +970,38 @@ Private Sub CtrlReporte(Index As Integer)
     If gstrNameRepo = "CambiosPatrimonio" Then
         ReDim Preserve aReportParamS(4)
         aReportParamS(4) = strCodMoneda
+    End If
+    
+    Dim frmFiltro As New frmFiltroReporte2
+        
+    If gstrNameRepo = "HistOperaciones" Then
+    ReDim Preserve aReportParamS(3)
+        aReportParamS(2) = Convertyyyymmdd(CStr(dtpFechaHasta.Value))
+        
+        frmFiltro.strReporte = gstrNameRepo
+        frmFiltro.Show 1
+        
+        If frmFiltro.blnCancelado Then
+            Exit Sub
+        End If
+        
+        aReportParamS(3) = frmFiltro.strCodEmisor
+        
+    End If
+    
+    If gstrNameRepo = "OperacionesPorVencer" Then
+        ReDim Preserve aReportParamS(3)
+        aReportParamS(2) = Convertyyyymmdd(CStr(dtpFechaHasta.Value))
+    
+        frmFiltro.strReporte = gstrNameRepo
+        frmFiltro.Show 1
+        
+        If frmFiltro.blnCancelado Then
+            Exit Sub
+        End If
+        
+        aReportParamS(3) = frmFiltro.intDias
+        
     End If
               
     gstrSelFrml = Valor_Caracter
@@ -1345,7 +1377,7 @@ End Sub
 Private Sub tdgReporte_SelChange(Cancel As Integer)
     
     Dim intRegistro As Integer, intContador         As Integer
-    Dim strSql      As String
+    Dim strSQL      As String
     
     intContador = tdgReporte.SelBookmarks.Count - 1
     
@@ -1363,14 +1395,14 @@ Private Sub tdgReporte_SelChange(Cancel As Integer)
         If Trim(tdgReporte.Columns(9).Value) = Valor_Indicador Then cboMoneda.Enabled = True
               
         '*** Fondos ***
-        strSql = "{ call up_ACSelDatos(8) }"
+        strSQL = "{ call up_ACSelDatos(8) }"
         If Trim(tdgReporte.Columns(6).Value) = Valor_Indicador Then
-            CargarControlLista strSql, cboFondo, arrFondo(), Sel_Todos
+            CargarControlLista strSQL, cboFondo, arrFondo(), Sel_Todos
             
             If cboFondo.ListCount > 0 Then cboFondo.ListIndex = 0
         Else
             If strCodFondo = Valor_Caracter Then
-                CargarControlLista strSql, cboFondo, arrFondo(), Valor_Caracter
+                CargarControlLista strSQL, cboFondo, arrFondo(), Valor_Caracter
                 
                 If cboFondo.ListCount > 0 Then cboFondo.ListIndex = 0
             End If
