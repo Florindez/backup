@@ -666,7 +666,7 @@ On Error GoTo err
         Printer.ScaleMode = intScale
         Printer.FontName = "Roman 12cpi"
         Printer.FontBold = False
-        Printer.FontSize = 8
+        Printer.FontSize = 10
 
     '**********************************************************************
     'CABECERA
@@ -687,7 +687,7 @@ On Error GoTo err
                 strGLSCampo = "RIGHT('00'+CAST(DAY(FechaComprobante) AS VARCHAR(2)),2) AS DiaComprobante"
             End If
             If strGLSCampo = "MesComprobante" Then
-                strGLSCampo = "RIGHT('00'+CAST(MONTH(FechaComprobante) AS VARCHAR(2)),2) AS MesComprobante"
+                strGLSCampo = "dbo.uf_ACObtenerMesLetras(MONTH(FechaComprobante)) AS MesComprobante"
             End If
             If strGLSCampo = "AnhoComprobante" Then
                 strGLSCampo = "CAST(YEAR(FechaComprobante) AS VARCHAR(4)) AS AnhoComprobante"

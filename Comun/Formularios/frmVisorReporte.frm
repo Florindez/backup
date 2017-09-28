@@ -177,11 +177,13 @@ Private Sub Form_Load()
        
     If UBound(aParamS) > 0 Then
         For n = 0 To UBound(aParamS)
-          If crxReporte.ParameterFields(n + 1).ValueType = crDateTimeField Then
-              crxReporte.ParameterFields(n + 1).AddCurrentValue CDate(Mid(aParamS(n), 1, 4) & "/" & Mid(aParamS(n), 5, 2) & "/" & Mid(aParamS(n), 7, 2)) 'CDate(aParamS(n))
-          Else
-              crxReporte.ParameterFields(n + 1).AddCurrentValue aParamS(n)
-          End If
+            If n < crxReporte.ParameterFields.Count Then
+                If crxReporte.ParameterFields(n + 1).ValueType = crDateTimeField Then
+                    crxReporte.ParameterFields(n + 1).AddCurrentValue CDate(Mid(aParamS(n), 1, 4) & "/" & Mid(aParamS(n), 5, 2) & "/" & Mid(aParamS(n), 7, 2)) 'CDate(aParamS(n))
+                Else
+                    crxReporte.ParameterFields(n + 1).AddCurrentValue aParamS(n)
+                End If
+            End If
         Next
     End If
    'CrystalReport1.ParameterFields(i) = "BooleanParam;False;True"
