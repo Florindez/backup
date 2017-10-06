@@ -849,8 +849,34 @@ On Error GoTo err
                     intY = rstObj.Fields("impY")
                     intDec = Val("" & rstObj.Fields("Decimales"))
     
-
-                    ImprimeXY rst.Fields(i) & "", strTipoDato, intLong, intY + wsum, intX, intDec, 0, strMsgError
+                    Dim strDetalleLinea As String
+                    Dim strDetalleTotal As String
+                    Dim pos As Integer
+                    If rst.Fields(i).Name = "DescripRegistro" Then
+                        strDetalleTotal = rst.Fields(i)
+                        Do
+                            strDetalleLinea = Left(strDetalleTotal, intLong)
+                            pos = InStrRev(strDetalleLinea, " ", Len(strDetalleLinea))
+                            
+                            If pos > 0 And Len(strDetalleTotal) > intLong Then
+                                strDetalleLinea = Left(strDetalleLinea, pos - 1)
+                            End If
+                            
+                            ImprimeXY strDetalleLinea & "", strTipoDato, intLong, intY + wsum, intX, intDec, 0, strMsgError
+                            
+                            If Len(strDetalleTotal) > intLong Then
+                                strDetalleTotal = Right(strDetalleTotal, Len(strDetalleTotal) - pos)
+                            Else
+                                strDetalleTotal = Valor_Caracter
+                            End If
+                            intY = intY + 4
+                        Loop While Len(strDetalleTotal) > 0
+                    Else
+                        ImprimeXY rst.Fields(i) & "", strTipoDato, intLong, intY + wsum, intX, intDec, 0, strMsgError
+                    End If
+                                        
+                    
+                    
                     If strMsgError <> "" Then GoTo err
                         
                 End If
@@ -1014,6 +1040,6 @@ Private Sub ImprimeXY(varData As Variant, strTipoDato As String, intTamanoCampo 
         End Select
     Exit Sub
 err:
-     If strMsgError = "" Then strMsgError = err.Description
+     If strMsgError = "" Then strMsgError = "No se imprimió el documento." 'err.Description
 End Sub
 
