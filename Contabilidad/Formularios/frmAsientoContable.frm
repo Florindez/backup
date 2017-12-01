@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{0D6234D1-DBA2-11D1-B5DF-0060976089D0}#6.0#0"; "todg6.ocx"
 Object = "{830D5A06-9B70-4F8C-98B6-7A19C4E7760B}#1.0#0"; "TAMControls.ocx"
@@ -89,14 +89,14 @@ Begin VB.Form frmAsientoContable
       TabCaption(0)   =   "Asientos"
       TabPicture(0)   =   "frmAsientoContable.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "lblDescrip(0)"
-      Tab(0).Control(1)=   "lblDescrip(1)"
-      Tab(0).Control(2)=   "lblDescrip(2)"
-      Tab(0).Control(3)=   "tdgConsulta"
-      Tab(0).Control(4)=   "dtpFechaHasta"
-      Tab(0).Control(5)=   "dtpFechaDesde"
-      Tab(0).Control(6)=   "cboFondo"
-      Tab(0).Control(7)=   "chkSimulacion"
+      Tab(0).Control(0)=   "chkSimulacion"
+      Tab(0).Control(1)=   "cboFondo"
+      Tab(0).Control(2)=   "dtpFechaDesde"
+      Tab(0).Control(3)=   "dtpFechaHasta"
+      Tab(0).Control(4)=   "tdgConsulta"
+      Tab(0).Control(5)=   "lblDescrip(2)"
+      Tab(0).Control(6)=   "lblDescrip(1)"
+      Tab(0).Control(7)=   "lblDescrip(0)"
       Tab(0).ControlCount=   8
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmAsientoContable.frx":0028
@@ -807,7 +807,7 @@ Begin VB.Form frmAsientoContable
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   83427329
+            Format          =   94437377
             CurrentDate     =   38068
          End
          Begin TAMControls.TAMTextBox txtTipoCambioMovimiento 
@@ -1464,7 +1464,7 @@ Begin VB.Form frmAsientoContable
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   83427329
+         Format          =   94437377
          CurrentDate     =   38068
       End
       Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -1485,7 +1485,7 @@ Begin VB.Form frmAsientoContable
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   83427329
+         Format          =   94437377
          CurrentDate     =   38068
       End
       Begin TrueOleDBGrid60.TDBGrid tdgConsulta 
@@ -1951,7 +1951,7 @@ Public Sub SubImprimir(Index As Integer)
     Call frmReporte.SetReportParam(aReportParamS(), aReportParamF(), aReportParamFn())
 
     frmReporte.Caption = "Reporte - (" & gstrNameRepo & ")"
-    frmReporte.Show vbModal
+    frmReporte.Show 'vbModal
 
     Set frmReporte = Nothing
 

@@ -791,7 +791,7 @@ On Error GoTo err
                 rstObj.Close
             Next
             rst.MoveNext
-            wsum = wsum + IIf(intScale = 6, 4, 1) + numEntreLineasAdicional
+            wsum = wsum + IIf(intScale = 6, 6, 1) + numEntreLineasAdicional
         Loop
         rst.Close
     End If
@@ -869,7 +869,7 @@ On Error GoTo err
                             Else
                                 strDetalleTotal = Valor_Caracter
                             End If
-                            intY = intY + 4
+                            intY = intY + 6
                         Loop While Len(strDetalleTotal) > 0
                     Else
                         ImprimeXY rst.Fields(i) & "", strTipoDato, intLong, intY + wsum, intX, intDec, 0, strMsgError
@@ -883,7 +883,7 @@ On Error GoTo err
                 rstObj.Close
             Next
             rst.MoveNext
-            wsum = wsum + IIf(intScale = 6, 4, 1) + numEntreLineasAdicional
+            wsum = wsum + IIf(intScale = 6, 6, 1) + numEntreLineasAdicional
         Loop
         rst.Close
     End If

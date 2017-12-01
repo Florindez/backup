@@ -78,7 +78,7 @@ Begin VB.Form frmCierreDiario
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178454529
+            Format          =   178192385
             CurrentDate     =   38068
          End
          Begin MSComCtl2.DTPicker dtpFechaCierreHasta 
@@ -100,7 +100,7 @@ Begin VB.Form frmCierreDiario
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   178454529
+            Format          =   178192385
             CurrentDate     =   38068
          End
          Begin VB.Label lblDescrip 
@@ -199,7 +199,7 @@ Begin VB.Form frmCierreDiario
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   178454529
+         Format          =   178192385
          CurrentDate     =   38068
       End
       Begin TrueOleDBGrid60.TDBGrid tdgTipoCambioCierre 
@@ -7137,7 +7137,7 @@ Private Sub ValorizacionFlujos(strTipoCierre As String)
                         "AND CC.NumDesembolso = 0 " & _
                         "AND IO.TipoOperacion = '01' AND  " & _
                         "CC.NumSecuencial = dbo.uf_IVObtenerUltimoCalendarioCuotaVigente(CC.CodFondo,CC.CodAdministradora,CC.CodFile, CC.CodAnalitica,CC.NumCuota,'" & strFechaCierre & "') " & _
-                        "AND (CC.FechaVencimientoCuota < '" & strFechaCierre & "' OR CC.FechaVencimientoCuota = '29990101') ORDER BY CC.CodFile, CC.CodAnalitica "
+                        "AND (CC.FechaVencimientoCuota <= '" & strFechaCierre & "' OR CC.FechaVencimientoCuota = '29990101') ORDER BY CC.CodFile, CC.CodAnalitica "
         Set adoRegistro = .Execute
     
         Do Until adoRegistro.EOF

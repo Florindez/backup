@@ -136,8 +136,8 @@ Begin VB.Form frmCancelacionAcreencias
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmCancelacionAcreencias.frx":0D6F
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "fraCriterio"
-      Tab(0).Control(1)=   "tdgConsulta"
+      Tab(0).Control(0)=   "tdgConsulta"
+      Tab(0).Control(1)=   "fraCriterio"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Operación / Anexo"
       TabPicture(1)   =   "frmCancelacionAcreencias.frx":0D8B
@@ -154,11 +154,11 @@ Begin VB.Form frmCancelacionAcreencias
       TabCaption(2)   =   "Detalle de Pago"
       TabPicture(2)   =   "frmCancelacionAcreencias.frx":0DA7
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "fraDetallePago"
-      Tab(2).Control(1)=   "cmdAnterior"
+      Tab(2).Control(0)=   "cmdGuardar"
+      Tab(2).Control(1)=   "fraDetalleTotalPago"
       Tab(2).Control(2)=   "fraDetallePagoParcial"
-      Tab(2).Control(3)=   "fraDetalleTotalPago"
-      Tab(2).Control(4)=   "cmdGuardar"
+      Tab(2).Control(3)=   "cmdAnterior"
+      Tab(2).Control(4)=   "fraDetallePago"
       Tab(2).ControlCount=   5
       Begin VB.CommandButton cmdGuardar 
          Caption         =   "Guardar"
@@ -2629,7 +2629,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   181207041
+            Format          =   179503105
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -2651,7 +2651,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   181207041
+            Format          =   179503105
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -2673,7 +2673,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   181207041
+            Format          =   179503105
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -2695,7 +2695,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   181207041
+            Format          =   179503105
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -4603,7 +4603,7 @@ Private Sub txtMontoRecibido_Change()
     If txtMontoRecibido.Text = "" Then
         txtMontoRecibido.Text = "0.00"
     End If
-    txtDeudaRestante.Text = CDec(tdgAnexo.Columns(9).FooterText) - CDec(txtMontoRecibido.Text)
+    txtDeudaRestante.Text = CDec(tdgAnexo.Columns(11).FooterText) - CDec(txtMontoRecibido.Text)
     If CDec(txtDeudaRestante.Text) < 0 Then
         txtDeudaRestante.Text = 0
         'txtMontoRecibido.Text = CDec(tdgAnexo.Columns(9).FooterText)
@@ -4614,7 +4614,7 @@ Private Sub txtMontoRecibido_LostFocus()
     If txtMontoRecibido.Text = "" Then
         txtMontoRecibido.Text = "0.00"
     End If
-    txtDeudaRestante.Text = CDec(tdgAnexo.Columns(9).FooterText) - CDec(txtMontoRecibido.Text)
+    txtDeudaRestante.Text = CDec(tdgAnexo.Columns(11).FooterText) - CDec(txtMontoRecibido.Text)
     If CDec(txtDeudaRestante.Text) < 0 Then
         txtDeudaRestante.Text = 0
         'txtMontoRecibido.Text = CDec(tdgAnexo.Columns(9).FooterText)

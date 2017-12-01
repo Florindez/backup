@@ -207,7 +207,7 @@ Begin VB.Form frmListaReportes
          _ExtentX        =   2355
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   50135041
+         Format          =   94437377
          CurrentDate     =   38779
       End
       Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -219,7 +219,7 @@ Begin VB.Form frmListaReportes
          _ExtentX        =   2355
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   50135041
+         Format          =   94437377
          CurrentDate     =   38779
       End
       Begin VB.Label lblBalanceEleccion 
@@ -1010,7 +1010,7 @@ Private Sub CtrlReporte(Index As Integer)
     Call frmReporte.SetReportParam(aReportParamS(), aReportParamF(), aReportParamFn())
 
     frmReporte.Caption = "Reporte - (" & gstrNameRepo & ")"
-    frmReporte.Show vbModal
+    frmReporte.Show 'vbModal
 
     Set frmReporte = Nothing
 
