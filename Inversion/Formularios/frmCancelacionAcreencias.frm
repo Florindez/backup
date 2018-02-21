@@ -136,8 +136,8 @@ Begin VB.Form frmCancelacionAcreencias
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmCancelacionAcreencias.frx":0D6F
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "tdgConsulta"
-      Tab(0).Control(1)=   "fraCriterio"
+      Tab(0).Control(0)=   "fraCriterio"
+      Tab(0).Control(1)=   "tdgConsulta"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Operación / Anexo"
       TabPicture(1)   =   "frmCancelacionAcreencias.frx":0D8B
@@ -154,11 +154,11 @@ Begin VB.Form frmCancelacionAcreencias
       TabCaption(2)   =   "Detalle de Pago"
       TabPicture(2)   =   "frmCancelacionAcreencias.frx":0DA7
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "cmdGuardar"
-      Tab(2).Control(1)=   "fraDetalleTotalPago"
+      Tab(2).Control(0)=   "fraDetallePago"
+      Tab(2).Control(1)=   "cmdAnterior"
       Tab(2).Control(2)=   "fraDetallePagoParcial"
-      Tab(2).Control(3)=   "cmdAnterior"
-      Tab(2).Control(4)=   "fraDetallePago"
+      Tab(2).Control(3)=   "fraDetalleTotalPago"
+      Tab(2).Control(4)=   "cmdGuardar"
       Tab(2).ControlCount=   5
       Begin VB.CommandButton cmdGuardar 
          Caption         =   "Guardar"
@@ -2629,7 +2629,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   179503105
+            Format          =   181403649
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -2651,7 +2651,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   179503105
+            Format          =   181403649
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -2673,7 +2673,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   179503105
+            Format          =   181403649
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -2695,7 +2695,7 @@ Begin VB.Form frmCancelacionAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   179503105
+            Format          =   181403649
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -4028,7 +4028,7 @@ Private Sub Grabar()
                 "','" & adoDetalleAnexo("CodTitulo") & "','" & adoDetalleAnexo("Nemotecnico") & "','" & gstrPeriodoActual & _
                "','" & gstrMesActual & "','','03','" & strCodAnalitica & "','" & strCodFile & "','" & adoDetalleAnexo("CodAnalitica") & _
                "','" & strCodDetalleFile & "','" & strCodSubDetalleFile & _
-               "','" & adoDetallePago("TipoOperacion") & "','01','','01','" & "Cancelación - " & adoDetalleAnexo("Nemotecnico") & "','" & strCodEmisor & "','','','" & adoDetalleAnexo("CodComisionista") & "'," & adoDetalleAnexo("NumSecuencialComisionistaCondicion") & ",'" & gstrFechaActual & _
+               "','" & adoDetallePago("TipoOperacion") & "','01','','01','" & adoDetalleAnexo("DescripOperacion") & "','" & strCodEmisor & "','','','" & adoDetalleAnexo("CodComisionista") & "'," & adoDetalleAnexo("NumSecuencialComisionistaCondicion") & ",'" & gstrFechaActual & _
                "','" & Convertyyyymmdd(adoDetallePago("FechaVencimiento")) & "','" & Convertyyyymmdd(Valor_Fecha) & _
                "','" & Convertyyyymmdd(CDate(txtFechaInicio.Text)) & "','" & adoDetalleAnexo("CodMonedaDocumento") & "'," & adoDetalleAnexo("ValorNominalDocumento") & _
                ",'" & Trim$(adoDetalleAnexo("IndTipoCambio")) & "','" & strCodMoneda & _

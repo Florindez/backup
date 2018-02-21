@@ -89,14 +89,14 @@ Begin VB.Form frmAsientoContable
       TabCaption(0)   =   "Asientos"
       TabPicture(0)   =   "frmAsientoContable.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "chkSimulacion"
-      Tab(0).Control(1)=   "cboFondo"
-      Tab(0).Control(2)=   "dtpFechaDesde"
-      Tab(0).Control(3)=   "dtpFechaHasta"
-      Tab(0).Control(4)=   "tdgConsulta"
-      Tab(0).Control(5)=   "lblDescrip(2)"
-      Tab(0).Control(6)=   "lblDescrip(1)"
-      Tab(0).Control(7)=   "lblDescrip(0)"
+      Tab(0).Control(0)=   "lblDescrip(0)"
+      Tab(0).Control(1)=   "lblDescrip(1)"
+      Tab(0).Control(2)=   "lblDescrip(2)"
+      Tab(0).Control(3)=   "tdgConsulta"
+      Tab(0).Control(4)=   "dtpFechaHasta"
+      Tab(0).Control(5)=   "dtpFechaDesde"
+      Tab(0).Control(6)=   "cboFondo"
+      Tab(0).Control(7)=   "chkSimulacion"
       Tab(0).ControlCount=   8
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmAsientoContable.frx":0028
@@ -807,7 +807,7 @@ Begin VB.Form frmAsientoContable
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   94437377
+            Format          =   181141505
             CurrentDate     =   38068
          End
          Begin TAMControls.TAMTextBox txtTipoCambioMovimiento 
@@ -1464,7 +1464,7 @@ Begin VB.Form frmAsientoContable
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   94437377
+         Format          =   181141505
          CurrentDate     =   38068
       End
       Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -1485,7 +1485,7 @@ Begin VB.Form frmAsientoContable
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   94437377
+         Format          =   181141505
          CurrentDate     =   38068
       End
       Begin TrueOleDBGrid60.TDBGrid tdgConsulta 
@@ -3287,7 +3287,7 @@ Public Sub Grabar()
                 .CommandText = "{ call up_ACManAsientoContableXML('" & _
                     strCodFondo & "','" & gstrCodAdministradora & "','" & strNumAsiento & "','" & _
                     strFechaGrabar & "','" & _
-                    gstrPeriodoActual & "','" & gstrMesActual & "','" & _
+                    gstrPeriodoActual & "','" & gstrMesActual & "','" & Tipo_Asiento_Diario & _
                     "','" & _
                     Trim(txtDescripAsiento.Text) & "','" & strCodMoneda & "','" & strCodMonedaContable & _
                     "','" & _
@@ -3298,7 +3298,7 @@ Public Sub Grabar()
                     strFechaGrabar & "','" & _
                     strCodModulo & "','" & _
                     "'," & _
-                    CDec(txtTipoCambio.Text) & ",'" & _
+                    CDec(txtTipoCambio.Text) & ",'" & gstrLogin & _
                     "','" & _
                     "','" & _
                     Trim(txtDescripAsiento.Text) & "','" & _

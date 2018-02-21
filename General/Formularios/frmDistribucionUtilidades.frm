@@ -135,7 +135,7 @@ Begin VB.Form frmDistribucionUtilidades
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   175898625
+            Format          =   180617217
             CurrentDate     =   38790
          End
          Begin TAMControls.TAMTextBox txtValorCuota 
@@ -403,6 +403,52 @@ Begin VB.Form frmDistribucionUtilidades
          Borde           =   1
          MaximoValor     =   999999999
       End
+      Begin TAMControls.TAMTextBox txtUtilidadBruta 
+         Height          =   315
+         Left            =   4170
+         TabIndex        =   26
+         Top             =   7560
+         Width           =   1785
+         _ExtentX        =   3149
+         _ExtentY        =   556
+         BackColor       =   16777215
+         Enabled         =   0   'False
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
+         FontName        =   "MS Sans Serif"
+         FontSize        =   8.25
+         ForeColor       =   -2147483640
+         Container       =   "frmDistribucionUtilidades.frx":C2CB
+         Text            =   "0.00"
+         Decimales       =   2
+         Estilo          =   4
+         CambiarConFoco  =   -1  'True
+         ColorEnfoque    =   8454143
+         AceptaNegativos =   -1  'True
+         Apariencia      =   1
+         Borde           =   1
+         DecimalesValue  =   2
+         MaximoValor     =   999999999
+      End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Utilidad Bruta"
+         ForeColor       =   &H00800000&
+         Height          =   225
+         Left            =   2610
+         TabIndex        =   27
+         Top             =   7590
+         Width           =   1605
+      End
       Begin VB.Label Label1 
          Caption         =   "Valor Reinversión"
          ForeColor       =   &H00800000&
@@ -450,7 +496,6 @@ Begin VB.Form frmDistribucionUtilidades
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
-      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -1584,6 +1629,7 @@ Public Sub Buscar()
     Dim intTotalRetiran As Long
     Dim dblTotalValorReinvierten As Double
     Dim dblTotalValorRetiran As Double
+    Dim dblTotalUtilidad As Double
     
     Set adoRegistro = New ADODB.Recordset
     
@@ -1593,6 +1639,7 @@ Public Sub Buscar()
     intTotalRetiran = 0
     dblTotalValorReinvierten = 0
     dblTotalValorRetiran = 0
+    dblTotalUtilidad = 0
     
     strEstado = Reg_Defecto
 
@@ -1621,7 +1668,7 @@ Public Sub Buscar()
                             dblTotalValorRetiran = dblTotalValorRetiran + adoRegistro.Fields("ValorUtilidadNeta")
                         End If
                     End If
-                    
+                    dblTotalUtilidad = dblTotalUtilidad + adoRegistro.Fields("ValorUtilidadBruta")
                 Next
                 adoRegistroAux.Update
                 adoRegistro.MoveNext
@@ -1639,7 +1686,7 @@ Public Sub Buscar()
     
     txtValorReinversion.Text = CStr(dblTotalValorReinvierten)
     txtValorReparto.Text = CStr(dblTotalValorRetiran)
-    
+    txtUtilidadBruta.Text = CStr(dblTotalUtilidad)
     tdgConsulta.Refresh
     
     If adoRegistroAux.RecordCount > 0 Then strEstado = Reg_Consulta

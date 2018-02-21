@@ -179,8 +179,8 @@ Begin VB.Form frmDesembolsoAcreencias
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmDesembolsoAcreencias.frx":0B62
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "fraCriterio"
-      Tab(0).Control(1)=   "tdgConsulta"
+      Tab(0).Control(0)=   "tdgConsulta"
+      Tab(0).Control(1)=   "fraCriterio"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Datos Orden Inversión"
       TabPicture(1)   =   "frmDesembolsoAcreencias.frx":0B7E
@@ -197,9 +197,9 @@ Begin VB.Form frmDesembolsoAcreencias
       TabCaption(2)   =   "Negociación"
       TabPicture(2)   =   "frmDesembolsoAcreencias.frx":0B9A
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "fraComisiones"
+      Tab(2).Control(0)=   "fraDatosNegociacion"
       Tab(2).Control(1)=   "fraComisionMontoFL1"
-      Tab(2).Control(2)=   "fraDatosNegociacion"
+      Tab(2).Control(2)=   "fraComisiones"
       Tab(2).ControlCount=   3
       Begin VB.Frame fraDatosBasicos 
          Caption         =   "Datos Básicos"
@@ -2526,7 +2526,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   104595457
+            Format          =   180944897
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -2548,7 +2548,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   104595457
+            Format          =   180944897
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -2570,7 +2570,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   104595457
+            Format          =   180944897
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -2592,7 +2592,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   104595457
+            Format          =   180944897
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -3242,7 +3242,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   104595457
+            Format          =   180944897
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacion 
@@ -3264,7 +3264,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   104595457
+            Format          =   180944897
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaEmision 
@@ -3287,7 +3287,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   104595457
+            Format          =   180944897
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaVencimiento 
@@ -3308,7 +3308,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   104595457
+            Format          =   180944897
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaPago 
@@ -3331,7 +3331,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   104595457
+            Format          =   180944897
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaVencimientoDcto 
@@ -3354,7 +3354,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   104595457
+            Format          =   180944897
             CurrentDate     =   38776
          End
          Begin TAMControls.TAMTextBox txtDiasPlazo 
@@ -8125,66 +8125,84 @@ Public Function CalculoInteresDescuento(numPorcenTasa As Double, _
         Set adoConsulta = New ADODB.Recordset
     
         '*** Obtener el número de días del periodo de tasa ***
-        .CommandText = "SELECT ValorParametro FROM AuxiliarParametro WHERE CodTipoParametro='TIPFRE' AND CodParametro='" & strCodPeriodoTasa & "'"
+        .CommandText = "SELECT dbo.uf_ACCalcularInteres(" & numPorcenTasa & ",'" & strCodTipoTasa & "','" & strCodPeriodoTasa & "','" & strPeriodoCapitalizable & "','" & strCodBaseCalculo & "'," & numMontoBaseCalculo & ",'" & Convertyyyymmdd(datFechaInicial) & "','" & Convertyyyymmdd(datFechaFinal) & "') as Interes"
         Set adoConsulta = .Execute
     
         If Not adoConsulta.EOF Then
-            intNumPeriodoAnualTasa = CInt(360 / adoConsulta("ValorParametro"))     '*** Numero del periodos por año de la tasa ***
-            intNumPeriodoTasa = CInt(adoConsulta("ValorParametro"))
+            numMontoCalculoInteres = adoConsulta("Interes")
+        Else
+            numMontoCalculoInteres = 0
         End If
 
         adoConsulta.Close: Set adoConsulta = Nothing
     End With
-   
-    Select Case strCodBaseCalculo
-
-        Case Codigo_Base_30_360:
-            intDiasBaseAnual = 360
-            intDiasProvision = DateDiff("d", datFechaInicial, datFechaFinal)
-
-        Case Codigo_Base_Actual_365:
-            intDiasBaseAnual = 365
-            intDiasProvision = DateDiff("d", datFechaInicial, datFechaFinal) + 1
-
-        Case Codigo_Base_Actual_360:
-            intDiasBaseAnual = 360
-            intDiasProvision = DateDiff("d", datFechaInicial, datFechaFinal)
-
-        Case Codigo_Base_30_365:
-            intDiasBaseAnual = 365
-            intDiasProvision = Dias360(datFechaInicial, datFechaFinal, True)
-    End Select
-    
-    Select Case strCodTipoTasa
- 
-        Case Codigo_Tipo_Tasa_Efectiva:
-            numPorcenTasaAnual = (1 + (numPorcenTasa / 100)) ^ (intNumPeriodoAnualTasa) - 1
-            If intDiasBaseAnual > 0 Then
-            
-                numMontoCalculoInteres = Round(numMontoBaseCalculo * ((((1 + numPorcenTasaAnual)) ^ (intDiasProvision / intDiasBaseAnual)) - 1), 2)
-            Else
-                numMontoCalculoInteres = 0
-            End If
-        Case Codigo_Tipo_Tasa_Nominal:
-            adoComm.CommandText = "SELECT ValorParametro FROM AuxiliarParametro WHERE CodTipoParametro='TIPFRE' AND CodParametro='" & strPeriodoCapitalizable & "'"
-            Set adoConsulta = adoComm.Execute
-            
-            If Not adoConsulta.EOF Then
-                intNumPeriodoCapitalizacion = CInt(adoConsulta("ValorParametro"))
-            End If
-            
-            If intNumPeriodoTasa <> 0 And intNumPeriodoCapitalizacion <> 0 Then
-                dblCantPeriodosCapEnPeriodoTasa = intNumPeriodoTasa / intNumPeriodoCapitalizacion
-                dblTasaEfectivaEnPeriodoCap = (numPorcenTasa / 100) / dblCantPeriodosCapEnPeriodoTasa
-                dblCantPeriodosCapEnPeriodoReq = intDiasProvision / intNumPeriodoCapitalizacion
-                
-                numMontoCalculoInteres = Round(numMontoBaseCalculo * (((1 + dblTasaEfectivaEnPeriodoCap) ^ dblCantPeriodosCapEnPeriodoReq) - 1), 2)
-            End If
-
-        Case Codigo_Tipo_Tasa_Flat:
-            numPorcenTasaAnual = numPorcenTasa / 100
-            numMontoCalculoInteres = Round(numMontoBaseCalculo * (numPorcenTasaAnual), 2)
-    End Select
+'
+'
+'
+'    With adoComm
+'        Set adoConsulta = New ADODB.Recordset
+'
+'        '*** Obtener el número de días del periodo de tasa ***
+'        .CommandText = "SELECT ValorParametro FROM AuxiliarParametro WHERE CodTipoParametro='TIPFRE' AND CodParametro='" & strCodPeriodoTasa & "'"
+'        Set adoConsulta = .Execute
+'
+'        If Not adoConsulta.EOF Then
+'            intNumPeriodoAnualTasa = CInt(360 / adoConsulta("ValorParametro"))     '*** Numero del periodos por año de la tasa ***
+'            intNumPeriodoTasa = CInt(adoConsulta("ValorParametro"))
+'        End If
+'
+'        adoConsulta.Close: Set adoConsulta = Nothing
+'    End With
+'
+'    Select Case strCodBaseCalculo
+'
+'        Case Codigo_Base_30_360:
+'            intDiasBaseAnual = 360
+'            intDiasProvision = DateDiff("d", datFechaInicial, datFechaFinal)
+'
+'        Case Codigo_Base_Actual_365:
+'            intDiasBaseAnual = 365
+'            intDiasProvision = DateDiff("d", datFechaInicial, datFechaFinal) + 1
+'
+'        Case Codigo_Base_Actual_360:
+'            intDiasBaseAnual = 360
+'            intDiasProvision = DateDiff("d", datFechaInicial, datFechaFinal)
+'
+'        Case Codigo_Base_30_365:
+'            intDiasBaseAnual = 365
+'            intDiasProvision = Dias360(datFechaInicial, datFechaFinal, True)
+'    End Select
+'
+'    Select Case strCodTipoTasa
+'
+'        Case Codigo_Tipo_Tasa_Efectiva:
+'            numPorcenTasaAnual = (1 + (numPorcenTasa / 100)) ^ (intNumPeriodoAnualTasa) - 1
+'            If intDiasBaseAnual > 0 Then
+'
+'                numMontoCalculoInteres = Round(numMontoBaseCalculo * ((((1 + numPorcenTasaAnual)) ^ (intDiasProvision / intDiasBaseAnual)) - 1), 2)
+'            Else
+'                numMontoCalculoInteres = 0
+'            End If
+'        Case Codigo_Tipo_Tasa_Nominal:
+'            adoComm.CommandText = "SELECT ValorParametro FROM AuxiliarParametro WHERE CodTipoParametro='TIPFRE' AND CodParametro='" & strPeriodoCapitalizable & "'"
+'            Set adoConsulta = adoComm.Execute
+'
+'            If Not adoConsulta.EOF Then
+'                intNumPeriodoCapitalizacion = CInt(adoConsulta("ValorParametro"))
+'            End If
+'
+'            If intNumPeriodoTasa <> 0 And intNumPeriodoCapitalizacion <> 0 Then
+'                dblCantPeriodosCapEnPeriodoTasa = intNumPeriodoTasa / intNumPeriodoCapitalizacion
+'                dblTasaEfectivaEnPeriodoCap = (numPorcenTasa / 100) / dblCantPeriodosCapEnPeriodoTasa
+'                dblCantPeriodosCapEnPeriodoReq = intDiasProvision / intNumPeriodoCapitalizacion
+'
+'                numMontoCalculoInteres = Round(numMontoBaseCalculo * (((1 + dblTasaEfectivaEnPeriodoCap) ^ dblCantPeriodosCapEnPeriodoReq) - 1), 2)
+'            End If
+'
+'        Case Codigo_Tipo_Tasa_Flat:
+'            numPorcenTasaAnual = numPorcenTasa / 100
+'            numMontoCalculoInteres = Round(numMontoBaseCalculo * (numPorcenTasaAnual), 2)
+'    End Select
 
     CalculoInteresDescuento = numMontoCalculoInteres
 End Function

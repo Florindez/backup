@@ -258,7 +258,7 @@ Begin VB.Form frmSolicitudDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   175570945
+            Format          =   180879361
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacion 
@@ -279,7 +279,7 @@ Begin VB.Form frmSolicitudDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   175570945
+            Format          =   180879361
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaVencimiento 
@@ -300,7 +300,7 @@ Begin VB.Form frmSolicitudDescuentoContratos
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   175570945
+            Format          =   180879361
             CurrentDate     =   38776
          End
          Begin TAMControls.TAMTextBox txtDiasPlazo 
@@ -617,7 +617,7 @@ Begin VB.Form frmSolicitudDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   175570945
+            Format          =   180879361
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -639,7 +639,7 @@ Begin VB.Form frmSolicitudDescuentoContratos
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   175570945
+            Format          =   180879361
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -2361,7 +2361,7 @@ End Sub
 Private Sub txtDiasPlazo_LostFocus()
 
     txtDiasPlazo_KeyPress (vbKeyReturn)
-    cboEmisor_Click
+    'cboEmisor_Click
     
 End Sub
 

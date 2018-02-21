@@ -42,9 +42,9 @@ Begin VB.Form frmComprobanteCobro
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmComprobanteCobro.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "fraCompras(0)"
+      Tab(0).Control(0)=   "gLista"
       Tab(0).Control(1)=   "ucBotonNavegacion1"
-      Tab(0).Control(2)=   "gLista"
+      Tab(0).Control(2)=   "fraCompras(0)"
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Datos Generales"
       TabPicture(1)   =   "frmComprobanteCobro.frx":001C
@@ -260,7 +260,7 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   179175425
+            Format          =   178782209
             CurrentDate     =   2
          End
          Begin VB.Label lblDescrip 
@@ -356,7 +356,7 @@ Begin VB.Form frmComprobanteCobro
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   179175425
+            Format          =   178782209
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -368,7 +368,7 @@ Begin VB.Form frmComprobanteCobro
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   179175425
+            Format          =   178782209
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -595,7 +595,7 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   179175425
+            Format          =   178782209
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaComprobante 
@@ -616,7 +616,7 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   179175425
+            Format          =   178782209
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -1331,19 +1331,15 @@ Begin VB.Form frmComprobanteCobro
          Buttons         =   4
          Caption0        =   "&Guardar"
          Tag0            =   "2"
-         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Imprimir"
          Tag1            =   "6"
-         Visible1        =   0   'False
          ToolTipText1    =   "Imprimir"
          Caption2        =   "Anular"
          Tag2            =   "7"
-         Visible2        =   0   'False
          ToolTipText2    =   "Anular"
          Caption3        =   "Cancelar"
          Tag3            =   "8"
-         Visible3        =   0   'False
          ToolTipText3    =   "Cancelar"
          UserControlWidth=   5700
       End
@@ -1359,19 +1355,15 @@ Begin VB.Form frmComprobanteCobro
       Buttons         =   4
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
-      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "1"
-      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Eliminar"
       Tag2            =   "4"
-      Visible2        =   0   'False
       ToolTipText2    =   "Eliminar"
       Caption3        =   "&Buscar"
       Tag3            =   "5"
-      Visible3        =   0   'False
       ToolTipText3    =   "Buscar"
       UserControlWidth=   5700
    End
@@ -1385,7 +1377,6 @@ Begin VB.Form frmComprobanteCobro
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
-      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -1833,16 +1824,16 @@ Private Function TodoOK() As Boolean
     End If
     
     If strCodTipoComprobante = "07" Then
-        If Trim(txtDocReferenciaNC.Text) = Valor_Caracter Then
-            MsgBox "Seleccione el documento de referencia", vbCritical, Me.Caption
-            If cmdBuscarDocumento.Enabled Then cmdBuscarDocumento.SetFocus
-            Exit Function
-        End If
-        If chkAnulacion.Value = vbUnchecked And chkBonificaciones.Value = vbUnchecked And chkDescuentos.Value = vbUnchecked And chkDevoluciones.Value = vbUnchecked And chkOtros.Value = vbUnchecked Then
-            MsgBox "Seleccione un motivo de modificación del documento referido", vbCritical, Me.Caption
-            If cmdBuscarDocumento.Enabled Then cmdBuscarDocumento.SetFocus
-            Exit Function
-        End If
+'        If Trim(txtDocReferenciaNC.Text) = Valor_Caracter Then
+'            MsgBox "Seleccione el documento de referencia", vbCritical, Me.Caption
+'            If cmdBuscarDocumento.Enabled Then cmdBuscarDocumento.SetFocus
+'            Exit Function
+'        End If
+'        If chkAnulacion.Value = vbUnchecked And chkBonificaciones.Value = vbUnchecked And chkDescuentos.Value = vbUnchecked And chkDevoluciones.Value = vbUnchecked And chkOtros.Value = vbUnchecked Then
+'            MsgBox "Seleccione un motivo de modificación del documento referido", vbCritical, Me.Caption
+'            If cmdBuscarDocumento.Enabled Then cmdBuscarDocumento.SetFocus
+'            Exit Function
+'        End If
     End If
     
     
