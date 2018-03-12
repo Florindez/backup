@@ -5,7 +5,7 @@ Begin VB.MDIForm frmMainMdi
    Caption         =   "Módulo Contabilidad"
    ClientHeight    =   9885
    ClientLeft      =   225
-   ClientTop       =   855
+   ClientTop       =   870
    ClientWidth     =   15960
    Icon            =   "frmMainMdi.frx":0000
    LinkTopic       =   "MDIForm1"
@@ -497,6 +497,10 @@ Begin VB.MDIForm frmMainMdi
          Caption         =   "Cierre de Periodo Contable"
          Index           =   4
       End
+      Begin VB.Menu mnuProcesos 
+         Caption         =   "Libros Electrónicos"
+         Index           =   5
+      End
    End
    Begin VB.Menu mnuGeneral 
       Caption         =   "&Informes"
@@ -922,7 +926,15 @@ Private Sub mnuProcesos_Click(Index As Integer)
                 Else
                     frmPeriodoContableCierre.Show
                 End If
-                
+        Case 5: strNombreObjeto = "frmGeneraLibroElectronico"
+                gstrNombreObjetoMenuPulsado = mnuProcesos.Item(Index).Name + "(" + CStr(Index) + ")"
+                strCodObjeto = Trim(App.Title) + Separador_Codigo_Objeto + gstrNombreObjetoMenuPulsado + _
+                                        Separador_Codigo_Objeto + strNombreObjeto
+'                If Not ValidarPermisoAccesoObjeto(Trim(gstrLoginUS), strCodObjeto, Codigo_Tipo_Objeto_Formulario) Then
+'                    Exit Sub
+'                Else
+                    frmGeneraLibroElectronico.Show
+'                End If
     End Select
 
 

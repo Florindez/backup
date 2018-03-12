@@ -80,15 +80,12 @@ Begin VB.Form frmDesembolsoAcreencias
       Buttons         =   3
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
-      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Eliminar"
       Tag1            =   "4"
-      Visible1        =   0   'False
       ToolTipText1    =   "Eliminar"
       Caption2        =   "&Buscar"
       Tag2            =   "5"
-      Visible2        =   0   'False
       ToolTipText2    =   "Buscar"
       UserControlWidth=   4200
    End
@@ -102,7 +99,6 @@ Begin VB.Form frmDesembolsoAcreencias
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
-      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -163,7 +159,7 @@ Begin VB.Form frmDesembolsoAcreencias
       _ExtentY        =   14684
       _Version        =   393216
       Style           =   1
-      Tab             =   1
+      Tab             =   2
       TabsPerRow      =   5
       TabHeight       =   520
       ForeColor       =   8388608
@@ -179,27 +175,26 @@ Begin VB.Form frmDesembolsoAcreencias
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmDesembolsoAcreencias.frx":0B62
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "tdgConsulta"
-      Tab(0).Control(1)=   "fraCriterio"
+      Tab(0).Control(0)=   "fraCriterio"
+      Tab(0).Control(1)=   "tdgConsulta"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Datos Orden Inversión"
       TabPicture(1)   =   "frmDesembolsoAcreencias.frx":0B7E
-      Tab(1).ControlEnabled=   -1  'True
-      Tab(1).Control(0)=   "fraResumen"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "fraDatosTitulo"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "fraDatosAnexo"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "fraDatosBasicos"
-      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).ControlEnabled=   0   'False
+      Tab(1).Control(0)=   "fraDatosBasicos"
+      Tab(1).Control(1)=   "fraDatosAnexo"
+      Tab(1).Control(2)=   "fraDatosTitulo"
+      Tab(1).Control(3)=   "fraResumen"
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Negociación"
       TabPicture(2)   =   "frmDesembolsoAcreencias.frx":0B9A
-      Tab(2).ControlEnabled=   0   'False
+      Tab(2).ControlEnabled=   -1  'True
       Tab(2).Control(0)=   "fraDatosNegociacion"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "fraComisionMontoFL1"
+      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "fraComisiones"
+      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).ControlCount=   3
       Begin VB.Frame fraDatosBasicos 
          Caption         =   "Datos Básicos"
@@ -213,7 +208,7 @@ Begin VB.Form frmDesembolsoAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1875
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   88
          Top             =   450
          Width           =   13305
@@ -556,7 +551,7 @@ Begin VB.Form frmDesembolsoAcreencias
       End
       Begin VB.Frame fraComisiones 
          Height          =   1005
-         Left            =   -74880
+         Left            =   120
          TabIndex        =   166
          Top             =   5400
          Width           =   6615
@@ -836,7 +831,7 @@ Begin VB.Form frmDesembolsoAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   4095
-         Left            =   -74880
+         Left            =   120
          TabIndex        =   96
          Top             =   3615
          Width           =   6615
@@ -1767,7 +1762,7 @@ Begin VB.Form frmDesembolsoAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   3225
-         Left            =   -74880
+         Left            =   120
          TabIndex        =   94
          Top             =   360
          Width           =   9495
@@ -2526,7 +2521,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   180944897
+            Format          =   181207041
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaOrdenHasta 
@@ -2548,7 +2543,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   180944897
+            Format          =   181207041
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionDesde 
@@ -2570,7 +2565,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   180944897
+            Format          =   181207041
             CurrentDate     =   38785
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacionHasta 
@@ -2592,7 +2587,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Strikethrough   =   0   'False
             EndProperty
             CheckBox        =   -1  'True
-            Format          =   180944897
+            Format          =   181207041
             CurrentDate     =   38785
          End
          Begin VB.Label lblDescrip 
@@ -2808,7 +2803,7 @@ Begin VB.Form frmDesembolsoAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1095
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   178
          Top             =   2340
          Width           =   13305
@@ -3086,7 +3081,7 @@ Begin VB.Form frmDesembolsoAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   3045
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   70
          Top             =   3390
          Width           =   13305
@@ -3242,7 +3237,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   180944897
+            Format          =   181207041
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaLiquidacion 
@@ -3264,7 +3259,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   180944897
+            Format          =   181207041
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaEmision 
@@ -3287,7 +3282,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   180944897
+            Format          =   181207041
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaVencimiento 
@@ -3308,7 +3303,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   180944897
+            Format          =   181207041
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaPago 
@@ -3331,7 +3326,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   180944897
+            Format          =   181207041
             CurrentDate     =   38776
          End
          Begin MSComCtl2.DTPicker dtpFechaVencimientoDcto 
@@ -3354,7 +3349,7 @@ Begin VB.Form frmDesembolsoAcreencias
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   180944897
+            Format          =   181207041
             CurrentDate     =   38776
          End
          Begin TAMControls.TAMTextBox txtDiasPlazo 
@@ -3876,7 +3871,7 @@ Begin VB.Form frmDesembolsoAcreencias
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1785
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   113
          Top             =   6450
          Width           =   13305
@@ -6299,6 +6294,7 @@ Private Sub cboTipoInstrumento_Click()
 End Sub
 
 Private Sub cboTipoInstrumentoOrden_Click()
+    Dim adoAux As ADODB.Recordset
     
     strCodTipoInstrumentoOrden = Valor_Caracter
 
@@ -6317,10 +6313,10 @@ Private Sub cboTipoInstrumentoOrden_Click()
     txtNemonico.Text = GenerarNemonico(strCodTipoInstrumentoOrden, strCodClaseInstrumento, strCodEmisor, txtNumDocDscto.Text)
     
     strSQL = "SELECT IFTON.CodTipoOperacion CODIGO,DescripParametro DESCRIP " & "FROM InversionFileTipoOperacionNegociacion IFTON JOIN AuxiliarParametro AUX ON(AUX.CodParametro=IFTON.CodTipoOperacion AND AUX.CodTipoParametro = 'OPECAJ') " & "WHERE IFTON.CodFile='" & strCodTipoInstrumentoOrden & "' ORDER BY DescripParametro"
-
+    
     lblAnalitica.Caption = strCodTipoInstrumentoOrden & " - ????????"
     strCodFile = strCodTipoInstrumentoOrden
-
+    
     '*** Clase de Instrumento ***
     strSQL = "SELECT CodDetalleFile CODIGO,DescripDetalleFile DESCRIP FROM InversionDetalleFile WHERE CodFile='" & strCodTipoInstrumentoOrden & "' AND IndVigente='X' ORDER BY DescripDetalleFile"
     CargarControlLista strSQL, cboClaseInstrumento, arrClaseInstrumento(), Sel_Defecto
@@ -6329,6 +6325,22 @@ Private Sub cboTipoInstrumentoOrden_Click()
         cboClaseInstrumento.ListIndex = 0
         cboClaseInstrumento.Enabled = True
     End If
+    
+    'Consultar si instrumento tiene igv
+    adoComm.CommandText = "SELECT IndGravable FROM InversionFile WHERE CodFile = '" & strCodFile & "'"
+    Set adoAux = adoComm.Execute
+    
+    If Not adoAux.EOF Then
+        If Trim$(adoAux("IndGravable")) = Valor_Caracter Then
+            txtPorcenIgvInt(0).Text = "0.00"
+            txtPorcenIgvInt2(1).Text = "0.00"
+        Else
+            txtPorcenIgvInt(0).Text = CStr(gdblTasaIgv * 100)
+            txtPorcenIgvInt2(1).Text = CStr(gdblTasaIgv * 100)
+        End If
+        
+    End If
+    
     
 End Sub
 
@@ -6877,7 +6889,7 @@ Private Sub CargarListas()
     CargarControlLista strSQL, cboMoneda, arrMoneda(), Sel_Defecto
     
     '*** Base de Cálculo ***
-    strSQL = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='BASANU' ORDER BY DescripParametro"
+    strSQL = "SELECT CodParametro CODIGO,DescripParametro DESCRIP FROM AuxiliarParametro WHERE CodTipoParametro='BASANU' AND CodParametro in ('02','03') ORDER BY DescripParametro"
     CargarControlLista strSQL, cboBaseAnual, arrBaseAnual(), Valor_Caracter
     
     '*** Tipo Tasa ***

@@ -63,6 +63,7 @@ Form=Formularios\frmRegistroCompras.frm
 Form=Formularios\frmComprobantePago.frm
 Form=Formularios\frmMainMdi.frm
 Form=Formularios\frmFiltroReporte2.frm
+Form=Formularios\frmGeneraLibroElectronico.frm
 IconForm="frmMainMdi"
 Startup="Sub Main"
 HelpFile=""
