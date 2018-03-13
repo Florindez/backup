@@ -113,7 +113,7 @@ Begin VB.Form frmGeneraLibroElectronico
          _ExtentX        =   2725
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   181272577
+         Format          =   182059009
          CurrentDate     =   38779
       End
       Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -125,7 +125,7 @@ Begin VB.Form frmGeneraLibroElectronico
          _ExtentX        =   2725
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   181272577
+         Format          =   182059009
          CurrentDate     =   38779
       End
       Begin VB.Label lblDescrip 
@@ -429,10 +429,10 @@ Private Sub GeneraArchivoRegulatorio(strCodRegistro As String, strCodAdministrad
         
 
         If Not adoRegistro.EOF Then
-            strNombreArchivo = strNombreArchivo & "11.TXT"
+            strNombreArchivo = strNombreArchivo & "111.TXT"
             numCampos = adoRegistro.Fields.Count
         Else
-            strNombreArchivo = strNombreArchivo & "01.TXT"
+            strNombreArchivo = strNombreArchivo & "011.TXT"
         End If
 
         numOut = FreeFile
@@ -442,10 +442,7 @@ Private Sub GeneraArchivoRegulatorio(strCodRegistro As String, strCodAdministrad
         Do While Not adoRegistro.EOF
             
             For n = 0 To numCampos - 1
-                If n > 0 Then
-                    strRegistro = strRegistro & "|"
-                End If
-                strRegistro = strRegistro & adoRegistro.Fields(n).Value
+                strRegistro = strRegistro & adoRegistro.Fields(n).Value & "|"
             Next n
                 
             strRegistro = strRegistro + Chr(13) + Chr(10)
@@ -475,15 +472,17 @@ Private Sub GeneraArchivoRegulatorio(strCodRegistro As String, strCodAdministrad
     
     Close #1
     'Libro 8.2 vacio:
-    strNombreArchivo = Left(strNombreArchivo, Len(strNombreArchivo) - 14) & "8020000101.TXT"
-    numOut = FreeFile
-    Open strNombreArchivo For Binary Access Read Write As numOut
-
-'    Call ActualizaRegistroControl(strCodRegistro, gstrCodAdministradora, strFechaRegistro, numNumRegistroControl, numCantRegistros)
-    Put numOut, 1, strRegistro
+    If strCodRegistro = "RC" Then
+        strNombreArchivo = Left(strNombreArchivo, Len(strNombreArchivo) - 15) & "80200001011.TXT"
+        numOut = FreeFile
+        Open strNombreArchivo For Binary Access Read Write As numOut
     
-    Close #1
-   
+    '    Call ActualizaRegistroControl(strCodRegistro, gstrCodAdministradora, strFechaRegistro, numNumRegistroControl, numCantRegistros)
+        Put numOut, 1, strRegistro
+        
+        Close #1
+    End If
+    
     Me.MousePointer = vbDefault
 
 End Sub
