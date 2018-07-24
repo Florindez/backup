@@ -113,7 +113,7 @@ Begin VB.Form frmGeneraLibroElectronico
          _ExtentX        =   2725
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   182059009
+         Format          =   206307329
          CurrentDate     =   38779
       End
       Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -125,43 +125,79 @@ Begin VB.Form frmGeneraLibroElectronico
          _ExtentX        =   2725
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   182059009
+         Format          =   206307329
          CurrentDate     =   38779
       End
       Begin VB.Label lblDescrip 
          AutoSize        =   -1  'True
          Caption         =   "Fecha Final"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00800000&
          Height          =   195
          Index           =   4
          Left            =   5460
          TabIndex        =   9
          Top             =   840
-         Width           =   825
+         Width           =   1005
       End
       Begin VB.Label lblDescrip 
          AutoSize        =   -1  'True
          Caption         =   "Fecha Inicial"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00800000&
          Height          =   195
          Index           =   3
-         Left            =   360
+         Left            =   390
          TabIndex        =   8
          Top             =   840
-         Width           =   900
+         Width           =   1110
       End
       Begin VB.Label lblDescrip 
          Caption         =   "Destino"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00800000&
          Height          =   285
          Index           =   2
          Left            =   390
          TabIndex        =   4
-         Top             =   1200
+         Top             =   1230
          Width           =   615
       End
       Begin VB.Label lblDescrip 
-         Caption         =   "Fondo"
+         Caption         =   "Empresa"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00800000&
          Height          =   285
          Index           =   0

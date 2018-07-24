@@ -1,6 +1,6 @@
 Attribute VB_Name = "ConstantesNegocio"
 Option Explicit
-'*** Acceso ***
+'*** Acceso ****
 Public Const Clave_Registro_Sistema = "Software\TAM Consulting\Spectrum Fondos CX"
 Public Const Clave_Registro_Sistema_Seguridad = "Software\TAM Consulting\Seguridad CX"
 Public Const Clave_Registro_TipoAdministradora = "Tipo Administradora"
