@@ -29,11 +29,9 @@ Begin VB.Form frmComprobantePago
       Buttons         =   2
       Caption0        =   "&Guardar"
       Tag0            =   "2"
-      Visible0        =   0   'False
       ToolTipText0    =   "Guardar"
       Caption1        =   "&Cancelar"
       Tag1            =   "8"
-      Visible1        =   0   'False
       ToolTipText1    =   "Cancelar"
       UserControlHeight=   390
       UserControlWidth=   2700
@@ -48,7 +46,6 @@ Begin VB.Form frmComprobantePago
       _ExtentY        =   688
       Caption0        =   "&Salir"
       Tag0            =   "9"
-      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlHeight=   390
       UserControlWidth=   1200
@@ -64,19 +61,15 @@ Begin VB.Form frmComprobantePago
       Buttons         =   4
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
-      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "1"
-      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Eliminar"
       Tag2            =   "4"
-      Visible2        =   0   'False
       ToolTipText2    =   "Eliminar"
       Caption3        =   "&Buscar"
       Tag3            =   "5"
-      Visible3        =   0   'False
       ToolTipText3    =   "Buscar"
       UserControlHeight=   390
       UserControlWidth=   5700
@@ -155,9 +148,9 @@ Begin VB.Form frmComprobantePago
       TabCaption(0)   =   "Lista"
       TabPicture(0)   =   "frmComprobantePago.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "gLista"
+      Tab(0).Control(0)=   "ucBotonNavegacion1"
       Tab(0).Control(1)=   "fraCompras(0)"
-      Tab(0).Control(2)=   "ucBotonNavegacion1"
+      Tab(0).Control(2)=   "gLista"
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Datos Generales"
       TabPicture(1)   =   "frmComprobantePago.frx":001C
@@ -640,7 +633,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   172556289
+            Format          =   48889857
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaTipoCambioPago 
@@ -663,7 +656,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   172556289
+            Format          =   48889857
             CurrentDate     =   39042
          End
          Begin TAMControls.TAMTextBox txtTipoCambioPago 
@@ -711,7 +704,7 @@ Begin VB.Form frmComprobantePago
             _ExtentX        =   4048
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   172556289
+            Format          =   48889857
             CurrentDate     =   42178
          End
          Begin VB.Label lblFechaEmisionDetrac 
@@ -1103,7 +1096,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   172556289
+            Format          =   48889857
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaComprobante 
@@ -1124,7 +1117,7 @@ Begin VB.Form frmComprobantePago
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   172556289
+            Format          =   48889857
             CurrentDate     =   39042
          End
          Begin VB.Label lblTipoProveedor 
@@ -1432,7 +1425,7 @@ Begin VB.Form frmComprobantePago
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   172556289
+            Format          =   48889857
             CurrentDate     =   39042
          End
          Begin VB.ComboBox cboFondo 
@@ -1452,7 +1445,7 @@ Begin VB.Form frmComprobantePago
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   172556289
+            Format          =   48889857
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
