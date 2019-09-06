@@ -33,21 +33,20 @@ Begin VB.Form frmAsientoContable
    Begin TAMControls2.ucBotonEdicion2 cmdSalir 
       Height          =   735
       Left            =   12240
-      TabIndex        =   42
+      TabIndex        =   20
       Top             =   8280
       Width           =   1200
       _ExtentX        =   2117
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
-      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
    Begin TAMControls2.ucBotonEdicion2 cmdOpcion 
       Height          =   735
       Left            =   600
-      TabIndex        =   43
+      TabIndex        =   21
       Top             =   8280
       Width           =   5700
       _ExtentX        =   10054
@@ -55,26 +54,22 @@ Begin VB.Form frmAsientoContable
       Buttons         =   4
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
-      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "Consul&tar"
       Tag1            =   "3"
-      Visible1        =   0   'False
       ToolTipText1    =   "Consultar"
       Caption2        =   "&Anular"
       Tag2            =   "4"
-      Visible2        =   0   'False
       ToolTipText2    =   "Anular"
       Caption3        =   "&Buscar"
       Tag3            =   "5"
-      Visible3        =   0   'False
       ToolTipText3    =   "Buscar"
       UserControlWidth=   5700
    End
    Begin TabDlg.SSTab tabAsiento 
       Height          =   8985
       Left            =   120
-      TabIndex        =   27
+      TabIndex        =   19
       Top             =   120
       Width           =   14250
       _ExtentX        =   25135
@@ -89,14 +84,14 @@ Begin VB.Form frmAsientoContable
       TabCaption(0)   =   "Asientos"
       TabPicture(0)   =   "frmAsientoContable.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "lblDescrip(0)"
-      Tab(0).Control(1)=   "lblDescrip(1)"
-      Tab(0).Control(2)=   "lblDescrip(2)"
-      Tab(0).Control(3)=   "tdgConsulta"
-      Tab(0).Control(4)=   "dtpFechaHasta"
-      Tab(0).Control(5)=   "dtpFechaDesde"
-      Tab(0).Control(6)=   "cboFondo"
-      Tab(0).Control(7)=   "chkSimulacion"
+      Tab(0).Control(0)=   "chkSimulacion"
+      Tab(0).Control(1)=   "cboFondo"
+      Tab(0).Control(2)=   "dtpFechaDesde"
+      Tab(0).Control(3)=   "dtpFechaHasta"
+      Tab(0).Control(4)=   "tdgConsulta"
+      Tab(0).Control(5)=   "lblDescrip(2)"
+      Tab(0).Control(6)=   "lblDescrip(1)"
+      Tab(0).Control(7)=   "lblDescrip(0)"
       Tab(0).ControlCount=   8
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmAsientoContable.frx":0028
@@ -109,7 +104,7 @@ Begin VB.Form frmAsientoContable
       Begin TAMControls2.ucBotonEdicion2 cmdAccion 
          Height          =   735
          Left            =   10680
-         TabIndex        =   25
+         TabIndex        =   17
          Top             =   7320
          Width           =   2700
          _ExtentX        =   4763
@@ -117,11 +112,9 @@ Begin VB.Form frmAsientoContable
          Buttons         =   2
          Caption0        =   "&Guardar"
          Tag0            =   "2"
-         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Cancelar"
          Tag1            =   "8"
-         Visible1        =   0   'False
          ToolTipText1    =   "Cancelar"
          UserControlWidth=   2700
       End
@@ -129,7 +122,7 @@ Begin VB.Form frmAsientoContable
          Caption         =   "Simulación"
          Height          =   255
          Left            =   -74580
-         TabIndex        =   57
+         TabIndex        =   23
          ToolTipText     =   "Marcar para ver los movimientos de la simulación"
          Top             =   1230
          Width           =   1455
@@ -138,7 +131,7 @@ Begin VB.Form frmAsientoContable
          ForeColor       =   &H00800000&
          Height          =   7665
          Left            =   390
-         TabIndex        =   31
+         TabIndex        =   60
          Top             =   480
          Width           =   13485
          Begin VB.CommandButton cmdContracuenta 
@@ -155,7 +148,7 @@ Begin VB.Form frmAsientoContable
             EndProperty
             Height          =   315
             Left            =   12780
-            TabIndex        =   93
+            TabIndex        =   48
             ToolTipText     =   "Buscar Cuenta Contable"
             Top             =   3480
             Width           =   375
@@ -165,7 +158,7 @@ Begin VB.Form frmAsientoContable
             ForeColor       =   &H00800000&
             Height          =   225
             Left            =   360
-            TabIndex        =   91
+            TabIndex        =   47
             Top             =   3480
             Width           =   1545
          End
@@ -183,7 +176,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   1950
             Style           =   2  'Dropdown List
-            TabIndex        =   88
+            TabIndex        =   46
             Top             =   3060
             Width           =   4605
          End
@@ -200,7 +193,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   8370
             MaxLength       =   20
-            TabIndex        =   87
+            TabIndex        =   45
             Top             =   3060
             Width           =   4395
          End
@@ -218,7 +211,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   1950
             Style           =   2  'Dropdown List
-            TabIndex        =   85
+            TabIndex        =   44
             Top             =   2700
             Width           =   3465
          End
@@ -235,7 +228,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   5460
             Locked          =   -1  'True
-            TabIndex        =   84
+            TabIndex        =   43
             Top             =   2700
             Width           =   7305
          End
@@ -254,7 +247,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Index           =   3
             Left            =   12780
-            TabIndex        =   83
+            TabIndex        =   42
             ToolTipText     =   "Buscar Cuenta Contable"
             Top             =   2700
             Width           =   375
@@ -273,7 +266,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   8370
             Style           =   2  'Dropdown List
-            TabIndex        =   81
+            TabIndex        =   41
             Top             =   1440
             Width           =   4425
          End
@@ -281,7 +274,7 @@ Begin VB.Form frmAsientoContable
             Caption         =   "Es Sólo Movimiento Contable"
             Height          =   255
             Left            =   9360
-            TabIndex        =   78
+            TabIndex        =   39
             Top             =   4350
             Width           =   3345
          End
@@ -298,14 +291,14 @@ Begin VB.Form frmAsientoContable
             EndProperty
             Height          =   375
             Left            =   360
-            TabIndex        =   77
+            TabIndex        =   37
             Top             =   5100
             Width           =   375
          End
          Begin TAMControls.TAMTextBox txtMontoMovimiento 
             Height          =   315
             Left            =   1950
-            TabIndex        =   76
+            TabIndex        =   35
             Top             =   4320
             Width           =   2800
             _ExtentX        =   4948
@@ -349,7 +342,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   8370
             MaxLength       =   20
-            TabIndex        =   72
+            TabIndex        =   34
             Top             =   1050
             Width           =   4395
          End
@@ -366,7 +359,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   4230
             Locked          =   -1  'True
-            TabIndex        =   71
+            TabIndex        =   33
             Top             =   8000
             Width           =   8535
          End
@@ -384,7 +377,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   1920
             Style           =   2  'Dropdown List
-            TabIndex        =   69
+            TabIndex        =   32
             Top             =   1050
             Width           =   4605
          End
@@ -402,7 +395,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   1080
             Style           =   2  'Dropdown List
-            TabIndex        =   68
+            TabIndex        =   31
             Top             =   8130
             Width           =   1005
          End
@@ -420,7 +413,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   840
             Style           =   2  'Dropdown List
-            TabIndex        =   66
+            TabIndex        =   30
             Top             =   8130
             Width           =   1065
          End
@@ -438,7 +431,7 @@ Begin VB.Form frmAsientoContable
             Left            =   1950
             Locked          =   -1  'True
             MaxLength       =   100
-            TabIndex        =   64
+            TabIndex        =   29
             Top             =   1980
             Width           =   10815
          End
@@ -456,7 +449,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Index           =   2
             Left            =   12780
-            TabIndex        =   63
+            TabIndex        =   28
             ToolTipText     =   "Buscar Cuenta Contable"
             Top             =   2340
             Width           =   375
@@ -476,7 +469,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Index           =   1
             Left            =   12780
-            TabIndex        =   62
+            TabIndex        =   27
             ToolTipText     =   "Buscar Cuenta Contable"
             Top             =   8220
             Width           =   375
@@ -495,7 +488,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   5460
             Locked          =   -1  'True
-            TabIndex        =   61
+            TabIndex        =   26
             Top             =   2340
             Width           =   7305
          End
@@ -503,7 +496,7 @@ Begin VB.Form frmAsientoContable
             Caption         =   "Ajuste por Tipo de Cambio"
             Height          =   255
             Left            =   12810
-            TabIndex        =   26
+            TabIndex        =   18
             Top             =   1020
             Visible         =   0   'False
             Width           =   255
@@ -523,7 +516,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   5610
             Style           =   2  'Dropdown List
-            TabIndex        =   23
+            TabIndex        =   16
             Top             =   8400
             Width           =   1635
          End
@@ -542,7 +535,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   1920
             Style           =   2  'Dropdown List
-            TabIndex        =   22
+            TabIndex        =   15
             Top             =   8400
             Width           =   1635
          End
@@ -558,7 +551,7 @@ Begin VB.Form frmAsientoContable
             EndProperty
             Height          =   315
             Left            =   1950
-            TabIndex        =   13
+            TabIndex        =   12
             Top             =   4680
             Width           =   10935
          End
@@ -576,7 +569,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   1950
             Style           =   2  'Dropdown List
-            TabIndex        =   15
+            TabIndex        =   14
             Top             =   3960
             Width           =   2800
          End
@@ -594,7 +587,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   6240
             Style           =   2  'Dropdown List
-            TabIndex        =   14
+            TabIndex        =   13
             Top             =   3960
             Width           =   2800
          End
@@ -611,7 +604,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   2520
             MaxLength       =   8
-            TabIndex        =   12
+            TabIndex        =   11
             Top             =   2340
             Width           =   1605
          End
@@ -628,7 +621,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   1950
             MaxLength       =   3
-            TabIndex        =   11
+            TabIndex        =   10
             Top             =   2340
             Width           =   555
          End
@@ -646,7 +639,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Index           =   0
             Left            =   12780
-            TabIndex        =   49
+            TabIndex        =   22
             ToolTipText     =   "Buscar Cuenta Contable"
             Top             =   1980
             Width           =   375
@@ -664,7 +657,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   1950
             MaxLength       =   10
-            TabIndex        =   10
+            TabIndex        =   9
             Top             =   1980
             Width           =   1665
          End
@@ -682,7 +675,7 @@ Begin VB.Form frmAsientoContable
             Height          =   375
             Left            =   360
             Style           =   1  'Graphical
-            TabIndex        =   17
+            TabIndex        =   38
             ToolTipText     =   "Quitar detalle"
             Top             =   5940
             Width           =   375
@@ -701,7 +694,7 @@ Begin VB.Form frmAsientoContable
             Height          =   375
             Left            =   360
             Style           =   1  'Graphical
-            TabIndex        =   16
+            TabIndex        =   36
             ToolTipText     =   "Agregar detalle"
             Top             =   5520
             Width           =   375
@@ -711,7 +704,7 @@ Begin VB.Form frmAsientoContable
             Enabled         =   0   'False
             Height          =   285
             Left            =   1980
-            TabIndex        =   8
+            TabIndex        =   7
             Top             =   8130
             Width           =   1155
          End
@@ -730,7 +723,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   1920
             Style           =   2  'Dropdown List
-            TabIndex        =   9
+            TabIndex        =   8
             Top             =   1440
             Width           =   1395
          End
@@ -747,7 +740,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   1920
             MaxLength       =   100
-            TabIndex        =   4
+            TabIndex        =   3
             Top             =   680
             Width           =   10815
          End
@@ -765,7 +758,7 @@ Begin VB.Form frmAsientoContable
             Height          =   315
             Left            =   4530
             Style           =   2  'Dropdown List
-            TabIndex        =   5
+            TabIndex        =   4
             Top             =   300
             Width           =   3135
          End
@@ -783,7 +776,7 @@ Begin VB.Form frmAsientoContable
             EndProperty
             Height          =   315
             Left            =   11910
-            TabIndex        =   7
+            TabIndex        =   6
             Text            =   "00:00"
             Top             =   300
             Width           =   855
@@ -791,7 +784,7 @@ Begin VB.Form frmAsientoContable
          Begin MSComCtl2.DTPicker dtpFechaAsiento 
             Height          =   315
             Left            =   9150
-            TabIndex        =   6
+            TabIndex        =   5
             Top             =   300
             Width           =   1485
             _ExtentX        =   2619
@@ -807,13 +800,13 @@ Begin VB.Form frmAsientoContable
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   181141505
+            Format          =   202244097
             CurrentDate     =   38068
          End
          Begin TAMControls.TAMTextBox txtTipoCambioMovimiento 
             Height          =   315
             Left            =   10560
-            TabIndex        =   80
+            TabIndex        =   40
             Top             =   3960
             Width           =   1035
             _ExtentX        =   1826
@@ -849,14 +842,14 @@ Begin VB.Form frmAsientoContable
             Height          =   1365
             Left            =   930
             OleObjectBlob   =   "frmAsientoContable.frx":0098
-            TabIndex        =   58
+            TabIndex        =   24
             Top             =   5070
             Width           =   11985
          End
          Begin TAMControls.TAMTextBox txtMontoContable 
             Height          =   315
             Left            =   6240
-            TabIndex        =   94
+            TabIndex        =   49
             Top             =   4320
             Width           =   2805
             _ExtentX        =   4948
@@ -890,7 +883,7 @@ Begin VB.Form frmAsientoContable
          Begin TAMControls.TAMTextBox txtTipoCambio 
             Height          =   315
             Left            =   5520
-            TabIndex        =   95
+            TabIndex        =   50
             Top             =   1440
             Width           =   1035
             _ExtentX        =   1826
@@ -950,7 +943,7 @@ Begin VB.Form frmAsientoContable
             ForeColor       =   &H00800000&
             Height          =   315
             Left            =   1950
-            TabIndex        =   92
+            TabIndex        =   95
             Top             =   3450
             Width           =   10815
          End
@@ -960,7 +953,7 @@ Begin VB.Form frmAsientoContable
             Height          =   210
             Index           =   35
             Left            =   360
-            TabIndex        =   90
+            TabIndex        =   94
             Top             =   3120
             Width           =   1125
          End
@@ -970,7 +963,7 @@ Begin VB.Form frmAsientoContable
             Height          =   210
             Index           =   34
             Left            =   7140
-            TabIndex        =   89
+            TabIndex        =   93
             Top             =   3090
             Width           =   1125
          End
@@ -980,7 +973,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   33
             Left            =   360
-            TabIndex        =   86
+            TabIndex        =   92
             Top             =   2730
             Width           =   1095
          End
@@ -990,7 +983,7 @@ Begin VB.Form frmAsientoContable
             Height          =   225
             Index           =   32
             Left            =   7140
-            TabIndex        =   82
+            TabIndex        =   91
             Top             =   1500
             Width           =   1155
          End
@@ -1000,7 +993,7 @@ Begin VB.Form frmAsientoContable
             ForeColor       =   &H00800000&
             Height          =   195
             Left            =   11760
-            TabIndex        =   79
+            TabIndex        =   90
             Top             =   3990
             Width           =   1080
             WordWrap        =   -1  'True
@@ -1011,7 +1004,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   31
             Left            =   11970
-            TabIndex        =   75
+            TabIndex        =   89
             Top             =   7350
             Width           =   495
          End
@@ -1021,7 +1014,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   30
             Left            =   7080
-            TabIndex        =   74
+            TabIndex        =   88
             Top             =   8040
             Width           =   345
          End
@@ -1031,7 +1024,7 @@ Begin VB.Form frmAsientoContable
             Height          =   210
             Index           =   29
             Left            =   7140
-            TabIndex        =   73
+            TabIndex        =   87
             Top             =   1080
             Width           =   1125
          End
@@ -1041,7 +1034,7 @@ Begin VB.Form frmAsientoContable
             Height          =   210
             Index           =   28
             Left            =   360
-            TabIndex        =   70
+            TabIndex        =   86
             Top             =   1065
             Width           =   1125
          End
@@ -1051,7 +1044,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   27
             Left            =   270
-            TabIndex        =   67
+            TabIndex        =   85
             Top             =   8010
             Width           =   765
          End
@@ -1061,7 +1054,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   26
             Left            =   330
-            TabIndex        =   65
+            TabIndex        =   84
             Top             =   8280
             Width           =   705
          End
@@ -1071,7 +1064,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   25
             Left            =   4560
-            TabIndex        =   60
+            TabIndex        =   83
             Top             =   2400
             Width           =   975
          End
@@ -1089,7 +1082,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   24
             Left            =   360
-            TabIndex        =   56
+            TabIndex        =   82
             Top             =   3990
             Width           =   1125
          End
@@ -1099,7 +1092,7 @@ Begin VB.Form frmAsientoContable
             Height          =   255
             Index           =   23
             Left            =   5040
-            TabIndex        =   55
+            TabIndex        =   81
             Top             =   3990
             Width           =   1095
          End
@@ -1109,7 +1102,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   21
             Left            =   360
-            TabIndex        =   54
+            TabIndex        =   80
             Top             =   4695
             Width           =   1575
          End
@@ -1119,7 +1112,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   20
             Left            =   5040
-            TabIndex        =   53
+            TabIndex        =   79
             Top             =   4350
             Width           =   1125
          End
@@ -1129,7 +1122,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   19
             Left            =   360
-            TabIndex        =   52
+            TabIndex        =   78
             Top             =   4350
             Width           =   975
          End
@@ -1139,7 +1132,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   18
             Left            =   360
-            TabIndex        =   51
+            TabIndex        =   77
             Top             =   2370
             Width           =   885
          End
@@ -1149,7 +1142,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   17
             Left            =   360
-            TabIndex        =   50
+            TabIndex        =   76
             Top             =   2025
             Width           =   975
          End
@@ -1176,7 +1169,7 @@ Begin VB.Form frmAsientoContable
             ForeColor       =   &H00000080&
             Height          =   285
             Left            =   10830
-            TabIndex        =   21
+            TabIndex        =   55
             Top             =   6450
             Width           =   2085
          End
@@ -1194,7 +1187,7 @@ Begin VB.Form frmAsientoContable
             EndProperty
             Height          =   285
             Left            =   7800
-            TabIndex        =   20
+            TabIndex        =   54
             Top             =   6450
             Width           =   2055
          End
@@ -1213,7 +1206,7 @@ Begin VB.Form frmAsientoContable
             ForeColor       =   &H00000080&
             Height          =   285
             Left            =   4920
-            TabIndex        =   19
+            TabIndex        =   53
             Top             =   6450
             Width           =   1995
          End
@@ -1231,7 +1224,7 @@ Begin VB.Form frmAsientoContable
             EndProperty
             Height          =   285
             Left            =   1890
-            TabIndex        =   18
+            TabIndex        =   52
             Top             =   6450
             Width           =   2055
          End
@@ -1242,7 +1235,7 @@ Begin VB.Form frmAsientoContable
             Height          =   195
             Index           =   10
             Left            =   930
-            TabIndex        =   48
+            TabIndex        =   75
             Top             =   6510
             Width           =   1215
          End
@@ -1253,7 +1246,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   11
             Left            =   3990
-            TabIndex        =   47
+            TabIndex        =   74
             Top             =   6480
             Width           =   975
          End
@@ -1264,7 +1257,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   12
             Left            =   6960
-            TabIndex        =   46
+            TabIndex        =   73
             Top             =   6480
             Width           =   915
          End
@@ -1275,7 +1268,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   13
             Left            =   9915
-            TabIndex        =   45
+            TabIndex        =   72
             Top             =   6480
             Width           =   930
          End
@@ -1285,7 +1278,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   22
             Left            =   2130
-            TabIndex        =   44
+            TabIndex        =   71
             Top             =   8100
             Width           =   1095
          End
@@ -1295,7 +1288,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   16
             Left            =   7920
-            TabIndex        =   41
+            TabIndex        =   70
             Top             =   8460
             Width           =   1935
          End
@@ -1305,7 +1298,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   15
             Left            =   4770
-            TabIndex        =   40
+            TabIndex        =   69
             Top             =   8460
             Width           =   735
          End
@@ -1315,7 +1308,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   14
             Left            =   960
-            TabIndex        =   39
+            TabIndex        =   68
             Top             =   8460
             Width           =   855
          End
@@ -1325,7 +1318,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   9
             Left            =   10830
-            TabIndex        =   38
+            TabIndex        =   67
             Top             =   330
             Width           =   1065
          End
@@ -1335,7 +1328,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   8
             Left            =   9360
-            TabIndex        =   37
+            TabIndex        =   66
             Top             =   3990
             Width           =   1095
          End
@@ -1345,7 +1338,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   7
             Left            =   7890
-            TabIndex        =   36
+            TabIndex        =   65
             Top             =   345
             Width           =   1275
          End
@@ -1355,7 +1348,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   6
             Left            =   3210
-            TabIndex        =   35
+            TabIndex        =   64
             Top             =   8130
             Width           =   975
          End
@@ -1365,7 +1358,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   5
             Left            =   3750
-            TabIndex        =   34
+            TabIndex        =   63
             Top             =   345
             Width           =   735
          End
@@ -1375,7 +1368,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   4
             Left            =   360
-            TabIndex        =   33
+            TabIndex        =   62
             Top             =   705
             Width           =   1095
          End
@@ -1385,7 +1378,7 @@ Begin VB.Form frmAsientoContable
             Height          =   285
             Index           =   3
             Left            =   360
-            TabIndex        =   32
+            TabIndex        =   61
             Top             =   330
             Width           =   735
          End
@@ -1404,7 +1397,7 @@ Begin VB.Form frmAsientoContable
             EndProperty
             Height          =   285
             Left            =   10185
-            TabIndex        =   24
+            TabIndex        =   56
             Top             =   8415
             Width           =   1155
          End
@@ -1423,7 +1416,7 @@ Begin VB.Form frmAsientoContable
             EndProperty
             Height          =   285
             Left            =   1950
-            TabIndex        =   3
+            TabIndex        =   51
             Top             =   315
             Width           =   1515
          End
@@ -1464,7 +1457,7 @@ Begin VB.Form frmAsientoContable
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   181141505
+         Format          =   202244097
          CurrentDate     =   38068
       End
       Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -1485,7 +1478,7 @@ Begin VB.Form frmAsientoContable
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   181141505
+         Format          =   202244097
          CurrentDate     =   38068
       End
       Begin TrueOleDBGrid60.TDBGrid tdgConsulta 
@@ -1493,7 +1486,7 @@ Begin VB.Form frmAsientoContable
          Height          =   6285
          Left            =   -74580
          OleObjectBlob   =   "frmAsientoContable.frx":A828
-         TabIndex        =   59
+         TabIndex        =   25
          Top             =   1650
          Width           =   13335
       End
@@ -1503,7 +1496,7 @@ Begin VB.Form frmAsientoContable
          Height          =   285
          Index           =   2
          Left            =   -64080
-         TabIndex        =   30
+         TabIndex        =   59
          Top             =   1140
          Width           =   1335
       End
@@ -1513,7 +1506,7 @@ Begin VB.Form frmAsientoContable
          Height          =   285
          Index           =   1
          Left            =   -64080
-         TabIndex        =   29
+         TabIndex        =   58
          Top             =   660
          Width           =   1335
       End
@@ -1523,7 +1516,7 @@ Begin VB.Form frmAsientoContable
          Height          =   285
          Index           =   0
          Left            =   -74580
-         TabIndex        =   28
+         TabIndex        =   57
          Top             =   690
          Width           =   615
       End

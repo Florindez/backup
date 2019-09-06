@@ -1,11 +1,11 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.MDIForm frmMainMdi 
    BackColor       =   &H8000000C&
    Caption         =   "Módulo Partícipes"
    ClientHeight    =   9750
-   ClientLeft      =   225
-   ClientTop       =   855
+   ClientLeft      =   165
+   ClientTop       =   735
    ClientWidth     =   16935
    Icon            =   "frmMainMdi.frx":0000
    LinkTopic       =   "MDIForm1"
@@ -37,7 +37,7 @@ Begin VB.MDIForm frmMainMdi
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
             AutoSize        =   1
-            Object.Width           =   24209
+            Object.Width           =   24236
             Text            =   "Acción"
             TextSave        =   "Acción"
             Object.ToolTipText     =   "Mensajes"
@@ -514,7 +514,7 @@ Private Sub MDIForm_Load()
         End
     End If
     
-    frmMainMdi.BackColor = RGB(234, 214, 141)
+    frmMainMdi.BackColor = RGB(102, 180, 255)
     
     frmAcceso.Show vbModal
     

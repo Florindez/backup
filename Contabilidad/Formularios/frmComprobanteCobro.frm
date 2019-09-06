@@ -18,6 +18,25 @@ Begin VB.Form frmComprobanteCobro
    ScaleHeight     =   9300
    ScaleWidth      =   10785
    ShowInTaskbar   =   0   'False
+   Begin VB.CommandButton cmdExportar 
+      Caption         =   "&Exportar"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   735
+      Left            =   7080
+      Picture         =   "frmComprobanteCobro.frx":0000
+      Style           =   1  'Graphical
+      TabIndex        =   85
+      Top             =   8490
+      Width           =   1200
+   End
    Begin TabDlg.SSTab tabRegistroCompras 
       Height          =   8190
       Left            =   120
@@ -28,7 +47,6 @@ Begin VB.Form frmComprobanteCobro
       _ExtentY        =   14446
       _Version        =   393216
       Style           =   1
-      Tab             =   1
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -40,26 +58,25 @@ Begin VB.Form frmComprobanteCobro
          Strikethrough   =   0   'False
       EndProperty
       TabCaption(0)   =   "Lista"
-      TabPicture(0)   =   "frmComprobanteCobro.frx":0000
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "fraCompras(0)"
+      TabPicture(0)   =   "frmComprobanteCobro.frx":0608
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "gLista"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "ucBotonNavegacion1"
-      Tab(0).Control(2)=   "gLista"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "fraCompras(0)"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Datos Generales"
-      TabPicture(1)   =   "frmComprobanteCobro.frx":001C
-      Tab(1).ControlEnabled=   -1  'True
+      TabPicture(1)   =   "frmComprobanteCobro.frx":0624
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "cmdAccion"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "fraCompras(3)"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "fraCompras(1)"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "fraNotaCredito"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Ordenes de Cobro"
-      TabPicture(2)   =   "frmComprobanteCobro.frx":0038
+      TabPicture(2)   =   "frmComprobanteCobro.frx":0640
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "Frame1"
       Tab(2).ControlCount=   1
@@ -76,7 +93,7 @@ Begin VB.Form frmComprobanteCobro
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1155
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   68
          Top             =   6060
          Width           =   9885
@@ -102,7 +119,7 @@ Begin VB.Form frmComprobanteCobro
             FontSize        =   8.25
             ForeColor       =   -2147483640
             Locked          =   -1  'True
-            Container       =   "frmComprobanteCobro.frx":0054
+            Container       =   "frmComprobanteCobro.frx":065C
             Apariencia      =   1
             Borde           =   1
             MaximoValor     =   0
@@ -237,7 +254,7 @@ Begin VB.Form frmComprobanteCobro
             FontSize        =   8.25
             ForeColor       =   -2147483640
             Locked          =   -1  'True
-            Container       =   "frmComprobanteCobro.frx":0070
+            Container       =   "frmComprobanteCobro.frx":0678
             Apariencia      =   1
             Borde           =   1
             MaximoValor     =   0
@@ -260,7 +277,7 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   199491585
+            Format          =   38207489
             CurrentDate     =   2
          End
          Begin VB.Label lblDescrip 
@@ -319,7 +336,7 @@ Begin VB.Form frmComprobanteCobro
          EndProperty
          Height          =   1695
          Index           =   0
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   46
          Top             =   420
          Width           =   9705
@@ -356,7 +373,7 @@ Begin VB.Form frmComprobanteCobro
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   199491585
+            Format          =   38207489
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -368,7 +385,7 @@ Begin VB.Form frmComprobanteCobro
             _ExtentX        =   2778
             _ExtentY        =   609
             _Version        =   393216
-            Format          =   199491585
+            Format          =   38207489
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -506,7 +523,7 @@ Begin VB.Form frmComprobanteCobro
          EndProperty
          Height          =   4395
          Index           =   1
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   21
          Top             =   420
          Width           =   9885
@@ -595,7 +612,7 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   199491585
+            Format          =   38207489
             CurrentDate     =   39042
          End
          Begin MSComCtl2.DTPicker dtpFechaComprobante 
@@ -616,7 +633,7 @@ Begin VB.Form frmComprobanteCobro
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   199491585
+            Format          =   38207489
             CurrentDate     =   39042
          End
          Begin VB.Label lblDescrip 
@@ -1003,7 +1020,7 @@ Begin VB.Form frmComprobanteCobro
          Begin DXDBGRIDLibCtl.dxDBGrid gIngresos 
             Height          =   3795
             Left            =   810
-            OleObjectBlob   =   "frmComprobanteCobro.frx":008C
+            OleObjectBlob   =   "frmComprobanteCobro.frx":0694
             TabIndex        =   15
             TabStop         =   0   'False
             Top             =   1440
@@ -1213,7 +1230,7 @@ Begin VB.Form frmComprobanteCobro
          EndProperty
          Height          =   1215
          Index           =   3
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   1
          Top             =   4830
          Width           =   9885
@@ -1227,9 +1244,9 @@ Begin VB.Form frmComprobanteCobro
          End
          Begin VB.ComboBox cboCreditoFiscal 
             Height          =   315
-            ItemData        =   "frmComprobanteCobro.frx":4708
+            ItemData        =   "frmComprobanteCobro.frx":4D10
             Left            =   2520
-            List            =   "frmComprobanteCobro.frx":470F
+            List            =   "frmComprobanteCobro.frx":4D17
             Style           =   2  'Dropdown List
             TabIndex        =   3
             Top             =   705
@@ -1304,7 +1321,7 @@ Begin VB.Form frmComprobanteCobro
       End
       Begin TAMControls.ucBotonNavegacion ucBotonNavegacion1 
          Height          =   30
-         Left            =   -69450
+         Left            =   5550
          TabIndex        =   20
          Top             =   4920
          Width           =   30
@@ -1313,8 +1330,8 @@ Begin VB.Form frmComprobanteCobro
       End
       Begin DXDBGRIDLibCtl.dxDBGrid gLista 
          Height          =   5565
-         Left            =   -74640
-         OleObjectBlob   =   "frmComprobanteCobro.frx":4725
+         Left            =   360
+         OleObjectBlob   =   "frmComprobanteCobro.frx":4D2D
          TabIndex        =   54
          TabStop         =   0   'False
          Top             =   2340
@@ -1322,7 +1339,7 @@ Begin VB.Form frmComprobanteCobro
       End
       Begin TAMControls2.ucBotonEdicion2 cmdAccion 
          Height          =   735
-         Left            =   4410
+         Left            =   -70590
          TabIndex        =   66
          Top             =   7290
          Width           =   5700
@@ -1331,19 +1348,15 @@ Begin VB.Form frmComprobanteCobro
          Buttons         =   4
          Caption0        =   "&Guardar"
          Tag0            =   "2"
-         Visible0        =   0   'False
          ToolTipText0    =   "Guardar"
          Caption1        =   "&Imprimir"
          Tag1            =   "6"
-         Visible1        =   0   'False
          ToolTipText1    =   "Imprimir"
          Caption2        =   "Anular"
          Tag2            =   "7"
-         Visible2        =   0   'False
          ToolTipText2    =   "Anular"
          Caption3        =   "Cancelar"
          Tag3            =   "8"
-         Visible3        =   0   'False
          ToolTipText3    =   "Cancelar"
          UserControlWidth=   5700
       End
@@ -1359,19 +1372,15 @@ Begin VB.Form frmComprobanteCobro
       Buttons         =   4
       Caption0        =   "&Nuevo"
       Tag0            =   "0"
-      Visible0        =   0   'False
       ToolTipText0    =   "Nuevo"
       Caption1        =   "&Modificar"
       Tag1            =   "1"
-      Visible1        =   0   'False
       ToolTipText1    =   "Modificar"
       Caption2        =   "&Eliminar"
       Tag2            =   "4"
-      Visible2        =   0   'False
       ToolTipText2    =   "Eliminar"
       Caption3        =   "&Buscar"
       Tag3            =   "5"
-      Visible3        =   0   'False
       ToolTipText3    =   "Buscar"
       UserControlWidth=   5700
    End
@@ -1385,7 +1394,6 @@ Begin VB.Form frmComprobanteCobro
       _ExtentY        =   1296
       Caption0        =   "&Salir"
       Tag0            =   "9"
-      Visible0        =   0   'False
       ToolTipText0    =   "Salir"
       UserControlWidth=   1200
    End
@@ -2729,6 +2737,10 @@ Private Sub LimpiarCamposNC()
     chkDescuentos.Value = vbUnchecked
     chkDevoluciones.Value = vbUnchecked
     chkOtros.Value = vbUnchecked
+End Sub
+
+Private Sub cmdExportar_Click()
+    frmFiltroReporte3.Show
 End Sub
 
 Private Sub dtpFechaComprobante_Change()
